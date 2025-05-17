@@ -19,18 +19,18 @@ const Hero = ({
   ctaLink = "/consultation",
   image = "https://images.unsplash.com/photo-1490818387583-1baba5e638af?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1932&q=80",
   showWave = true,
-  profileImage = "/lovable-uploads/ca42dc66-026e-45dc-818c-96ec602d6825.png"
+  profileImage = "/lovable-uploads/8f1a6fd3-0913-42f9-afcb-77778ed69afb.png"
 }: HeroProps) => {
   return <div className="relative bg-gradient-to-br from-nutrition-light-green/30 to-nutrition-light-blue/30 overflow-hidden">
       <div className="container-custom relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 py-16 md:py-24 items-center">
           <div className="animate-fade-in">
             {profileImage && <div className="mb-8 flex justify-center lg:justify-start">
-                <div className="relative w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-white shadow-xl">
+                <div className="relative w-72 h-72 md:w-96 md:h-96 rounded-full overflow-hidden border-4 border-white shadow-xl">
                   <img 
                     src={profileImage} 
                     alt="Lidiane Dos Reis" 
-                    className="w-full h-full object-cover object-center"
+                    className="w-full h-full object-cover"
                   />
                 </div>
               </div>}

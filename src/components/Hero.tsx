@@ -19,7 +19,7 @@ const Hero = ({
   ctaLink = "/consultation",
   image = "https://images.unsplash.com/photo-1490818387583-1baba5e638af?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1932&q=80",
   showWave = true,
-  profileImage = "/lovable-uploads/8f1a6fd3-0913-42f9-afcb-77778ed69afb.png"
+  profileImage = "/lovable-uploads/eb101949-77ca-4a72-80ff-91e3190e410a.png"
 }: HeroProps) => {
   return <div className="relative bg-gradient-to-br from-nutrition-light-green/30 to-nutrition-light-blue/30 overflow-hidden">
       <div className="container-custom relative z-10">

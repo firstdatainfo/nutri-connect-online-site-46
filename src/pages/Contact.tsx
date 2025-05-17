@@ -119,14 +119,7 @@ const Contact = () => {
               </div>
 
               {/* Contact Information */}
-              <div>
-                <h2 className="text-3xl font-bold mb-6">Entre em Contato</h2>
-                <p className="text-gray-600 mb-8">
-                  Estamos aqui para responder suas perguntas e fornecer suporte em sua jornada nutricional.
-                </p>
-
-                
-              </div>
+              
             </div>
           </div>
         </section>

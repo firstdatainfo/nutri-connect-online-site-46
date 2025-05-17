@@ -8,15 +8,16 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { format } from "date-fns";
+import { pt } from "date-fns/locale"; // Importando o locale pt para datas
 import { Calendar as CalendarIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useToast } from "@/hooks/use-toast";
 
 const consultationTypes = [
-  { value: "initial", label: "Initial Consultation (60 min)" },
-  { value: "followup", label: "Follow-up Session (30 min)" },
-  { value: "plan", label: "Custom Meal Planning (45 min)" },
-  { value: "coaching", label: "Health Coaching (60 min)" },
+  { value: "initial", label: "Consulta Inicial (60 min)" },
+  { value: "followup", label: "Sessão de Acompanhamento (30 min)" },
+  { value: "plan", label: "Planejamento Alimentar Personalizado (45 min)" },
+  { value: "coaching", label: "Coaching de Saúde (60 min)" },
 ];
 
 const timeSlots = [
@@ -54,8 +55,8 @@ const BookingForm = () => {
     setTimeout(() => {
       setIsSubmitting(false);
       toast({
-        title: "Consultation Booked",
-        description: `Your ${type} consultation has been scheduled for ${date ? format(date, "MMMM d, yyyy") : ""} at ${time}.`,
+        title: "Agendamento Confirmado",
+        description: `Sua consulta de ${getTipoConsulta(type)} foi agendada para ${date ? format(date, "d 'de' MMMM 'de' yyyy", { locale: pt }) : ""} às ${time}.`,
       });
       
       // Reset form
@@ -71,14 +72,20 @@ const BookingForm = () => {
     }, 1500);
   };
 
+  // Função para obter o tipo de consulta em português baseado no valor
+  const getTipoConsulta = (tipo: string): string => {
+    const consulta = consultationTypes.find(c => c.value === tipo);
+    return consulta ? consulta.label : "";
+  };
+
   return (
     <form onSubmit={handleSubmit} className="space-y-3">
       <div className="space-y-1.5">
-        <Label htmlFor="name">Full Name</Label>
+        <Label htmlFor="name">Nome Completo</Label>
         <Input
           id="name"
           name="name"
-          placeholder="Your full name"
+          placeholder="Seu nome completo"
           value={formData.name}
           onChange={handleInputChange}
           required
@@ -87,23 +94,23 @@ const BookingForm = () => {
       
       <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
         <div className="space-y-1.5">
-          <Label htmlFor="email">Email Address</Label>
+          <Label htmlFor="email">E-mail</Label>
           <Input
             id="email"
             name="email"
             type="email"
-            placeholder="your@email.com"
+            placeholder="seu@email.com"
             value={formData.email}
             onChange={handleInputChange}
             required
           />
         </div>
         <div className="space-y-1.5">
-          <Label htmlFor="phone">Phone Number</Label>
+          <Label htmlFor="phone">Telefone</Label>
           <Input
             id="phone"
             name="phone"
-            placeholder="Your phone number"
+            placeholder="Seu número de telefone"
             value={formData.phone}
             onChange={handleInputChange}
             required
@@ -112,10 +119,10 @@ const BookingForm = () => {
       </div>
 
       <div className="space-y-1.5">
-        <Label>Consultation Type</Label>
+        <Label>Tipo de Consulta</Label>
         <Select value={type} onValueChange={setType} required>
           <SelectTrigger>
-            <SelectValue placeholder="Select consultation type" />
+            <SelectValue placeholder="Selecione o tipo de consulta" />
           </SelectTrigger>
           <SelectContent>
             {consultationTypes.map((consultationType) => (
@@ -129,7 +136,7 @@ const BookingForm = () => {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
         <div className="space-y-1.5">
-          <Label>Preferred Date</Label>
+          <Label>Data Preferida</Label>
           <Popover>
             <PopoverTrigger asChild>
               <Button
@@ -140,7 +147,7 @@ const BookingForm = () => {
                 )}
               >
                 <CalendarIcon className="mr-2 h-4 w-4" />
-                {date ? format(date, "PPP") : "Select a date"}
+                {date ? format(date, "d 'de' MMMM 'de' yyyy", { locale: pt }) : "Selecione uma data"}
               </Button>
             </PopoverTrigger>
             <PopoverContent className="w-auto p-0" align="start">
@@ -149,6 +156,7 @@ const BookingForm = () => {
                 selected={date}
                 onSelect={setDate}
                 initialFocus
+                locale={pt}
                 className="pointer-events-auto"
                 disabled={(date) => 
                   date < new Date(new Date().setHours(0, 0, 0, 0)) || 
@@ -161,10 +169,10 @@ const BookingForm = () => {
         </div>
 
         <div className="space-y-1.5">
-          <Label>Preferred Time</Label>
+          <Label>Horário Preferido</Label>
           <Select value={time} onValueChange={setTime} required>
             <SelectTrigger>
-              <SelectValue placeholder="Select a time" />
+              <SelectValue placeholder="Selecione um horário" />
             </SelectTrigger>
             <SelectContent>
               {timeSlots.map((slot) => (
@@ -178,11 +186,11 @@ const BookingForm = () => {
       </div>
 
       <div className="space-y-1.5">
-        <Label htmlFor="notes">Additional Notes</Label>
+        <Label htmlFor="notes">Observações Adicionais</Label>
         <Textarea
           id="notes"
           name="notes"
-          placeholder="Any additional information or special requirements"
+          placeholder="Qualquer informação adicional ou requisitos especiais"
           value={formData.notes}
           onChange={handleInputChange}
           rows={3}
@@ -194,7 +202,7 @@ const BookingForm = () => {
         className="w-full bg-nutrition-green hover:bg-nutrition-teal"
         disabled={isSubmitting}
       >
-        {isSubmitting ? "Booking..." : "Book Consultation"}
+        {isSubmitting ? "Agendando..." : "Agendar Consulta"}
       </Button>
     </form>
   );

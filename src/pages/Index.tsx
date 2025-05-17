@@ -161,7 +161,7 @@ const Index = () => {
               <Button asChild size="lg" variant="secondary" className="text-nutrition-green">
                 <Link to="/consultation">Agendar Consulta</Link>
               </Button>
-              <Button asChild size="lg" variant="outline" className="text-white border-white hover:bg-white/10 hover:text-white">
+              <Button asChild size="lg" className="bg-transparent text-white border border-white hover:bg-white/10">
                 <Link to="/community">Junte-se à Nossa Comunidade</Link>
               </Button>
             </div>

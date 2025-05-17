@@ -1,3 +1,4 @@
+
 import { Apple, Carrot, MessageCircle, Users, Phone, Instagram, Mail } from "lucide-react";
 import Hero from "@/components/Hero";
 import Navbar from "@/components/Navbar";
@@ -57,7 +58,7 @@ const Index = () => {
           subtitle="Nutricionista Clínica Integrativa, Esportiva, Estética, Microbiota Intestinal e Genômica" 
           ctaText="Agende uma Consulta" 
           ctaLink="/consultation" 
-          profileImage="/lovable-uploads/7f21824b-576f-4ec6-8c01-344ca77b5a02.png" 
+          profileImage="/lovable-uploads/eb101949-77ca-4a72-80ff-91e3190e410a.png" 
           image="https://images.unsplash.com/photo-1494597564530-871f2b93ac55?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1513&q=80" 
         />
 

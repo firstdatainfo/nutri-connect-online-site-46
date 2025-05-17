@@ -72,7 +72,7 @@ const BookingForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6">
+    <form onSubmit={handleSubmit} className="space-y-4">
       <div className="space-y-2">
         <Label htmlFor="name">Full Name</Label>
         <Input
@@ -85,7 +85,7 @@ const BookingForm = () => {
         />
       </div>
       
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div className="space-y-2">
           <Label htmlFor="email">Email Address</Label>
           <Input
@@ -127,7 +127,7 @@ const BookingForm = () => {
         </Select>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div className="space-y-2">
           <Label>Preferred Date</Label>
           <Popover>
@@ -149,6 +149,7 @@ const BookingForm = () => {
                 selected={date}
                 onSelect={setDate}
                 initialFocus
+                className="pointer-events-auto"
                 disabled={(date) => 
                   date < new Date(new Date().setHours(0, 0, 0, 0)) || 
                   date.getDay() === 0 || 
@@ -184,7 +185,7 @@ const BookingForm = () => {
           placeholder="Any additional information or special requirements"
           value={formData.notes}
           onChange={handleInputChange}
-          rows={4}
+          rows={3}
         />
       </div>
 

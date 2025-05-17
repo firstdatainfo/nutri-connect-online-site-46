@@ -40,6 +40,7 @@ const About = () => {
           subtitle="Conheça nossa missão, nossa equipe e nossa abordagem para transformar a saúde através da nutrição."
           showWave={false}
           image="https://images.unsplash.com/photo-1505576399279-565b52d4ac71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80"
+          ctaText="Agendar Consulta"
         />
 
         {/* Seção Nossa História */}

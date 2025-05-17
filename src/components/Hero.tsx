@@ -1,3 +1,4 @@
+
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 interface HeroProps {
@@ -12,7 +13,7 @@ interface HeroProps {
 const Hero = ({
   title,
   subtitle,
-  ctaText = "Book a Consultation",
+  ctaText = "Agendar Consulta",
   ctaLink = "/consultation",
   image = "https://images.unsplash.com/photo-1490818387583-1baba5e638af?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1932&q=80",
   showWave = true,
@@ -42,7 +43,7 @@ const Hero = ({
 
           <div className="relative animate-slide-up hidden sm:block">
             <div className="absolute -inset-0.5 bg-gradient-to-r from-nutrition-green to-nutrition-teal rounded-lg blur opacity-30"></div>
-            <div className="relative rounded-lg overflow-hidden shadow-xl max-h-96 lg:max-h-none">
+            <div className="relative rounded-lg overflow-hidden shadow-xl max-h-80 lg:max-h-[350px]">
               {image && <img src={image} alt="Hero Image" className="w-full h-full object-cover" />}
             </div>
           </div>

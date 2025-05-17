@@ -1,6 +1,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+
 interface HeroProps {
   title: string;
   subtitle: string;
@@ -10,6 +11,7 @@ interface HeroProps {
   showWave?: boolean;
   profileImage?: string;
 }
+
 const Hero = ({
   title,
   subtitle,
@@ -28,15 +30,17 @@ const Hero = ({
                   <img src={profileImage} alt="Lidiane Dos Reis" className="w-full h-full object-cover" />
                 </div>
               </div>}
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 text-center lg:text-left">
               {title}
             </h1>
-            <p className="text-lg md:text-xl text-gray-700 mb-8">
+            <p className="text-lg md:text-xl text-gray-700 mb-8 text-center lg:text-left">
               {subtitle}
             </p>
-            {ctaText && <Button asChild size="lg" className="bg-nutrition-green hover:bg-nutrition-teal text-lg">
+            {ctaText && <div className="flex justify-center lg:justify-start">
+              <Button asChild size="lg" className="bg-nutrition-green hover:bg-nutrition-teal text-lg">
                 <Link to={ctaLink}>{ctaText}</Link>
-              </Button>}
+              </Button>
+            </div>}
           </div>
 
           <div className="relative animate-slide-up">
@@ -55,4 +59,5 @@ const Hero = ({
         </div>}
     </div>;
 };
+
 export default Hero;

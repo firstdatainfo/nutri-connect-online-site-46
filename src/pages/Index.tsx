@@ -6,6 +6,7 @@ import ServiceCard from "@/components/ServiceCard";
 import TestimonialCard from "@/components/TestimonialCard";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+
 const Index = () => {
   const services = [{
     title: "Nutrição Clínica Integrativa",
@@ -52,8 +53,8 @@ const Index = () => {
       <Navbar />
       <main>
         <Hero 
-          title="Lidiane Dos Reis Nutricionista" 
-          subtitle="Nutrição Clínica Integrativa, Esportiva, Estética, Microbiota Intestinal e Genômica" 
+          title="Lidiane Dos Reis" 
+          subtitle="Nutricionista Clínica Integrativa, Esportiva, Estética, Microbiota Intestinal e Genômica" 
           ctaText="Agende uma Consulta" 
           ctaLink="/consultation" 
           profileImage="/lovable-uploads/7f21824b-576f-4ec6-8c01-344ca77b5a02.png" 
@@ -208,4 +209,5 @@ const Index = () => {
       <Footer />
     </>;
 };
+
 export default Index;

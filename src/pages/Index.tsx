@@ -1,4 +1,3 @@
-
 import { Apple, Carrot, MessageCircle, Users, Phone, Instagram, Mail } from "lucide-react";
 import Hero from "@/components/Hero";
 import Navbar from "@/components/Navbar";
@@ -7,7 +6,6 @@ import ServiceCard from "@/components/ServiceCard";
 import TestimonialCard from "@/components/TestimonialCard";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-
 const Index = () => {
   const services = [{
     title: "Nutrição Clínica Integrativa",
@@ -50,62 +48,14 @@ const Index = () => {
     role: "Cliente - Nutrição Esportiva",
     image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=464&q=80"
   }];
-  
   return <>
       <Navbar />
       <main>
         <Hero title="Lidiane Dos Reis Nutricionista" subtitle="Nutrição Clínica Integrativa, Esportiva, Estética, Microbiota Intestinal e Genômica" ctaText="Agende uma Consulta" ctaLink="/consultation" profileImage="/lovable-uploads/ca42dc66-026e-45dc-818c-96ec602d6825.png" image="https://images.unsplash.com/photo-1490818387583-1baba5e638af?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1932&q=80" />
 
-        {/* Inspirational Quote Section */}
-        <section className="py-16 bg-white">
-          <div className="container-custom">
-            <div className="grid grid-cols-1 gap-8">
-              <div className="rounded-lg overflow-hidden shadow-lg relative">
-                <img 
-                  src="/lovable-uploads/19cefa6f-5a74-4dc2-9425-7df166d07de4.png" 
-                  alt="Alimentos saudáveis" 
-                  className="w-full h-auto object-cover"
-                />
-                <div className="absolute inset-0 flex flex-col justify-center items-center p-8 md:p-16">
-                  <div className="bg-white/90 rounded-lg shadow-lg p-6 md:p-8 max-w-xl">
-                    <blockquote className="text-xl md:text-2xl font-medium italic text-gray-700 border-l-4 border-nutrition-green pl-6 py-2 mb-4">
-                      "A nutrição não é apenas sobre o que você come, mas como você vive. Alimente o corpo, acalme a mente e fortaleça a alma."
-                    </blockquote>
-                    <blockquote className="text-xl md:text-2xl font-medium italic text-gray-700 border-l-4 border-nutrition-teal pl-6 py-2 mb-6">
-                      "Pequenas escolhas alimentares criam grandes transformações. Hoje é o dia perfeito para começar a se sentir melhor por dentro e por fora."
-                    </blockquote>
-                    <div className="text-center">
-                      <Button asChild className="bg-nutrition-green hover:bg-nutrition-teal">
-                        <Link to="/consultation">Comece sua jornada hoje</Link>
-                      </Button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
         {/* Services Section */}
         <section className="section-padding bg-white">
-          <div className="container-custom">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">Nossos Serviços</h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                Serviços completos de nutrição e bem-estar adaptados para atender às suas necessidades e objetivos únicos.
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {services.map((service, index) => <ServiceCard key={index} {...service} />)}
-            </div>
-
-            <div className="mt-12 text-center">
-              <Button asChild variant="outline" size="lg" className="border-nutrition-green text-nutrition-green hover:bg-nutrition-green/10">
-                <Link to="/services">Ver Todos os Serviços</Link>
-              </Button>
-            </div>
-          </div>
+          
         </section>
 
         {/* About Section */}
@@ -205,5 +155,4 @@ const Index = () => {
       <Footer />
     </>;
 };
-
 export default Index;

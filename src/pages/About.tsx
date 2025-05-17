@@ -44,7 +44,7 @@ const About = () => {
         />
 
         {/* Seção Nossa História */}
-        <section className="section-padding bg-white">
+        <section className="section-padding bg-white" id="nossa-historia">
           <div className="container-custom">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div>
@@ -55,6 +55,12 @@ const About = () => {
                 <p className="text-lg text-gray-700 mb-6">
                   Nossa fundadora, Dra. Maria Costa, reconheceu que muitas pessoas lutavam para navegar pelas informações nutricionais e precisavam de orientação especializada para alcançar seus objetivos de saúde. Ela reuniu uma equipe de nutricionistas e especialistas em bem-estar que compartilham sua paixão por ajudar os outros a transformar suas vidas através da nutrição adequada.
                 </p>
+                <div className="bg-nutrition-light-green/20 border-l-4 border-nutrition-green p-4 mb-6 rounded">
+                  <p className="text-lg italic text-gray-700">
+                    "Acreditamos que a nutrição adequada é a base para uma vida saudável e plena. Nossa missão é fornecer conhecimento, orientação e apoio personalizado para cada cliente em sua jornada de saúde."
+                  </p>
+                  <p className="text-right font-medium mt-2">— Dra. Maria Costa, Fundadora</p>
+                </div>
                 <p className="text-lg text-gray-700">
                   Hoje, continuamos a expandir nossos serviços e alcance, ajudando indivíduos e famílias em todo o país a alcançar melhor saúde através de planos nutricionais personalizados, educação e suporte contínuo.
                 </p>
@@ -64,7 +70,7 @@ const About = () => {
                 <img 
                   src="https://images.unsplash.com/photo-1452788311386-0f4d8d72907d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1472&q=80" 
                   alt="Nossa história" 
-                  className="relative rounded-lg shadow-lg z-10"
+                  className="relative rounded-lg shadow-lg z-10 w-full h-auto"
                 />
               </div>
             </div>

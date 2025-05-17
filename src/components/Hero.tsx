@@ -1,3 +1,4 @@
+
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 interface HeroProps {
@@ -40,7 +41,9 @@ const Hero = ({
 
           <div className="relative animate-slide-up">
             <div className="absolute -inset-0.5 bg-gradient-to-r from-nutrition-green to-nutrition-teal rounded-lg blur opacity-30"></div>
-            
+            <div className="relative rounded-lg overflow-hidden shadow-xl">
+              <img src={image} alt="Nutrição e bem-estar" className="w-full h-auto object-cover" />
+            </div>
           </div>
         </div>
       </div>

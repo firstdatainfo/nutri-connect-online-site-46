@@ -51,11 +51,29 @@ const Index = () => {
   return <>
       <Navbar />
       <main>
-        <Hero title="Lidiane Dos Reis Nutricionista" subtitle="Nutrição Clínica Integrativa, Esportiva, Estética, Microbiota Intestinal e Genômica" ctaText="Agende uma Consulta" ctaLink="/consultation" profileImage="/lovable-uploads/ca42dc66-026e-45dc-818c-96ec602d6825.png" image="https://images.unsplash.com/photo-1490818387583-1baba5e638af?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1932&q=80" />
+        <Hero 
+          title="Lidiane Dos Reis Nutricionista" 
+          subtitle="Nutrição Clínica Integrativa, Esportiva, Estética, Microbiota Intestinal e Genômica" 
+          ctaText="Agende uma Consulta" 
+          ctaLink="/consultation" 
+          profileImage="/lovable-uploads/7f21824b-576f-4ec6-8c01-344ca77b5a02.png" 
+          image="https://images.unsplash.com/photo-1494597564530-871f2b93ac55?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1513&q=80" 
+        />
 
         {/* Services Section */}
         <section className="section-padding bg-white">
-          
+          <div className="container-custom">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">Nossos Serviços</h2>
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                Conheça as diferentes áreas de atuação e descubra como podemos ajudar você a alcançar seus objetivos de saúde.
+              </p>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {services.map((service, index) => <ServiceCard key={index} {...service} />)}
+            </div>
+          </div>
         </section>
 
         {/* About Section */}
@@ -63,7 +81,7 @@ const Index = () => {
           <div className="container-custom">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div>
-                <img src="https://images.unsplash.com/photo-1494597564530-871f2b93ac55?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1513&q=80" alt="Sobre Lidiane Dos Reis" className="rounded-lg shadow-xl" />
+                <img src="https://images.unsplash.com/photo-1490818387583-1baba5e638af?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1932&q=80" alt="Sobre Lidiane Dos Reis" className="rounded-lg shadow-xl" />
               </div>
               <div>
                 <h2 className="text-3xl md:text-4xl font-bold mb-6">Por que escolher a Lidiane?</h2>
@@ -150,7 +168,42 @@ const Index = () => {
         </section>
 
         {/* Contact Information */}
-        
+        <section className="section-padding bg-white">
+          <div className="container-custom">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">Entre em Contato</h2>
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                Estou disponível para responder suas dúvidas e ajudar você a começar sua jornada para uma vida mais saudável.
+              </p>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+              <div className="bg-white p-6 rounded-lg shadow-md text-center">
+                <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-nutrition-light-green mb-4">
+                  <Phone className="text-nutrition-green" size={24} />
+                </div>
+                <h3 className="text-xl font-semibold mb-2">Telefone</h3>
+                <p className="text-gray-600">55 66 99245-6034</p>
+              </div>
+              
+              <div className="bg-white p-6 rounded-lg shadow-md text-center">
+                <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-nutrition-light-green mb-4">
+                  <Mail className="text-nutrition-green" size={24} />
+                </div>
+                <h3 className="text-xl font-semibold mb-2">Email</h3>
+                <p className="text-gray-600">lidiane_dosreis@outlook.com</p>
+              </div>
+              
+              <div className="bg-white p-6 rounded-lg shadow-md text-center">
+                <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-nutrition-light-green mb-4">
+                  <Instagram className="text-nutrition-green" size={24} />
+                </div>
+                <h3 className="text-xl font-semibold mb-2">Instagram</h3>
+                <p className="text-gray-600">@lidianedosreisnutri</p>
+              </div>
+            </div>
+          </div>
+        </section>
       </main>
       <Footer />
     </>;

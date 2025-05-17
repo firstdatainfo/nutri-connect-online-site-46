@@ -21,29 +21,29 @@ const Hero = ({
 }: HeroProps) => {
   return <div className="relative bg-gradient-to-br from-nutrition-light-green/30 to-nutrition-light-blue/30 overflow-hidden">
       <div className="container-custom relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 py-16 items-center md:py-0">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 py-10 items-center md:py-0">
           <div className="animate-fade-in">
-            {profileImage && <div className="mb-8 flex justify-center lg:justify-start">
-                <div className="relative w-72 h-72 md:w-96 md:h-96 rounded-full overflow-hidden border-4 border-white shadow-xl">
+            {profileImage && <div className="mb-4 lg:mb-8 flex justify-center lg:justify-start">
+                <div className="relative w-48 h-48 md:w-64 md:h-64 lg:w-72 lg:h-72 rounded-full overflow-hidden border-4 border-white shadow-xl">
                   <img src={profileImage} alt="Lidiane Dos Reis" className="w-full h-full object-cover" />
                 </div>
               </div>}
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 text-center lg:text-left">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-3 lg:mb-4 text-center lg:text-left">
               {title}
             </h1>
-            <p className="text-lg md:text-xl text-gray-700 mb-8 text-center lg:text-left">
+            <p className="text-base sm:text-lg md:text-xl text-gray-700 mb-6 lg:mb-8 text-center lg:text-left">
               {subtitle}
             </p>
             {ctaText && <div className="flex justify-center lg:justify-start">
-              <Button asChild size="lg" className="bg-nutrition-green hover:bg-nutrition-teal text-lg">
+              <Button asChild size="lg" className="bg-nutrition-green hover:bg-nutrition-teal text-base md:text-lg">
                 <Link to={ctaLink}>{ctaText}</Link>
               </Button>
             </div>}
           </div>
 
-          <div className="relative animate-slide-up">
+          <div className="relative animate-slide-up hidden sm:block">
             <div className="absolute -inset-0.5 bg-gradient-to-r from-nutrition-green to-nutrition-teal rounded-lg blur opacity-30"></div>
-            <div className="relative rounded-lg overflow-hidden shadow-xl">
+            <div className="relative rounded-lg overflow-hidden shadow-xl max-h-96 lg:max-h-none">
               {image && <img src={image} alt="Hero Image" className="w-full h-full object-cover" />}
             </div>
           </div>

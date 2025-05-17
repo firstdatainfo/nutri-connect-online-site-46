@@ -72,8 +72,8 @@ const BookingForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
-      <div className="space-y-2">
+    <form onSubmit={handleSubmit} className="space-y-3">
+      <div className="space-y-1.5">
         <Label htmlFor="name">Full Name</Label>
         <Input
           id="name"
@@ -85,8 +85,8 @@ const BookingForm = () => {
         />
       </div>
       
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div className="space-y-2">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+        <div className="space-y-1.5">
           <Label htmlFor="email">Email Address</Label>
           <Input
             id="email"
@@ -98,7 +98,7 @@ const BookingForm = () => {
             required
           />
         </div>
-        <div className="space-y-2">
+        <div className="space-y-1.5">
           <Label htmlFor="phone">Phone Number</Label>
           <Input
             id="phone"
@@ -111,7 +111,7 @@ const BookingForm = () => {
         </div>
       </div>
 
-      <div className="space-y-2">
+      <div className="space-y-1.5">
         <Label>Consultation Type</Label>
         <Select value={type} onValueChange={setType} required>
           <SelectTrigger>
@@ -127,8 +127,8 @@ const BookingForm = () => {
         </Select>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div className="space-y-2">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+        <div className="space-y-1.5">
           <Label>Preferred Date</Label>
           <Popover>
             <PopoverTrigger asChild>
@@ -160,7 +160,7 @@ const BookingForm = () => {
           </Popover>
         </div>
 
-        <div className="space-y-2">
+        <div className="space-y-1.5">
           <Label>Preferred Time</Label>
           <Select value={time} onValueChange={setTime} required>
             <SelectTrigger>
@@ -177,7 +177,7 @@ const BookingForm = () => {
         </div>
       </div>
 
-      <div className="space-y-2">
+      <div className="space-y-1.5">
         <Label htmlFor="notes">Additional Notes</Label>
         <Textarea
           id="notes"

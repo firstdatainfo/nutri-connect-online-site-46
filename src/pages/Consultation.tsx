@@ -1,3 +1,4 @@
+
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import BookingForm from "@/components/BookingForm";
@@ -6,10 +7,10 @@ const Consultation = () => {
   return <>
       <Navbar />
       <main>
-        <section className="bg-white py-8 md:py-12">
+        <section className="bg-white py-4 md:py-6">
           <div className="container-custom">
-            <div className="mb-8 text-center">
-              <h1 className="text-3xl md:text-4xl font-bold mb-3">Agende sua Consulta</h1>
+            <div className="mb-4 text-center">
+              <h1 className="text-3xl md:text-4xl font-bold mb-2">Agende sua Consulta</h1>
               <p className="text-lg text-gray-600 max-w-3xl mx-auto">
                 Dê o primeiro passo rumo a uma saúde melhor com uma consulta nutricional personalizada.
               </p>

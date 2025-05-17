@@ -1,5 +1,5 @@
 
-import { Apple, Carrot, MessageCircle, Users } from "lucide-react";
+import { Apple, Carrot, MessageCircle, Users, Phone, Instagram } from "lucide-react";
 import Hero from "@/components/Hero";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";

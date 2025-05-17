@@ -112,7 +112,7 @@ const About = () => {
         <section className="section-padding bg-white">
           <div className="container-custom">
             <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">Conheça Meu Tarbalho</h2>
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">Conheça Meu Trabalho</h2>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">Sou  nutricionista certificada e especialista em bem-estar estou dedicada a ajudá-lo a alcançar seus objetivos de saúde.</p>
             </div>
 

@@ -1,47 +1,32 @@
-
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Hero from "@/components/Hero";
-
 const About = () => {
-  const teamMembers = [
-    {
-      name: "Dra. Maria Costa",
-      title: "Nutricionista Chefe",
-      image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80",
-      bio: "Dra. Costa tem mais de 15 anos de experiência em nutrição clínica e possui doutorado em Ciências Nutricionais.",
-    },
-    {
-      name: "João Silva",
-      title: "Nutricionista Esportivo",
-      image: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80",
-      bio: "João é especialista em nutrição esportiva e trabalhou com atletas profissionais e equipes esportivas em todo o país.",
-    },
-    {
-      name: "Ana Santos",
-      title: "Coach de Bem-Estar",
-      image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=464&q=80",
-      bio: "Ana é uma coach de bem-estar certificada que ajuda clientes a integrar hábitos nutricionais saudáveis em suas vidas cotidianas.",
-    },
-    {
-      name: "Carlos Mendes",
-      title: "Nutricionista",
-      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80",
-      bio: "Carlos é especializado em terapia nutricional médica para gerenciamento de doenças crônicas e perda de peso.",
-    },
-  ];
-
-  return (
-    <>
+  const teamMembers = [{
+    name: "Dra. Maria Costa",
+    title: "Nutricionista Chefe",
+    image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80",
+    bio: "Dra. Costa tem mais de 15 anos de experiência em nutrição clínica e possui doutorado em Ciências Nutricionais."
+  }, {
+    name: "João Silva",
+    title: "Nutricionista Esportivo",
+    image: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80",
+    bio: "João é especialista em nutrição esportiva e trabalhou com atletas profissionais e equipes esportivas em todo o país."
+  }, {
+    name: "Ana Santos",
+    title: "Coach de Bem-Estar",
+    image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=464&q=80",
+    bio: "Ana é uma coach de bem-estar certificada que ajuda clientes a integrar hábitos nutricionais saudáveis em suas vidas cotidianas."
+  }, {
+    name: "Carlos Mendes",
+    title: "Nutricionista",
+    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80",
+    bio: "Carlos é especializado em terapia nutricional médica para gerenciamento de doenças crônicas e perda de peso."
+  }];
+  return <>
       <Navbar />
       <main>
-        <Hero
-          title="Sobre NutriVida"
-          subtitle="Conheça nossa missão, nossa equipe e nossa abordagem para transformar a saúde através da nutrição."
-          showWave={false}
-          image="https://images.unsplash.com/photo-1505576399279-565b52d4ac71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80"
-          ctaText="Agendar Consulta"
-        />
+        <Hero title="Sobre NutriVida" subtitle="Conheça nossa missão, nossa equipe e nossa abordagem para transformar a saúde através da nutrição." showWave={false} image="https://images.unsplash.com/photo-1505576399279-565b52d4ac71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80" ctaText="Agendar Consulta" />
 
         {/* Seção Nossa História */}
         <section className="section-padding bg-white" id="nossa-historia">
@@ -67,11 +52,7 @@ const About = () => {
               </div>
               <div className="relative">
                 <div className="absolute -inset-1 bg-gradient-to-r from-nutrition-green to-nutrition-teal rounded-lg blur opacity-20"></div>
-                <img 
-                  src="https://images.unsplash.com/photo-1452788311386-0f4d8d72907d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1472&q=80" 
-                  alt="Nossa história" 
-                  className="relative rounded-lg shadow-lg z-10 w-full h-auto"
-                />
+                <img src="https://images.unsplash.com/photo-1452788311386-0f4d8d72907d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1472&q=80" alt="Nossa história" className="relative rounded-lg shadow-lg z-10 w-full h-auto" />
               </div>
             </div>
           </div>
@@ -131,27 +112,19 @@ const About = () => {
         <section className="section-padding bg-white">
           <div className="container-custom">
             <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">Conheça Nossa Equipe</h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                Nossa equipe de nutricionistas certificados e especialistas em bem-estar está dedicada a ajudá-lo a alcançar seus objetivos de saúde.
-              </p>
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">Conheça Meu Tarbalho</h2>
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto">Sou  nutricionista certificada e especialista em bem-estar estou dedicada a ajudá-lo a alcançar seus objetivos de saúde.</p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-              {teamMembers.map((member, index) => (
-                <div key={index} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
-                  <img
-                    src={member.image}
-                    alt={member.name}
-                    className="w-full h-64 object-cover object-center"
-                  />
+              {teamMembers.map((member, index) => <div key={index} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+                  <img src={member.image} alt={member.name} className="w-full h-64 object-cover object-center" />
                   <div className="p-6">
                     <h3 className="text-xl font-semibold mb-1">{member.name}</h3>
                     <p className="text-nutrition-green font-medium mb-3">{member.title}</p>
                     <p className="text-gray-600">{member.bio}</p>
                   </div>
-                </div>
-              ))}
+                </div>)}
             </div>
           </div>
         </section>
@@ -247,8 +220,6 @@ const About = () => {
         </section>
       </main>
       <Footer />
-    </>
-  );
+    </>;
 };
-
 export default About;

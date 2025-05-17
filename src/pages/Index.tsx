@@ -1,3 +1,4 @@
+
 import { Apple, Carrot, MessageCircle, Users, Phone, Instagram, Mail } from "lucide-react";
 import Hero from "@/components/Hero";
 import Navbar from "@/components/Navbar";
@@ -58,25 +59,27 @@ const Index = () => {
         {/* Inspirational Quote Section */}
         <section className="py-16 bg-white">
           <div className="container-custom">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-              <div className="rounded-lg overflow-hidden shadow-lg">
+            <div className="grid grid-cols-1 gap-8">
+              <div className="rounded-lg overflow-hidden shadow-lg relative">
                 <img 
-                  src="/lovable-uploads/a430a9f1-d9e7-4fc1-87a0-d6ade739bb2e.png" 
+                  src="/lovable-uploads/19cefa6f-5a74-4dc2-9425-7df166d07de4.png" 
                   alt="Alimentos saudáveis" 
                   className="w-full h-auto object-cover"
                 />
-              </div>
-              <div className="space-y-8">
-                <blockquote className="text-2xl font-medium italic text-gray-700 border-l-4 border-nutrition-green pl-6 py-2">
-                  "A nutrição não é apenas sobre o que você come, mas como você vive. Alimente o corpo, acalme a mente e fortaleça a alma."
-                </blockquote>
-                <blockquote className="text-2xl font-medium italic text-gray-700 border-l-4 border-nutrition-teal pl-6 py-2">
-                  "Pequenas escolhas alimentares criam grandes transformações. Hoje é o dia perfeito para começar a se sentir melhor por dentro e por fora."
-                </blockquote>
-                <div className="pt-4">
-                  <Button asChild className="bg-nutrition-green hover:bg-nutrition-teal">
-                    <Link to="/consultation">Comece sua jornada hoje</Link>
-                  </Button>
+                <div className="absolute inset-0 flex flex-col justify-center items-center p-8 md:p-16">
+                  <div className="bg-white/90 rounded-lg shadow-lg p-6 md:p-8 max-w-xl">
+                    <blockquote className="text-xl md:text-2xl font-medium italic text-gray-700 border-l-4 border-nutrition-green pl-6 py-2 mb-4">
+                      "A nutrição não é apenas sobre o que você come, mas como você vive. Alimente o corpo, acalme a mente e fortaleça a alma."
+                    </blockquote>
+                    <blockquote className="text-xl md:text-2xl font-medium italic text-gray-700 border-l-4 border-nutrition-teal pl-6 py-2 mb-6">
+                      "Pequenas escolhas alimentares criam grandes transformações. Hoje é o dia perfeito para começar a se sentir melhor por dentro e por fora."
+                    </blockquote>
+                    <div className="text-center">
+                      <Button asChild className="bg-nutrition-green hover:bg-nutrition-teal">
+                        <Link to="/consultation">Comece sua jornada hoje</Link>
+                      </Button>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>

@@ -1,4 +1,3 @@
-
 import { Apple, Carrot, MessageCircle, Users, Phone, Instagram, Mail } from "lucide-react";
 import Hero from "@/components/Hero";
 import Navbar from "@/components/Navbar";
@@ -7,72 +6,52 @@ import ServiceCard from "@/components/ServiceCard";
 import TestimonialCard from "@/components/TestimonialCard";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-
 const Index = () => {
-  const services = [
-    {
-      title: "Nutrição Clínica Integrativa",
-      description: "Abordagem personalizada que integra diferentes aspectos da saúde para criar planos nutricionais completos.",
-      icon: <Apple size={24} />,
-      link: "/services",
-      color: "nutrition-green",
-    },
-    {
-      title: "Nutrição Esportiva",
-      description: "Planos nutricionais especializados para atletas e praticantes de atividades físicas visando melhorar o desempenho.",
-      icon: <Users size={24} />,
-      link: "/services",
-      color: "nutrition-blue",
-    },
-    {
-      title: "Nutrição Estética",
-      description: "Programas alimentares focados em melhorar a aparência da pele, cabelos e composição corporal.",
-      icon: <Carrot size={24} />,
-      link: "/services",
-      color: "nutrition-orange",
-    },
-    {
-      title: "Consultas Online",
-      description: "Atendimento virtual personalizado com acompanhamento completo do seu progresso.",
-      icon: <MessageCircle size={24} />,
-      link: "/consultation",
-      color: "nutrition-teal",
-    },
-  ];
-
-  const testimonials = [
-    {
-      quote: "A Lidiane transformou completamente minha relação com a alimentação. Não apenas perdi peso, mas também ganhei energia e confiança.",
-      author: "Maria Silva",
-      role: "Cliente - Gerenciamento de Peso",
-      image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
-    },
-    {
-      quote: "A abordagem personalizada para minhas necessidades nutricionais me ajudou a gerenciar minha diabetes de uma forma que eu nunca pensei ser possível.",
-      author: "Carlos Santos",
-      role: "Cliente - Gerenciamento de Saúde",
-      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80",
-    },
-    {
-      quote: "Como atleta, eu precisava de orientação nutricional específica. A Lidiane forneceu exatamente o que eu precisava para melhorar meu desempenho.",
-      author: "Ana Martins",
-      role: "Cliente - Nutrição Esportiva",
-      image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=464&q=80",
-    },
-  ];
-
-  return (
-    <>
+  const services = [{
+    title: "Nutrição Clínica Integrativa",
+    description: "Abordagem personalizada que integra diferentes aspectos da saúde para criar planos nutricionais completos.",
+    icon: <Apple size={24} />,
+    link: "/services",
+    color: "nutrition-green"
+  }, {
+    title: "Nutrição Esportiva",
+    description: "Planos nutricionais especializados para atletas e praticantes de atividades físicas visando melhorar o desempenho.",
+    icon: <Users size={24} />,
+    link: "/services",
+    color: "nutrition-blue"
+  }, {
+    title: "Nutrição Estética",
+    description: "Programas alimentares focados em melhorar a aparência da pele, cabelos e composição corporal.",
+    icon: <Carrot size={24} />,
+    link: "/services",
+    color: "nutrition-orange"
+  }, {
+    title: "Consultas Online",
+    description: "Atendimento virtual personalizado com acompanhamento completo do seu progresso.",
+    icon: <MessageCircle size={24} />,
+    link: "/consultation",
+    color: "nutrition-teal"
+  }];
+  const testimonials = [{
+    quote: "A Lidiane transformou completamente minha relação com a alimentação. Não apenas perdi peso, mas também ganhei energia e confiança.",
+    author: "Maria Silva",
+    role: "Cliente - Gerenciamento de Peso",
+    image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
+  }, {
+    quote: "A abordagem personalizada para minhas necessidades nutricionais me ajudou a gerenciar minha diabetes de uma forma que eu nunca pensei ser possível.",
+    author: "Carlos Santos",
+    role: "Cliente - Gerenciamento de Saúde",
+    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80"
+  }, {
+    quote: "Como atleta, eu precisava de orientação nutricional específica. A Lidiane forneceu exatamente o que eu precisava para melhorar meu desempenho.",
+    author: "Ana Martins",
+    role: "Cliente - Nutrição Esportiva",
+    image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=464&q=80"
+  }];
+  return <>
       <Navbar />
       <main>
-        <Hero
-          title="Lidiane Dos Reis Nutricionista"
-          subtitle="Nutrição Clínica Integrativa, Esportiva, Estética, Microbiota Intestinal e Genômica"
-          ctaText="Agende uma Consulta"
-          ctaLink="/consultation"
-          profileImage="/lovable-uploads/ca42dc66-026e-45dc-818c-96ec602d6825.png"
-          image="https://images.unsplash.com/photo-1490818387583-1baba5e638af?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1932&q=80"
-        />
+        <Hero title="Lidiane Dos Reis Nutricionista" subtitle="Nutrição Clínica Integrativa, Esportiva, Estética, Microbiota Intestinal e Genômica" ctaText="Agende uma Consulta" ctaLink="/consultation" profileImage="/lovable-uploads/ca42dc66-026e-45dc-818c-96ec602d6825.png" image="https://images.unsplash.com/photo-1490818387583-1baba5e638af?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1932&q=80" />
 
         {/* Services Section */}
         <section className="section-padding bg-white">
@@ -85,9 +64,7 @@ const Index = () => {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {services.map((service, index) => (
-                <ServiceCard key={index} {...service} />
-              ))}
+              {services.map((service, index) => <ServiceCard key={index} {...service} />)}
             </div>
 
             <div className="mt-12 text-center">
@@ -103,11 +80,7 @@ const Index = () => {
           <div className="container-custom">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div>
-                <img
-                  src="https://images.unsplash.com/photo-1494597564530-871f2b93ac55?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1513&q=80"
-                  alt="Sobre Lidiane Dos Reis"
-                  className="rounded-lg shadow-xl"
-                />
+                <img src="https://images.unsplash.com/photo-1494597564530-871f2b93ac55?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1513&q=80" alt="Sobre Lidiane Dos Reis" className="rounded-lg shadow-xl" />
               </div>
               <div>
                 <h2 className="text-3xl md:text-4xl font-bold mb-6">Por que escolher a Lidiane?</h2>
@@ -170,9 +143,7 @@ const Index = () => {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {testimonials.map((testimonial, index) => (
-                <TestimonialCard key={index} {...testimonial} />
-              ))}
+              {testimonials.map((testimonial, index) => <TestimonialCard key={index} {...testimonial} />)}
             </div>
           </div>
         </section>
@@ -196,43 +167,9 @@ const Index = () => {
         </section>
 
         {/* Contact Information */}
-        <section className="py-16 bg-white">
-          <div className="container-custom text-center">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">Entre em Contato</h2>
-            <p className="text-xl mb-8 max-w-3xl mx-auto">
-              Estou disponível para responder suas dúvidas e agendar consultas através dos seguintes canais:
-            </p>
-            <div className="flex flex-col md:flex-row justify-center items-center gap-8">
-              <a 
-                href="tel:5566992456034"
-                className="flex items-center space-x-3 text-gray-700 hover:text-nutrition-green transition-colors"
-              >
-                <Phone size={24} />
-                <span className="text-lg">55 66 99245-6034</span>
-              </a>
-              <a 
-                href="mailto:lidiane_dosreis@outlook.com"
-                className="flex items-center space-x-3 text-gray-700 hover:text-nutrition-green transition-colors"
-              >
-                <Mail size={24} />
-                <span className="text-lg">lidiane_dosreis@outlook.com</span>
-              </a>
-              <a 
-                href="https://www.instagram.com/lidianedosreisnutri/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center space-x-3 text-gray-700 hover:text-nutrition-green transition-colors"
-              >
-                <Instagram size={24} />
-                <span className="text-lg">@lidianedosreisnutri</span>
-              </a>
-            </div>
-          </div>
-        </section>
+        
       </main>
       <Footer />
-    </>
-  );
+    </>;
 };
-
 export default Index;

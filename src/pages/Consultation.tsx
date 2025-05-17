@@ -1,12 +1,9 @@
-
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import BookingForm from "@/components/BookingForm";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-
 const Consultation = () => {
-  return (
-    <>
+  return <>
       <Navbar />
       <main>
         <section className="bg-white py-8 md:py-12">
@@ -29,7 +26,7 @@ const Consultation = () => {
                     </TabsList>
                     
                     <TabsContent value="book">
-                      <h2 className="text-2xl font-semibold mb-4">Agende sua Consulta</h2>
+                      
                       <BookingForm />
                     </TabsContent>
                     
@@ -180,11 +177,7 @@ const Consultation = () => {
                   <div className="bg-white border border-gray-100 rounded-lg p-4 shadow-sm">
                     <div className="flex items-center mb-3">
                       <div className="h-10 w-10 rounded-full overflow-hidden mr-3">
-                        <img 
-                          src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=464&q=80" 
-                          alt="Cliente" 
-                          className="w-full h-full object-cover" 
-                        />
+                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=464&q=80" alt="Cliente" className="w-full h-full object-cover" />
                       </div>
                       <div>
                         <p className="font-semibold text-sm">Ana Martins</p>
@@ -197,18 +190,9 @@ const Consultation = () => {
                     </blockquote>
                     
                     <div className="flex">
-                      {[...Array(5)].map((_, i) => (
-                        <svg
-                          key={i}
-                          className="w-4 h-4 text-nutrition-orange fill-current"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            fillRule="evenodd"
-                            d="M12 1.5l3.09 6.26L22 8.64l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 13.51 2 8.64l6.91-1.01L12 1.5z"
-                          />
-                        </svg>
-                      ))}
+                      {[...Array(5)].map((_, i) => <svg key={i} className="w-4 h-4 text-nutrition-orange fill-current" viewBox="0 0 24 24">
+                          <path fillRule="evenodd" d="M12 1.5l3.09 6.26L22 8.64l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 13.51 2 8.64l6.91-1.01L12 1.5z" />
+                        </svg>)}
                     </div>
                   </div>
                 </div>
@@ -218,8 +202,6 @@ const Consultation = () => {
         </section>
       </main>
       <Footer />
-    </>
-  );
+    </>;
 };
-
 export default Consultation;

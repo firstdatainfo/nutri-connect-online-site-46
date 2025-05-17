@@ -11,29 +11,29 @@ import { Link } from "react-router-dom";
 const Index = () => {
   const services = [
     {
-      title: "Personalized Nutrition Plans",
-      description: "Custom nutrition plans designed for your body, lifestyle, and health goals.",
+      title: "Nutrição Clínica Integrativa",
+      description: "Abordagem personalizada que integra diferentes aspectos da saúde para criar planos nutricionais completos.",
       icon: <Apple size={24} />,
       link: "/services",
       color: "nutrition-green",
     },
     {
-      title: "Wellness Coaching",
-      description: "Ongoing support and coaching to help you maintain healthy habits for life.",
+      title: "Nutrição Esportiva",
+      description: "Planos nutricionais especializados para atletas e praticantes de atividades físicas visando melhorar o desempenho.",
       icon: <Users size={24} />,
       link: "/services",
       color: "nutrition-blue",
     },
     {
-      title: "Meal Planning",
-      description: "Practical meal plans and recipes that fit your schedule and preferences.",
+      title: "Nutrição Estética",
+      description: "Programas alimentares focados em melhorar a aparência da pele, cabelos e composição corporal.",
       icon: <Carrot size={24} />,
       link: "/services",
       color: "nutrition-orange",
     },
     {
-      title: "Online Consultations",
-      description: "Convenient virtual appointments with our nutrition experts from anywhere.",
+      title: "Consultas Online",
+      description: "Atendimento virtual personalizado com acompanhamento completo do seu progresso.",
       icon: <MessageCircle size={24} />,
       link: "/consultation",
       color: "nutrition-teal",
@@ -42,21 +42,21 @@ const Index = () => {
 
   const testimonials = [
     {
-      quote: "Working with NutriVida completely changed my relationship with food. I've not only lost weight but also gained energy and confidence.",
+      quote: "A Lidiane transformou completamente minha relação com a alimentação. Não apenas perdi peso, mas também ganhei energia e confiança.",
       author: "Maria Silva",
-      role: "Client - Weight Management",
+      role: "Cliente - Gerenciamento de Peso",
       image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
     },
     {
-      quote: "The personalized approach to my nutrition needs has helped me manage my diabetes in a way I never thought possible.",
+      quote: "A abordagem personalizada para minhas necessidades nutricionais me ajudou a gerenciar minha diabetes de uma forma que eu nunca pensei ser possível.",
       author: "Carlos Santos",
-      role: "Client - Health Management",
+      role: "Cliente - Gerenciamento de Saúde",
       image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80",
     },
     {
-      quote: "As an athlete, I needed specific nutritional guidance. The team at NutriVida provided exactly what I needed to improve my performance.",
+      quote: "Como atleta, eu precisava de orientação nutricional específica. A Lidiane forneceu exatamente o que eu precisava para melhorar meu desempenho.",
       author: "Ana Martins",
-      role: "Client - Sports Nutrition",
+      role: "Cliente - Nutrição Esportiva",
       image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=464&q=80",
     },
   ];
@@ -66,10 +66,11 @@ const Index = () => {
       <Navbar />
       <main>
         <Hero
-          title="Transform Your Health Through Nutrition"
-          subtitle="Personalized nutrition plans, expert guidance, and ongoing support to help you achieve your health goals."
-          ctaText="Get Started Today"
+          title="Lidiane Dos Reis Nutricionista"
+          subtitle="Nutrição Clínica Integrativa, Esportiva, Estética, Microbiota Intestinal e Genômica"
+          ctaText="Agende uma Consulta"
           ctaLink="/consultation"
+          profileImage="/lovable-uploads/ca42dc66-026e-45dc-818c-96ec602d6825.png"
           image="https://images.unsplash.com/photo-1490818387583-1baba5e638af?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1932&q=80"
         />
 
@@ -77,9 +78,9 @@ const Index = () => {
         <section className="section-padding bg-white">
           <div className="container-custom">
             <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">Our Services</h2>
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">Nossos Serviços</h2>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                Comprehensive nutrition and wellness services tailored to meet your unique needs and goals.
+                Serviços completos de nutrição e bem-estar adaptados para atender às suas necessidades e objetivos únicos.
               </p>
             </div>
 
@@ -91,7 +92,7 @@ const Index = () => {
 
             <div className="mt-12 text-center">
               <Button asChild variant="outline" size="lg" className="border-nutrition-green text-nutrition-green hover:bg-nutrition-green/10">
-                <Link to="/services">View All Services</Link>
+                <Link to="/services">Ver Todos os Serviços</Link>
               </Button>
             </div>
           </div>
@@ -104,14 +105,14 @@ const Index = () => {
               <div>
                 <img
                   src="https://images.unsplash.com/photo-1494597564530-871f2b93ac55?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1513&q=80"
-                  alt="About NutriVida"
+                  alt="Sobre Lidiane Dos Reis"
                   className="rounded-lg shadow-xl"
                 />
               </div>
               <div>
-                <h2 className="text-3xl md:text-4xl font-bold mb-6">Why Choose NutriVida?</h2>
+                <h2 className="text-3xl md:text-4xl font-bold mb-6">Por que escolher a Lidiane?</h2>
                 <p className="text-lg text-gray-700 mb-6">
-                  At NutriVida, we believe that good nutrition is the foundation of a healthy and fulfilling life. Our team of certified nutritionists and wellness experts are dedicated to providing personalized guidance and support to help you achieve your health goals.
+                  Acredito que uma boa nutrição é a base de uma vida saudável e satisfatória. Como nutricionista certificada, estou dedicada a fornecer orientação personalizada e suporte para ajudá-lo a alcançar seus objetivos de saúde.
                 </p>
                 <div className="space-y-4">
                   <div className="flex items-start">
@@ -121,8 +122,8 @@ const Index = () => {
                       </svg>
                     </div>
                     <div>
-                      <h3 className="text-lg font-semibold">Personalized Approach</h3>
-                      <p className="text-gray-600">We recognize that everyone's nutritional needs are unique, and we create customized plans that fit your lifestyle and goals.</p>
+                      <h3 className="text-lg font-semibold">Abordagem Personalizada</h3>
+                      <p className="text-gray-600">Reconheço que as necessidades nutricionais de cada pessoa são únicas, e crio planos personalizados que se adequam ao seu estilo de vida e objetivos.</p>
                     </div>
                   </div>
                   <div className="flex items-start">
@@ -132,8 +133,8 @@ const Index = () => {
                       </svg>
                     </div>
                     <div>
-                      <h3 className="text-lg font-semibold">Expert Guidance</h3>
-                      <p className="text-gray-600">Our team consists of certified nutritionists with years of experience in various specialties.</p>
+                      <h3 className="text-lg font-semibold">Orientação Especializada</h3>
+                      <p className="text-gray-600">Sou uma nutricionista certificada com experiência em diversas especialidades da área.</p>
                     </div>
                   </div>
                   <div className="flex items-start">
@@ -143,14 +144,14 @@ const Index = () => {
                       </svg>
                     </div>
                     <div>
-                      <h3 className="text-lg font-semibold">Ongoing Support</h3>
-                      <p className="text-gray-600">We provide continuous guidance and adjustments to ensure you stay on track with your health journey.</p>
+                      <h3 className="text-lg font-semibold">Suporte Contínuo</h3>
+                      <p className="text-gray-600">Ofereço orientação contínua e ajustes para garantir que você permaneça no caminho certo em sua jornada de saúde.</p>
                     </div>
                   </div>
                 </div>
                 <div className="mt-8">
                   <Button asChild className="bg-nutrition-green hover:bg-nutrition-teal">
-                    <Link to="/about">Learn More About Us</Link>
+                    <Link to="/about">Saiba Mais Sobre Mim</Link>
                   </Button>
                 </div>
               </div>
@@ -162,9 +163,9 @@ const Index = () => {
         <section className="section-padding bg-white">
           <div className="container-custom">
             <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">Client Success Stories</h2>
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">Histórias de Sucesso</h2>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                Hear from our clients who have transformed their health and lives through our nutrition programs.
+                Ouça de nossos clientes que transformaram sua saúde e vidas através de nossos programas de nutrição.
               </p>
             </div>
 
@@ -179,17 +180,45 @@ const Index = () => {
         {/* CTA Section */}
         <section className="py-20 bg-gradient-to-r from-nutrition-green to-nutrition-teal text-white">
           <div className="container-custom text-center">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">Ready to Transform Your Health?</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-6">Pronto para Transformar sua Saúde?</h2>
             <p className="text-xl mb-8 max-w-3xl mx-auto">
-              Take the first step towards a healthier you. Book a consultation with one of our nutrition experts today.
+              Dê o primeiro passo rumo a uma vida mais saudável. Agende uma consulta comigo hoje.
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-4">
               <Button asChild size="lg" variant="secondary" className="text-nutrition-green">
-                <Link to="/consultation">Book a Consultation</Link>
+                <Link to="/consultation">Agendar Consulta</Link>
               </Button>
               <Button asChild size="lg" variant="outline" className="text-white border-white hover:bg-white/10">
-                <Link to="/community">Join Our Community</Link>
+                <Link to="/community">Junte-se à Nossa Comunidade</Link>
               </Button>
+            </div>
+          </div>
+        </section>
+
+        {/* Contact Information */}
+        <section className="py-16 bg-white">
+          <div className="container-custom text-center">
+            <h2 className="text-3xl md:text-4xl font-bold mb-6">Entre em Contato</h2>
+            <p className="text-xl mb-8 max-w-3xl mx-auto">
+              Estou disponível para responder suas dúvidas e agendar consultas através dos seguintes canais:
+            </p>
+            <div className="flex flex-col md:flex-row justify-center items-center gap-8">
+              <a 
+                href="tel:5566992456034"
+                className="flex items-center space-x-3 text-gray-700 hover:text-nutrition-green transition-colors"
+              >
+                <Phone size={24} />
+                <span className="text-lg">55 66 99245-6034</span>
+              </a>
+              <a 
+                href="https://www.instagram.com/lidianedosreisnutri/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center space-x-3 text-gray-700 hover:text-nutrition-green transition-colors"
+              >
+                <Instagram size={24} />
+                <span className="text-lg">@lidianedosreisnutri</span>
+              </a>
             </div>
           </div>
         </section>

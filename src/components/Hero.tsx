@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 interface HeroProps {
@@ -23,7 +22,7 @@ const Hero = ({
       <div className="container-custom relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 py-10 items-center md:py-0">
           <div className="animate-fade-in">
-            {profileImage && <div className="mb-4 lg:mb-8 flex justify-center lg:justify-start">
+            {profileImage && <div className="mb-4 lg:mb-8 flex justify-center lg:justify-start py-[10px]">
                 <div className="relative w-48 h-48 md:w-64 md:h-64 lg:w-72 lg:h-72 rounded-full overflow-hidden border-4 border-white shadow-xl">
                   <img src={profileImage} alt="Lidiane Dos Reis" className="w-full h-full object-cover" />
                 </div>

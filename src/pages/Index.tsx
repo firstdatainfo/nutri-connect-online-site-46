@@ -6,6 +6,7 @@ import ServiceCard from "@/components/ServiceCard";
 import TestimonialCard from "@/components/TestimonialCard";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+
 const Index = () => {
   const services = [{
     title: "Nutrição Clínica Integrativa",
@@ -48,6 +49,7 @@ const Index = () => {
     role: "Cliente - Nutrição Esportiva",
     image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=464&q=80"
   }];
+  
   return <>
       <Navbar />
       <main>
@@ -159,7 +161,7 @@ const Index = () => {
               <Button asChild size="lg" variant="secondary" className="text-nutrition-green">
                 <Link to="/consultation">Agendar Consulta</Link>
               </Button>
-              <Button asChild size="lg" variant="outline" className="text-white border-white hover:bg-white/10">
+              <Button asChild size="lg" variant="outline" className="text-white border-white hover:bg-white/10 hover:text-white">
                 <Link to="/community">Junte-se à Nossa Comunidade</Link>
               </Button>
             </div>
@@ -172,4 +174,5 @@ const Index = () => {
       <Footer />
     </>;
 };
+
 export default Index;

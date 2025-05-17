@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -8,7 +9,8 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
-import { Mail, Phone, Instagram } from "lucide-react";
+import { Mail, Phone, Instagram, MapPin, Clock } from "lucide-react";
+
 const Contact = () => {
   const [formData, setFormData] = useState({
     name: "",
@@ -21,6 +23,7 @@ const Contact = () => {
   const {
     toast
   } = useToast();
+  
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const {
       name,
@@ -31,12 +34,14 @@ const Contact = () => {
       [name]: value
     }));
   };
+  
   const handleSelectChange = (value: string) => {
     setFormData(prev => ({
       ...prev,
       subject: value
     }));
   };
+  
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
@@ -59,10 +64,19 @@ const Contact = () => {
       });
     }, 1500);
   };
+  
   return <>
       <Navbar />
       <main>
-        <Hero title="Contato" subtitle="Tem perguntas ou deseja saber mais sobre nossos serviços? Entre em contato conosco hoje." ctaText="" ctaLink="" showWave={false} image="https://images.unsplash.com/photo-1423666639041-f56000c27a9a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1474&q=80" />
+        <Hero 
+          title="Contato" 
+          subtitle="Tem perguntas ou deseja saber mais sobre nossos serviços? Entre em contato conosco hoje." 
+          ctaText="" 
+          ctaLink="" 
+          showWave={false} 
+          image="https://images.unsplash.com/photo-1423666639041-f56000c27a9a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1474&q=80"
+          profileImage="" 
+        />
 
         <section className="bg-white py-0">
           <div className="container-custom">
@@ -119,7 +133,64 @@ const Contact = () => {
               </div>
 
               {/* Contact Information */}
-              
+              <div className="mt-12 lg:mt-0">
+                <h2 className="text-3xl font-bold mb-6">Informações de Contato</h2>
+                <p className="text-gray-600 mb-8">
+                  Entre em contato diretamente ou use o formulário à esquerda. Estamos sempre à disposição para ajudá-lo.
+                </p>
+                
+                <div className="space-y-6">
+                  <div className="flex items-start space-x-4">
+                    <div className="bg-nutrition-light-green/20 p-3 rounded-full">
+                      <Phone size={24} className="text-nutrition-green" />
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-semibold">Telefone</h3>
+                      <p className="text-gray-700">55 66 99245-6034</p>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-start space-x-4">
+                    <div className="bg-nutrition-light-green/20 p-3 rounded-full">
+                      <Mail size={24} className="text-nutrition-green" />
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-semibold">Email</h3>
+                      <p className="text-gray-700">lidiane_dosreis@outlook.com</p>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-start space-x-4">
+                    <div className="bg-nutrition-light-green/20 p-3 rounded-full">
+                      <Instagram size={24} className="text-nutrition-green" />
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-semibold">Instagram</h3>
+                      <p className="text-gray-700">@lidianedosreisnutri</p>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-start space-x-4">
+                    <div className="bg-nutrition-light-green/20 p-3 rounded-full">
+                      <MapPin size={24} className="text-nutrition-green" />
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-semibold">Endereço</h3>
+                      <p className="text-gray-700">Cuiabá, MT - Brasil</p>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-start space-x-4">
+                    <div className="bg-nutrition-light-green/20 p-3 rounded-full">
+                      <Clock size={24} className="text-nutrition-green" />
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-semibold">Horário de Atendimento</h3>
+                      <p className="text-gray-700">Segunda - Sexta: 8:00 - 18:00</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </section>

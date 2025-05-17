@@ -64,7 +64,7 @@ const Contact = () => {
       <main>
         <Hero title="Contato" subtitle="Tem perguntas ou deseja saber mais sobre nossos serviços? Entre em contato conosco hoje." ctaText="" ctaLink="" showWave={false} image="https://images.unsplash.com/photo-1423666639041-f56000c27a9a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1474&q=80" />
 
-        <section className="py-16 bg-white">
+        <section className="bg-white py-0">
           <div className="container-custom">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
               {/* Contact Form */}

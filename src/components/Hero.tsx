@@ -1,7 +1,5 @@
-
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-
 interface HeroProps {
   title: string;
   subtitle: string;
@@ -11,7 +9,6 @@ interface HeroProps {
   showWave?: boolean;
   profileImage?: string;
 }
-
 const Hero = ({
   title,
   subtitle,
@@ -27,11 +24,7 @@ const Hero = ({
           <div className="animate-fade-in">
             {profileImage && <div className="mb-8 flex justify-center lg:justify-start">
                 <div className="relative w-72 h-72 md:w-96 md:h-96 rounded-full overflow-hidden border-4 border-white shadow-xl">
-                  <img 
-                    src={profileImage} 
-                    alt="Lidiane Dos Reis" 
-                    className="w-full h-full object-cover"
-                  />
+                  <img src={profileImage} alt="Lidiane Dos Reis" className="w-full h-full object-cover" />
                 </div>
               </div>}
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 text-center lg:text-left">
@@ -50,7 +43,7 @@ const Hero = ({
           <div className="relative animate-slide-up">
             <div className="absolute -inset-0.5 bg-gradient-to-r from-nutrition-green to-nutrition-teal rounded-lg blur opacity-30"></div>
             <div className="relative rounded-lg overflow-hidden shadow-xl">
-              <img src={image} alt="Nutrição e bem-estar" className="w-full h-auto object-cover" />
+              
             </div>
           </div>
         </div>
@@ -63,5 +56,4 @@ const Hero = ({
         </div>}
     </div>;
 };
-
 export default Hero;

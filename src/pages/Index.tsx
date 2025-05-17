@@ -55,6 +55,34 @@ const Index = () => {
       <main>
         <Hero title="Lidiane Dos Reis Nutricionista" subtitle="Nutrição Clínica Integrativa, Esportiva, Estética, Microbiota Intestinal e Genômica" ctaText="Agende uma Consulta" ctaLink="/consultation" profileImage="/lovable-uploads/ca42dc66-026e-45dc-818c-96ec602d6825.png" image="https://images.unsplash.com/photo-1490818387583-1baba5e638af?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1932&q=80" />
 
+        {/* Inspirational Quote Section */}
+        <section className="py-16 bg-white">
+          <div className="container-custom">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+              <div className="rounded-lg overflow-hidden shadow-lg">
+                <img 
+                  src="/lovable-uploads/a430a9f1-d9e7-4fc1-87a0-d6ade739bb2e.png" 
+                  alt="Alimentos saudáveis" 
+                  className="w-full h-auto object-cover"
+                />
+              </div>
+              <div className="space-y-8">
+                <blockquote className="text-2xl font-medium italic text-gray-700 border-l-4 border-nutrition-green pl-6 py-2">
+                  "A nutrição não é apenas sobre o que você come, mas como você vive. Alimente o corpo, acalme a mente e fortaleça a alma."
+                </blockquote>
+                <blockquote className="text-2xl font-medium italic text-gray-700 border-l-4 border-nutrition-teal pl-6 py-2">
+                  "Pequenas escolhas alimentares criam grandes transformações. Hoje é o dia perfeito para começar a se sentir melhor por dentro e por fora."
+                </blockquote>
+                <div className="pt-4">
+                  <Button asChild className="bg-nutrition-green hover:bg-nutrition-teal">
+                    <Link to="/consultation">Comece sua jornada hoje</Link>
+                  </Button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Services Section */}
         <section className="section-padding bg-white">
           <div className="container-custom">

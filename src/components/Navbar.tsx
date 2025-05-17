@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Apple, Instagram, Phone } from "lucide-react";
+import { Apple, Instagram, Phone, Mail } from "lucide-react";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -10,10 +10,10 @@ const Navbar = () => {
   
   const navItems = [
     { name: "Home", path: "/" },
-    { name: "About", path: "/about" },
-    { name: "Services", path: "/services" },
-    { name: "Community", path: "/community" },
-    { name: "Contact", path: "/contact" },
+    { name: "Sobre", path: "/about" },
+    { name: "Serviços", path: "/services" },
+    { name: "Comunidade", path: "/community" },
+    { name: "Contato", path: "/contact" },
   ];
 
   const isActive = (path: string) => {
@@ -44,10 +44,18 @@ const Navbar = () => {
             <a 
               href="tel:5566992456034" 
               className="text-gray-600 hover:text-nutrition-green transition-colors flex items-center space-x-2"
-              aria-label="Phone"
+              aria-label="Telefone"
             >
               <Phone size={20} />
               <span className="text-sm">55 66 99245-6034</span>
+            </a>
+            <a 
+              href="mailto:lidiane_dosreis@outlook.com" 
+              className="text-gray-600 hover:text-nutrition-green transition-colors flex items-center space-x-2"
+              aria-label="Email"
+            >
+              <Mail size={20} />
+              <span className="text-sm">lidiane_dosreis@outlook.com</span>
             </a>
           </div>
 
@@ -67,7 +75,7 @@ const Navbar = () => {
               </Link>
             ))}
             <Button asChild className="bg-nutrition-green hover:bg-nutrition-teal">
-              <Link to="/consultation">Book Consultation</Link>
+              <Link to="/consultation">Agendar Consulta</Link>
             </Button>
           </div>
 
@@ -111,10 +119,18 @@ const Navbar = () => {
               <a 
                 href="tel:5566992456034" 
                 className="text-gray-600 hover:text-nutrition-green transition-colors flex items-center space-x-2"
-                aria-label="Phone"
+                aria-label="Telefone"
               >
                 <Phone size={20} />
                 <span className="text-sm">55 66 99245-6034</span>
+              </a>
+              <a 
+                href="mailto:lidiane_dosreis@outlook.com" 
+                className="text-gray-600 hover:text-nutrition-green transition-colors flex items-center space-x-2"
+                aria-label="Email"
+              >
+                <Mail size={20} />
+                <span className="text-sm">Email</span>
               </a>
             </div>
             
@@ -139,7 +155,7 @@ const Navbar = () => {
                   className="w-full bg-nutrition-green hover:bg-nutrition-teal"
                   onClick={() => setIsMenuOpen(false)}
                 >
-                  <Link to="/consultation">Book Consultation</Link>
+                  <Link to="/consultation">Agendar Consulta</Link>
                 </Button>
               </div>
             </div>

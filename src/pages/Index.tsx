@@ -1,5 +1,5 @@
 
-import { Apple, Carrot, MessageCircle, Users, Phone, Instagram } from "lucide-react";
+import { Apple, Carrot, MessageCircle, Users, Phone, Instagram, Mail } from "lucide-react";
 import Hero from "@/components/Hero";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -209,6 +209,13 @@ const Index = () => {
               >
                 <Phone size={24} />
                 <span className="text-lg">55 66 99245-6034</span>
+              </a>
+              <a 
+                href="mailto:lidiane_dosreis@outlook.com"
+                className="flex items-center space-x-3 text-gray-700 hover:text-nutrition-green transition-colors"
+              >
+                <Mail size={24} />
+                <span className="text-lg">lidiane_dosreis@outlook.com</span>
               </a>
               <a 
                 href="https://www.instagram.com/lidianedosreisnutri/"

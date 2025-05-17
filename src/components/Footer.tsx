@@ -1,6 +1,6 @@
 
 import { Link } from "react-router-dom";
-import { Apple, Instagram, Phone } from "lucide-react";
+import { Apple, Instagram, Phone, Mail } from "lucide-react";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -30,56 +30,69 @@ const Footer = () => {
               <a 
                 href="tel:5566992456034" 
                 className="hover:text-nutrition-green transition-colors flex items-center space-x-2"
-                aria-label="Phone"
+                aria-label="Telefone"
               >
                 <Phone size={20} />
                 <span className="text-sm">55 66 99245-6034</span>
+              </a>
+              <a 
+                href="mailto:lidiane_dosreis@outlook.com" 
+                className="hover:text-nutrition-green transition-colors flex items-center space-x-2"
+                aria-label="Email"
+              >
+                <Mail size={20} />
+                <span className="text-sm">E-mail</span>
               </a>
             </div>
           </div>
           
           <div>
-            <h3 className="font-semibold text-lg mb-4">Quick Links</h3>
+            <h3 className="font-semibold text-lg mb-4">Links Rápidos</h3>
             <ul className="space-y-2">
               <li>
                 <Link to="/" className="text-gray-400 hover:text-white transition-colors">Home</Link>
               </li>
               <li>
-                <Link to="/about" className="text-gray-400 hover:text-white transition-colors">About</Link>
+                <Link to="/about" className="text-gray-400 hover:text-white transition-colors">Sobre</Link>
               </li>
               <li>
-                <Link to="/services" className="text-gray-400 hover:text-white transition-colors">Services</Link>
+                <Link to="/services" className="text-gray-400 hover:text-white transition-colors">Serviços</Link>
               </li>
               <li>
-                <Link to="/community" className="text-gray-400 hover:text-white transition-colors">Community</Link>
+                <Link to="/community" className="text-gray-400 hover:text-white transition-colors">Comunidade</Link>
               </li>
             </ul>
           </div>
           
           <div>
-            <h3 className="font-semibold text-lg mb-4">Services</h3>
+            <h3 className="font-semibold text-lg mb-4">Serviços</h3>
             <ul className="space-y-2">
               <li>
-                <Link to="/services" className="text-gray-400 hover:text-white transition-colors">Nutrition Plans</Link>
+                <Link to="/services" className="text-gray-400 hover:text-white transition-colors">Planos Nutricionais</Link>
               </li>
               <li>
-                <Link to="/services" className="text-gray-400 hover:text-white transition-colors">Wellness Coaching</Link>
+                <Link to="/services" className="text-gray-400 hover:text-white transition-colors">Coaching de Bem-estar</Link>
               </li>
               <li>
-                <Link to="/services" className="text-gray-400 hover:text-white transition-colors">Meal Planning</Link>
+                <Link to="/services" className="text-gray-400 hover:text-white transition-colors">Planejamento de Refeições</Link>
               </li>
               <li>
-                <Link to="/consultation" className="text-gray-400 hover:text-white transition-colors">Online Consultations</Link>
+                <Link to="/consultation" className="text-gray-400 hover:text-white transition-colors">Consultas Online</Link>
               </li>
             </ul>
           </div>
           
           <div>
-            <h3 className="font-semibold text-lg mb-4">Contact</h3>
+            <h3 className="font-semibold text-lg mb-4">Contato</h3>
             <ul className="space-y-2">
               <li className="text-gray-400">
                 <a href="tel:5566992456034" className="hover:text-white transition-colors">
                   55 66 99245-6034
+                </a>
+              </li>
+              <li className="text-gray-400">
+                <a href="mailto:lidiane_dosreis@outlook.com" className="hover:text-white transition-colors">
+                  lidiane_dosreis@outlook.com
                 </a>
               </li>
               <li>
@@ -97,7 +110,7 @@ const Footer = () => {
         </div>
         
         <div className="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
-          <p>&copy; {currentYear} Lidiane Dos Reis Nutricionista. All rights reserved.</p>
+          <p>&copy; {currentYear} Lidiane Dos Reis Nutricionista. Todos os direitos reservados.</p>
         </div>
       </div>
     </footer>

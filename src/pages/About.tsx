@@ -1,6 +1,7 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Hero from "@/components/Hero";
+
 const About = () => {
   const teamMembers = [{
     name: "Dra. Maria Costa",
@@ -23,7 +24,9 @@ const About = () => {
     image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80",
     bio: "Carlos é especializado em terapia nutricional médica para gerenciamento de doenças crônicas e perda de peso."
   }];
-  return <>
+
+  return (
+    <>
       <Navbar />
       <main>
         <Hero title="Sobre NutriVida" subtitle="Conheça nossa missão, nossa equipe e nossa abordagem para transformar a saúde através da nutrição." showWave={false} image="https://images.unsplash.com/photo-1505576399279-565b52d4ac71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80" ctaText="Agendar Consulta" />
@@ -50,9 +53,13 @@ const About = () => {
                   Hoje, continuamos a expandir nossos serviços e alcance, ajudando indivíduos e famílias em todo o país a alcançar melhor saúde através de planos nutricionais personalizados, educação e suporte contínuo.
                 </p>
               </div>
-              <div className="relative">
-                <div className="absolute -inset-1 bg-gradient-to-r from-nutrition-green to-nutrition-teal rounded-lg blur opacity-20"></div>
-                <img src="https://images.unsplash.com/photo-1452788311386-0f4d8d72907d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1472&q=80" alt="Nossa história" className="relative rounded-lg shadow-lg z-10 w-full h-auto" />
+              {/* Coluna da direita modificada */}
+              <div className="flex items-center justify-center">
+                <div className="bg-nutrition-light-green/60 p-12 rounded-xl shadow-xl w-full max-w-md aspect-[4/3] flex items-center justify-center text-center">
+                  <p className="text-3xl font-semibold text-gray-700">
+                     Nossa história
+                  </p>
+                </div>
               </div>
             </div>
           </div>
@@ -220,6 +227,8 @@ const About = () => {
         </section>
       </main>
       <Footer />
-    </>;
+    </>
+  );
 };
+
 export default About;

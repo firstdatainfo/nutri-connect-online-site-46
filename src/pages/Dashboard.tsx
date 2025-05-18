@@ -587,54 +587,46 @@ const Dashboard = () => {
                         <div className="space-y-4">
                           <div className="flex items-center space-x-3 mb-2">
                             <BrainCircuit className="text-purple-600" size={24} />
-                            <h4 className="font-medium">Recursos de IA para Nutrição</h4>
+                            <h4 className="font-medium">Recursos de IA para Nutrição (Gratuitos)</h4>
                           </div>
                           
                           <div className="border rounded-lg p-4 space-y-4">
                             <div>
                               <div className="flex justify-between">
-                                <label className="block text-sm font-medium mb-1">Chave de API IA</label>
-                                <span className="text-xs text-gray-500">Recomendado: OpenAI</span>
+                                <label className="block text-sm font-medium mb-1">Modelo de IA</label>
+                                <span className="text-xs text-gray-500">Todos gratuitos</span>
                               </div>
-                              <Input type="password" placeholder="Digite sua chave de API" />
+                              <select className="w-full border border-input rounded-md p-2.5 text-sm">
+                                <option value="huggingface">Hugging Face (Gratuito)</option>
+                                <option value="ollama">Ollama (Gratuito)</option>
+                                <option value="google-gemini-free">Google Gemini Free Tier</option>
+                              </select>
                               <p className="text-xs text-gray-500 mt-1">
-                                Esta chave será usada para gerar conteúdo e análises nutricionais.
+                                Modelos gratuitos para geração de conteúdo nutricional
                               </p>
                             </div>
                             
-                            <div>
-                              <label className="block text-sm font-medium mb-1">Modelo de IA</label>
-                              <select className="w-full border border-input rounded-md p-2.5 text-sm">
-                                <option value="gpt-4">GPT-4 (Recomendado)</option>
-                                <option value="gpt-3.5">GPT-3.5 Turbo</option>
-                                <option value="davinci">Davinci</option>
-                                <option value="curie">Curie</option>
-                              </select>
-                            </div>
-                            
                             <div className="space-y-2">
-                              <label className="block text-sm font-medium">Recursos de IA Disponíveis</label>
+                              <label className="block text-sm font-medium">Recursos de IA Gratuitos Disponíveis</label>
                               <div className="flex flex-col gap-2">
                                 <div className="flex items-center space-x-2">
                                   <input type="checkbox" id="ai-receitas" className="rounded border-gray-300" checked />
-                                  <label htmlFor="ai-receitas" className="text-sm">Geração de receitas personalizadas</label>
+                                  <label htmlFor="ai-receitas" className="text-sm">Sugestão de receitas básicas</label>
                                 </div>
                                 <div className="flex items-center space-x-2">
                                   <input type="checkbox" id="ai-alimentos" className="rounded border-gray-300" checked />
-                                  <label htmlFor="ai-alimentos" className="text-sm">Análise de substituições alimentares</label>
-                                </div>
-                                <div className="flex items-center space-x-2">
-                                  <input type="checkbox" id="ai-planos" className="rounded border-gray-300" checked />
-                                  <label htmlFor="ai-planos" className="text-sm">Sugestão de planos alimentares</label>
+                                  <label htmlFor="ai-alimentos" className="text-sm">Dicas de alimentação saudável</label>
                                 </div>
                                 <div className="flex items-center space-x-2">
                                   <input type="checkbox" id="ai-textos" className="rounded border-gray-300" checked />
-                                  <label htmlFor="ai-textos" className="text-sm">Geração de textos educativos</label>
+                                  <label htmlFor="ai-textos" className="text-sm">Textos informativos simples</label>
                                 </div>
-                                <div className="flex items-center space-x-2">
-                                  <input type="checkbox" id="ai-resumos" className="rounded border-gray-300" />
-                                  <label htmlFor="ai-resumos" className="text-sm">Resumos de consultas (Premium)</label>
-                                </div>
+                              </div>
+                              <div className="mt-4 bg-blue-50 p-3 rounded-md">
+                                <p className="text-xs text-blue-700">
+                                  <strong>Dica:</strong> Todos os recursos de IA disponíveis aqui são completamente gratuitos. 
+                                  Para funcionalidades mais avançadas, você pode usar modelos locais ou implementar sua própria solução.
+                                </p>
                               </div>
                             </div>
                           </div>

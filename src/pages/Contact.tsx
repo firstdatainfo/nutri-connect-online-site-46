@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -10,6 +9,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
 import { Mail, Phone, Instagram, MapPin, Clock } from "lucide-react";
+import MapComponent from "@/components/Map";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -199,11 +199,12 @@ const Contact = () => {
         <section className="bg-gray-50 py-16">
           <div className="container-custom">
             <h2 className="text-3xl font-bold mb-8 text-center">Localização</h2>
-            <div className="w-full h-96 bg-gray-200 rounded-lg overflow-hidden">
-              {/* Placeholder for a map - in a real implementation, you'd include a Google Maps or similar component */}
-              <div className="w-full h-full flex items-center justify-center bg-nutrition-light-blue/20">
-                <p className="text-gray-600 text-lg font-medium">Mapa Interativo</p>
-              </div>
+            <div className="w-full h-auto min-h-[24rem] bg-gray-200 rounded-lg overflow-hidden">
+              <MapComponent 
+                defaultLatitude={-15.8901} 
+                defaultLongitude={-52.2566} 
+                defaultZoom={13} 
+              />
             </div>
           </div>
         </section>

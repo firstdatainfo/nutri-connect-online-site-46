@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -17,7 +18,8 @@ import {
   CreditCard,
   BrainCircuit,
   FileType,
-  ImageIcon
+  ImageIcon,
+  CalendarDays
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -35,12 +37,20 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Tabs as TabsComponent, TabsList as TabsListComponent, TabsTrigger as TabsTriggerComponent, TabsContent as TabsContentComponent } from "@/components/ui/tabs";
 import Map from "@/components/Map";
 import { Textarea } from "@/components/ui/textarea";
+import { useToast } from "@/hooks/use-toast";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog";
 
 const Dashboard = () => {
   const [activeTab, setActiveTab] = useState<string>("consultas");
   const [editorOpen, setEditorOpen] = useState(false);
   const [currentEditPage, setCurrentEditPage] = useState("");
   const [activeConfigTab, setActiveConfigTab] = useState<string>("perfil");
+  const [searchQuery, setSearchQuery] = useState("");
+  const [consultaDialogOpen, setConsultaDialogOpen] = useState(false);
+  const [messageDialogOpen, setMessageDialogOpen] = useState(false);
+  const [selectedConsultaId, setSelectedConsultaId] = useState<number | null>(null);
+  const [mensagem, setMensagem] = useState("");
+  const { toast } = useToast();
   
   // Dados de exemplo para consultas
   const consultas = [
@@ -99,6 +109,62 @@ const Dashboard = () => {
   const handleSaveContent = (data: any) => {
     console.log(`Salvando alterações para ${currentEditPage}:`, data);
     // Aqui implementamos a lógica para salvar as alterações
+  };
+
+  // Filtra consultas baseado na busca
+  const filteredConsultas = consultas.filter(consulta => 
+    consulta.paciente.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    consulta.data.includes(searchQuery) ||
+    consulta.horario.includes(searchQuery) ||
+    consulta.status.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
+  // Função para abrir o diálogo de edição de consulta
+  const handleEditConsulta = (id: number) => {
+    setSelectedConsultaId(id);
+    setConsultaDialogOpen(true);
+  };
+
+  // Função para abrir o diálogo de mensagem
+  const handleOpenMessageDialog = (id: number) => {
+    setSelectedConsultaId(id);
+    setMessageDialogOpen(true);
+  };
+
+  // Função para enviar mensagem
+  const handleSendMessage = () => {
+    if (mensagem.trim() === "") {
+      toast({
+        title: "Erro",
+        description: "Por favor, escreva uma mensagem antes de enviar.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    // Aqui implementariamos o envio real da mensagem
+    toast({
+      title: "Mensagem enviada",
+      description: `Mensagem enviada com sucesso para o paciente.`,
+    });
+    
+    setMensagem("");
+    setMessageDialogOpen(false);
+  };
+
+  // Função para abrir agenda completa
+  const handleViewFullSchedule = () => {
+    toast({
+      title: "Abrindo agenda completa",
+      description: "Funcionalidade de agenda completa será implementada em breve.",
+    });
+    // Aqui implementariamos a navegação para a página de agenda completa
+  };
+
+  // Função para adicionar nova consulta
+  const handleAddNewConsulta = () => {
+    setSelectedConsultaId(null); // Indica que estamos criando uma nova consulta
+    setConsultaDialogOpen(true);
   };
 
   return (
@@ -194,10 +260,12 @@ const Dashboard = () => {
                       <Input
                         placeholder="Buscar..."
                         className="pl-9"
+                        value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value)}
                       />
                     </div>
                     {activeTab !== "configuracoes" && activeTab !== "editar_paginas" && (
-                      <Button>
+                      <Button onClick={activeTab === "consultas" ? handleAddNewConsulta : () => {}}>
                         <Plus size={18} className="mr-1" /> Novo
                       </Button>
                     )}
@@ -211,7 +279,10 @@ const Dashboard = () => {
                   <div className="space-y-4">
                     <div className="flex justify-between items-center mb-4">
                       <h3 className="text-lg font-medium">Próximas Consultas</h3>
-                      <Button variant="outline">Ver Agenda Completa</Button>
+                      <Button variant="outline" onClick={handleViewFullSchedule}>
+                        <CalendarDays size={16} className="mr-2" />
+                        Ver Agenda Completa
+                      </Button>
                     </div>
 
                     <Table>
@@ -225,32 +296,48 @@ const Dashboard = () => {
                         </TableRow>
                       </TableHeader>
                       <TableBody>
-                        {consultas.map((consulta) => (
-                          <TableRow key={consulta.id}>
-                            <TableCell>{consulta.paciente}</TableCell>
-                            <TableCell>{consulta.data}</TableCell>
-                            <TableCell>{consulta.horario}</TableCell>
-                            <TableCell>
-                              <span className={`inline-block px-2 py-1 rounded-full text-xs font-medium ${
-                                consulta.status === "Confirmado" ? "bg-green-100 text-green-800" :
-                                consulta.status === "Pendente" ? "bg-yellow-100 text-yellow-800" :
-                                "bg-red-100 text-red-800"
-                              }`}>
-                                {consulta.status}
-                              </span>
-                            </TableCell>
-                            <TableCell>
-                              <div className="flex space-x-2">
-                                <Button variant="outline" size="sm">
-                                  <Edit size={14} className="mr-1" /> Editar
-                                </Button>
-                                <Button variant="outline" size="sm">
-                                  <MessageSquare size={14} className="mr-1" /> Mensagem
-                                </Button>
-                              </div>
+                        {filteredConsultas.length > 0 ? (
+                          filteredConsultas.map((consulta) => (
+                            <TableRow key={consulta.id}>
+                              <TableCell>{consulta.paciente}</TableCell>
+                              <TableCell>{consulta.data}</TableCell>
+                              <TableCell>{consulta.horario}</TableCell>
+                              <TableCell>
+                                <span className={`inline-block px-2 py-1 rounded-full text-xs font-medium ${
+                                  consulta.status === "Confirmado" ? "bg-green-100 text-green-800" :
+                                  consulta.status === "Pendente" ? "bg-yellow-100 text-yellow-800" :
+                                  "bg-red-100 text-red-800"
+                                }`}>
+                                  {consulta.status}
+                                </span>
+                              </TableCell>
+                              <TableCell>
+                                <div className="flex space-x-2">
+                                  <Button 
+                                    variant="outline" 
+                                    size="sm"
+                                    onClick={() => handleEditConsulta(consulta.id)}
+                                  >
+                                    <Edit size={14} className="mr-1" /> Editar
+                                  </Button>
+                                  <Button 
+                                    variant="outline" 
+                                    size="sm"
+                                    onClick={() => handleOpenMessageDialog(consulta.id)}
+                                  >
+                                    <MessageSquare size={14} className="mr-1" /> Mensagem
+                                  </Button>
+                                </div>
+                              </TableCell>
+                            </TableRow>
+                          ))
+                        ) : (
+                          <TableRow>
+                            <TableCell colSpan={5} className="text-center py-4 text-gray-500">
+                              Nenhuma consulta encontrada com os critérios de busca.
                             </TableCell>
                           </TableRow>
-                        ))}
+                        )}
                       </TableBody>
                     </Table>
                   </div>
@@ -655,6 +742,95 @@ const Dashboard = () => {
         pageType={currentEditPage}
         onSave={handleSaveContent}
       />
+
+      {/* Diálogo de Edição/Nova Consulta */}
+      <Dialog open={consultaDialogOpen} onOpenChange={setConsultaDialogOpen}>
+        <DialogContent className="sm:max-w-[425px]">
+          <DialogHeader>
+            <DialogTitle>{selectedConsultaId ? "Editar Consulta" : "Nova Consulta"}</DialogTitle>
+          </DialogHeader>
+          <div className="space-y-4 py-4">
+            <div className="space-y-2">
+              <label htmlFor="paciente" className="text-sm font-medium">Paciente</label>
+              <select id="paciente" className="w-full border rounded-md p-2">
+                {pacientes.map(paciente => (
+                  <option key={paciente.id} value={paciente.id}>{paciente.nome}</option>
+                ))}
+              </select>
+            </div>
+            <div className="space-y-2">
+              <label htmlFor="data" className="text-sm font-medium">Data</label>
+              <Input 
+                id="data" 
+                type="date" 
+                defaultValue={selectedConsultaId ? consultas.find(c => c.id === selectedConsultaId)?.data.split('/').reverse().join('-') : new Date().toISOString().split('T')[0]} 
+              />
+            </div>
+            <div className="space-y-2">
+              <label htmlFor="hora" className="text-sm font-medium">Horário</label>
+              <Input 
+                id="hora" 
+                type="time" 
+                defaultValue={selectedConsultaId ? consultas.find(c => c.id === selectedConsultaId)?.horario.replace(':', '') : "09:00"} 
+              />
+            </div>
+            <div className="space-y-2">
+              <label htmlFor="status" className="text-sm font-medium">Status</label>
+              <select id="status" className="w-full border rounded-md p-2">
+                <option value="Confirmado">Confirmado</option>
+                <option value="Pendente">Pendente</option>
+                <option value="Cancelado">Cancelado</option>
+              </select>
+            </div>
+          </div>
+          <DialogFooter>
+            <Button variant="outline" onClick={() => setConsultaDialogOpen(false)}>Cancelar</Button>
+            <Button onClick={() => {
+              toast({
+                title: selectedConsultaId ? "Consulta atualizada" : "Consulta criada",
+                description: selectedConsultaId ? "Consulta atualizada com sucesso!" : "Nova consulta criada com sucesso!",
+              });
+              setConsultaDialogOpen(false);
+            }}>
+              {selectedConsultaId ? "Salvar" : "Criar"}
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+
+      {/* Diálogo de Mensagem */}
+      <Dialog open={messageDialogOpen} onOpenChange={setMessageDialogOpen}>
+        <DialogContent className="sm:max-w-[500px]">
+          <DialogHeader>
+            <DialogTitle>Enviar Mensagem</DialogTitle>
+          </DialogHeader>
+          <div className="space-y-4 py-4">
+            <div className="space-y-2">
+              <label className="text-sm font-medium">Para</label>
+              <div className="p-2 bg-gray-50 rounded-md">
+                {selectedConsultaId ? 
+                  consultas.find(c => c.id === selectedConsultaId)?.paciente :
+                  "Selecione um paciente"
+                }
+              </div>
+            </div>
+            <div className="space-y-2">
+              <label htmlFor="mensagem" className="text-sm font-medium">Mensagem</label>
+              <Textarea 
+                id="mensagem" 
+                placeholder="Digite sua mensagem aqui..." 
+                rows={5}
+                value={mensagem}
+                onChange={(e) => setMensagem(e.target.value)}
+              />
+            </div>
+          </div>
+          <DialogFooter>
+            <Button variant="outline" onClick={() => setMessageDialogOpen(false)}>Cancelar</Button>
+            <Button onClick={handleSendMessage}>Enviar</Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </>
   );
 };

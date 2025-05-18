@@ -10,6 +10,7 @@ import Services from "./pages/Services";
 import Community from "./pages/Community";
 import Consultation from "./pages/Consultation";
 import Contact from "./pages/Contact";
+import Dashboard from "./pages/Dashboard";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -27,6 +28,7 @@ const App = () => (
           <Route path="/community" element={<Community />} />
           <Route path="/consultation" element={<Consultation />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/dashboard" element={<Dashboard />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

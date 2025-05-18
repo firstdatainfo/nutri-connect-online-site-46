@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -35,6 +34,7 @@ import ContentEditor from "@/components/ContentEditor";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Tabs as TabsComponent, TabsList as TabsListComponent, TabsTrigger as TabsTriggerComponent, TabsContent as TabsContentComponent } from "@/components/ui/tabs";
 import Map from "@/components/Map";
+import { Textarea } from "@/components/ui/textarea";
 
 const Dashboard = () => {
   const [activeTab, setActiveTab] = useState<string>("consultas");
@@ -98,7 +98,7 @@ const Dashboard = () => {
 
   const handleSaveContent = (data: any) => {
     console.log(`Salvando alterações para ${currentEditPage}:`, data);
-    // Aqui implementaríamos a lógica para salvar as alterações
+    // Aqui implementamos a lógica para salvar as alterações
   };
 
   return (

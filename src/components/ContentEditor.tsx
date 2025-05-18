@@ -8,13 +8,30 @@ import { Form, FormField, FormItem, FormLabel, FormControl, FormDescription, For
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
-import { Image, Text, Bold, Italic, AlignLeft, AlignCenter, AlignRight, FileImage } from "lucide-react";
+import InputMask from 'react-input-mask';
+import { 
+  Image, 
+  Text, 
+  Bold, 
+  Italic, 
+  AlignLeft, 
+  AlignCenter, 
+  AlignRight, 
+  FileImage,
+  Link,
+  List,
+  ListOrdered
+} from "lucide-react";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 // Esquema de validação para o formulário
 const formSchema = z.object({
   title: z.string().min(1, "Título é obrigatório"),
   content: z.string().min(1, "Conteúdo é obrigatório"),
   imageUrl: z.string().optional(),
+  phoneNumber: z.string().optional(),
+  email: z.string().email("Email inválido").optional(),
+  date: z.string().optional(),
 });
 
 type ContentEditorProps = {
@@ -26,7 +43,8 @@ type ContentEditorProps = {
 };
 
 const ContentEditor = ({ open, onOpenChange, pageType, onSave, initialData }: ContentEditorProps) => {
-  const [activeTab, setActiveTab] = useState<"text" | "format" | "media">("text");
+  const [activeTab, setActiveTab] = useState<"text" | "format" | "media" | "contact">("text");
+  const [previewImage, setPreviewImage] = useState<string | null>(initialData?.imageUrl || null);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -34,6 +52,9 @@ const ContentEditor = ({ open, onOpenChange, pageType, onSave, initialData }: Co
       title: "",
       content: "",
       imageUrl: "",
+      phoneNumber: "",
+      email: "",
+      date: "",
     },
   });
 
@@ -43,9 +64,18 @@ const ContentEditor = ({ open, onOpenChange, pageType, onSave, initialData }: Co
     form.reset();
   };
 
+  const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const imageUrl = URL.createObjectURL(file);
+      setPreviewImage(imageUrl);
+      form.setValue("imageUrl", imageUrl);
+    }
+  };
+
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-[600px]">
+      <DialogContent className="sm:max-w-[650px]">
         <DialogHeader>
           <DialogTitle>Editar Conteúdo da Página {pageType}</DialogTitle>
         </DialogHeader>
@@ -74,6 +104,14 @@ const ContentEditor = ({ open, onOpenChange, pageType, onSave, initialData }: Co
             className="gap-1"
           >
             <Image size={16} /> Mídia
+          </Button>
+          <Button
+            variant={activeTab === "contact" ? "default" : "ghost"}
+            onClick={() => setActiveTab("contact")}
+            size="sm"
+            className="gap-1"
+          >
+            <Link size={16} /> Contato
           </Button>
         </div>
 
@@ -118,14 +156,14 @@ const ContentEditor = ({ open, onOpenChange, pageType, onSave, initialData }: Co
               <div className="space-y-4">
                 <div className="bg-gray-50 p-4 rounded-lg">
                   <p className="text-sm text-gray-600 mb-3">Formatação de Texto</p>
-                  <div className="flex space-x-2">
+                  <div className="flex flex-wrap gap-2">
                     <Button variant="outline" size="icon">
                       <Bold size={16} />
                     </Button>
                     <Button variant="outline" size="icon">
                       <Italic size={16} />
                     </Button>
-                    <div className="border-r mx-2"></div>
+                    <div className="border-r h-8 mx-1"></div>
                     <Button variant="outline" size="icon">
                       <AlignLeft size={16} />
                     </Button>
@@ -135,40 +173,141 @@ const ContentEditor = ({ open, onOpenChange, pageType, onSave, initialData }: Co
                     <Button variant="outline" size="icon">
                       <AlignRight size={16} />
                     </Button>
+                    <div className="border-r h-8 mx-1"></div>
+                    <Button variant="outline" size="icon">
+                      <List size={16} />
+                    </Button>
+                    <Button variant="outline" size="icon">
+                      <ListOrdered size={16} />
+                    </Button>
                   </div>
                 </div>
               </div>
             )}
 
             {activeTab === "media" && (
-              <FormField
-                control={form.control}
-                name="imageUrl"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>URL da Imagem</FormLabel>
-                    <FormControl>
-                      <div className="space-y-4">
-                        <Input placeholder="Cole a URL da imagem" {...field} />
-                        <div className="flex items-center justify-center border-2 border-dashed rounded-md p-6">
-                          <div className="text-center">
-                            <FileImage className="mx-auto h-12 w-12 text-gray-400" />
-                            <div className="mt-2">
-                              <Button variant="outline" size="sm">
-                                Escolher Arquivo
-                              </Button>
+              <div className="space-y-4">
+                <FormField
+                  control={form.control}
+                  name="imageUrl"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>URL da Imagem</FormLabel>
+                      <FormControl>
+                        <div className="space-y-4">
+                          <Input placeholder="Cole a URL da imagem" {...field} />
+                          <div className="flex items-center justify-center border-2 border-dashed rounded-md p-6">
+                            <div className="text-center">
+                              <FileImage className="mx-auto h-12 w-12 text-gray-400" />
+                              <div className="mt-2">
+                                <Input
+                                  id="image-upload"
+                                  type="file"
+                                  accept="image/*"
+                                  className="hidden"
+                                  onChange={handleImageUpload}
+                                />
+                                <label htmlFor="image-upload">
+                                  <Button variant="outline" size="sm" className="cursor-pointer" asChild>
+                                    <span>Escolher Arquivo</span>
+                                  </Button>
+                                </label>
+                              </div>
+                              <p className="mt-2 text-xs text-gray-500">
+                                PNG, JPG ou WEBP até 10MB
+                              </p>
                             </div>
-                            <p className="mt-2 text-xs text-gray-500">
-                              PNG, JPG ou WEBP até 10MB
-                            </p>
                           </div>
                         </div>
-                      </div>
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                {previewImage && (
+                  <div className="border rounded-md p-2">
+                    <p className="text-sm font-medium mb-2">Prévia:</p>
+                    <img 
+                      src={previewImage} 
+                      alt="Preview" 
+                      className="max-h-[200px] mx-auto rounded-md object-contain" 
+                    />
+                  </div>
                 )}
-              />
+              </div>
+            )}
+
+            {activeTab === "contact" && (
+              <div className="space-y-4">
+                <FormField
+                  control={form.control}
+                  name="phoneNumber"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Telefone</FormLabel>
+                      <FormControl>
+                        <div className="relative">
+                          <InputMask 
+                            mask="(99) 99999-9999" 
+                            value={field.value || ''} 
+                            onChange={field.onChange}
+                          >
+                            {(inputProps: any) => 
+                              <Input 
+                                {...inputProps} 
+                                placeholder="(99) 99999-9999" 
+                                type="tel"
+                              />
+                            }
+                          </InputMask>
+                        </div>
+                      </FormControl>
+                      <FormDescription>Telefone para contato</FormDescription>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                
+                <FormField
+                  control={form.control}
+                  name="email"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Email</FormLabel>
+                      <FormControl>
+                        <Input placeholder="email@exemplo.com" type="email" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                
+                <FormField
+                  control={form.control}
+                  name="date"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Data</FormLabel>
+                      <FormControl>
+                        <InputMask 
+                          mask="99/99/9999" 
+                          value={field.value || ''} 
+                          onChange={field.onChange}
+                        >
+                          {(inputProps: any) => 
+                            <Input 
+                              {...inputProps} 
+                              placeholder="DD/MM/AAAA" 
+                              type="text"
+                            />
+                          }
+                        </InputMask>
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
             )}
 
             <DialogFooter>

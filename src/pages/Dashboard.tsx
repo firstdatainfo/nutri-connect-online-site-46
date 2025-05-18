@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -13,10 +14,15 @@ import {
   Edit,
   Search,
   Plus,
-  Pencil
+  Pencil,
+  CreditCard,
+  BrainCircuit,
+  FileType,
+  ImageIcon
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import InputMask from 'react-input-mask';
 import { 
   Table, 
   TableBody, 
@@ -26,13 +32,15 @@ import {
   TableRow 
 } from "@/components/ui/table";
 import ContentEditor from "@/components/ContentEditor";
-
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Tabs as TabsComponent, TabsList as TabsListComponent, TabsTrigger as TabsTriggerComponent, TabsContent as TabsContentComponent } from "@/components/ui/tabs";
 import Map from "@/components/Map";
 
 const Dashboard = () => {
   const [activeTab, setActiveTab] = useState<string>("consultas");
   const [editorOpen, setEditorOpen] = useState(false);
   const [currentEditPage, setCurrentEditPage] = useState("");
+  const [activeConfigTab, setActiveConfigTab] = useState<string>("perfil");
   
   // Dados de exemplo para consultas
   const consultas = [
@@ -61,6 +69,28 @@ const Dashboard = () => {
     { id: 6, nome: "Contato", rota: "/contact" },
   ];
 
+  // Dados de exemplo para modelos de receituário
+  const modelosReceituario = [
+    { 
+      id: 1, 
+      nome: "Receituário Padrão", 
+      descricao: "Modelo para prescrição de dieta padrão",
+      preview: "/lovable-uploads/19cefa6f-5a74-4dc2-9425-7df166d07de4.png"
+    },
+    { 
+      id: 2, 
+      nome: "Receituário Simples", 
+      descricao: "Modelo minimalista para indicações simples",
+      preview: "/lovable-uploads/7f21824b-576f-4ec6-8c01-344ca77b5a02.png"
+    },
+    { 
+      id: 3, 
+      nome: "Receituário Completo", 
+      descricao: "Modelo detalhado com todas as informações",
+      preview: "/lovable-uploads/8f1a6fd3-0913-42f9-afcb-77778ed69afb.png"
+    },
+  ];
+
   const handleOpenEditor = (pageName: string) => {
     setCurrentEditPage(pageName);
     setEditorOpen(true);
@@ -79,9 +109,17 @@ const Dashboard = () => {
           <div className="flex flex-col md:flex-row gap-6">
             {/* Sidebar/Menu de navegação */}
             <aside className="w-full md:w-64 bg-white rounded-lg shadow-sm p-4">
-              <div className="flex items-center justify-center mb-6 p-2 bg-nutrition-green/10 rounded-md">
-                <LayoutDashboard className="text-nutrition-green mr-2" size={20} />
-                <h2 className="text-lg font-semibold text-nutrition-green">Painel Admin</h2>
+              <div className="flex flex-col items-center justify-center mb-6">
+                <Avatar className="w-24 h-24 mb-3">
+                  <AvatarImage src="/lovable-uploads/ca42dc66-026e-45dc-818c-96ec602d6825.png" alt="Logo" />
+                  <AvatarFallback>CN</AvatarFallback>
+                </Avatar>
+                <div className="p-2 bg-nutrition-green/10 rounded-md w-full text-center">
+                  <h2 className="text-lg font-semibold text-nutrition-green flex items-center justify-center">
+                    <LayoutDashboard className="text-nutrition-green mr-2" size={20} />
+                    Painel Admin
+                  </h2>
+                </div>
               </div>
               
               <nav className="space-y-1">
@@ -233,7 +271,15 @@ const Dashboard = () => {
                         {pacientes.map((paciente) => (
                           <TableRow key={paciente.id}>
                             <TableCell>{paciente.nome}</TableCell>
-                            <TableCell>{paciente.telefone}</TableCell>
+                            <TableCell>
+                              <InputMask
+                                mask="(99) 99999-9999"
+                                value={paciente.telefone}
+                                disabled={true}
+                              >
+                                {(inputProps: any) => <Input {...inputProps} className="border-none p-0 h-auto" />}
+                              </InputMask>
+                            </TableCell>
                             <TableCell>{paciente.ultimaConsulta}</TableCell>
                             <TableCell>
                               <div className="flex space-x-2">
@@ -257,10 +303,17 @@ const Dashboard = () => {
                     <h3 className="text-lg font-medium mb-4">Modelos de Receituários</h3>
                     
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                      {[1, 2, 3].map((i) => (
-                        <div key={i} className="border rounded-lg p-4 hover:shadow-md transition-shadow">
-                          <h4 className="font-medium mb-2">Modelo de Receituário {i}</h4>
-                          <p className="text-sm text-gray-600 mb-4">Modelo para prescrição de dieta padrão</p>
+                      {modelosReceituario.map((modelo) => (
+                        <div key={modelo.id} className="border rounded-lg p-4 hover:shadow-md transition-shadow">
+                          <h4 className="font-medium mb-2">{modelo.nome}</h4>
+                          <p className="text-sm text-gray-600 mb-3">{modelo.descricao}</p>
+                          <div className="mb-3 border rounded-md overflow-hidden">
+                            <img 
+                              src={modelo.preview} 
+                              alt={`Prévia de ${modelo.nome}`} 
+                              className="w-full h-40 object-contain"
+                            />
+                          </div>
                           <div className="flex space-x-2">
                             <Button variant="outline" size="sm">
                               <Edit size={14} className="mr-1" /> Editar
@@ -329,33 +382,271 @@ const Dashboard = () => {
 
                 {activeTab === "configuracoes" && (
                   <div className="space-y-8">
-                    <div>
-                      <h3 className="text-lg font-medium mb-4">Configurações do Perfil</h3>
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div>
-                          <label className="block text-sm font-medium mb-1">Nome da Clínica</label>
-                          <Input defaultValue="Consultório Lidiane Dos Reis" />
+                    <TabsComponent value={activeConfigTab} onValueChange={setActiveConfigTab} className="w-full">
+                      <TabsListComponent className="mb-4 flex-wrap">
+                        <TabsTriggerComponent value="perfil">Perfil</TabsTriggerComponent>
+                        <TabsTriggerComponent value="impressao">Personalização de Impressão</TabsTriggerComponent>
+                        <TabsTriggerComponent value="pagamentos">Gateways de Pagamento</TabsTriggerComponent>
+                        <TabsTriggerComponent value="ia">Inteligência Artificial</TabsTriggerComponent>
+                        <TabsTriggerComponent value="localizacao">Localização</TabsTriggerComponent>
+                      </TabsListComponent>
+                      
+                      <TabsContentComponent value="perfil" className="border rounded-lg p-6">
+                        <h3 className="text-lg font-medium mb-4">Configurações do Perfil</h3>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                          <div>
+                            <label className="block text-sm font-medium mb-1">Nome da Clínica</label>
+                            <Input defaultValue="Consultório Lidiane Dos Reis" />
+                          </div>
+                          <div>
+                            <label className="block text-sm font-medium mb-1">Email de Contato</label>
+                            <Input defaultValue="lidiane_dosreis@outlook.com" />
+                          </div>
+                          <div>
+                            <label className="block text-sm font-medium mb-1">Telefone</label>
+                            <InputMask
+                              mask="(99) 99999-9999"
+                              defaultValue="55 66 99245-6034"
+                            >
+                              {(inputProps: any) => <Input {...inputProps} />}
+                            </InputMask>
+                          </div>
+                          <div>
+                            <label className="block text-sm font-medium mb-1">Horário de Funcionamento</label>
+                            <Input defaultValue="Segunda à Sexta, 08:00 - 18:00" />
+                          </div>
+                          <div className="col-span-2">
+                            <label className="block text-sm font-medium mb-1">Logo da Clínica</label>
+                            <div className="flex items-center space-x-4">
+                              <Avatar className="w-24 h-24">
+                                <AvatarImage src="/lovable-uploads/ca42dc66-026e-45dc-818c-96ec602d6825.png" alt="Logo" />
+                                <AvatarFallback>CN</AvatarFallback>
+                              </Avatar>
+                              <Button variant="outline">Alterar Logo</Button>
+                            </div>
+                          </div>
                         </div>
-                        <div>
-                          <label className="block text-sm font-medium mb-1">Email de Contato</label>
-                          <Input defaultValue="lidiane_dosreis@outlook.com" />
+                        <Button className="mt-4">Salvar Alterações</Button>
+                      </TabsContentComponent>
+
+                      <TabsContentComponent value="impressao" className="border rounded-lg p-6">
+                        <h3 className="text-lg font-medium mb-4">Personalização de Impressão</h3>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                          <div className="space-y-4">
+                            <div>
+                              <label className="block text-sm font-medium mb-1">Cabeçalho dos Documentos</label>
+                              <Textarea placeholder="Texto para o cabeçalho dos documentos" rows={3} />
+                            </div>
+                            
+                            <div>
+                              <label className="block text-sm font-medium mb-1">Rodapé dos Documentos</label>
+                              <Textarea placeholder="Texto para o rodapé dos documentos" rows={2} />
+                            </div>
+
+                            <div>
+                              <label className="block text-sm font-medium mb-1">Logo para Impressão</label>
+                              <div className="flex items-center space-x-3 mt-1">
+                                <div className="border rounded-lg p-2 w-24 h-24 flex items-center justify-center bg-gray-50">
+                                  <ImageIcon size={30} className="text-gray-400" />
+                                </div>
+                                <Button variant="outline" size="sm">Escolher Imagem</Button>
+                              </div>
+                            </div>
+                            
+                            <div>
+                              <label className="block text-sm font-medium mb-1">Cores do Documento</label>
+                              <div className="flex space-x-3 mt-1">
+                                <div>
+                                  <label className="text-xs text-gray-500 block mb-1">Principal</label>
+                                  <div className="flex space-x-2 items-center">
+                                    <div className="w-6 h-6 bg-nutrition-green rounded-md"></div>
+                                    <Input className="w-24" defaultValue="#22c55e" />
+                                  </div>
+                                </div>
+                                <div>
+                                  <label className="text-xs text-gray-500 block mb-1">Secundária</label>
+                                  <div className="flex space-x-2 items-center">
+                                    <div className="w-6 h-6 bg-gray-700 rounded-md"></div>
+                                    <Input className="w-24" defaultValue="#374151" />
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          
+                          <div className="border rounded-lg p-4 bg-gray-50">
+                            <h4 className="text-sm font-medium mb-2">Prévia do Documento</h4>
+                            <div className="bg-white border rounded-lg h-[400px] overflow-y-auto shadow-sm">
+                              <div className="p-4">
+                                <div className="flex justify-between items-center border-b pb-4 mb-4">
+                                  <img 
+                                    src="/lovable-uploads/ca42dc66-026e-45dc-818c-96ec602d6825.png" 
+                                    alt="Logo" 
+                                    className="h-16"
+                                  />
+                                  <div className="text-right">
+                                    <p className="font-medium">Consultório Lidiane Dos Reis</p>
+                                    <p className="text-sm text-gray-600">CRN: 12345</p>
+                                    <p className="text-sm text-gray-600">Tel: (66) 99245-6034</p>
+                                  </div>
+                                </div>
+                                
+                                <div className="mb-4">
+                                  <h3 className="text-lg font-medium text-nutrition-green">Prescrição Nutricional</h3>
+                                  <p className="text-sm">Data: 18/05/2025</p>
+                                </div>
+                                
+                                <div className="mb-4">
+                                  <p><span className="font-medium">Paciente:</span> Maria Silva</p>
+                                  <p><span className="font-medium">Idade:</span> 32 anos</p>
+                                </div>
+                                
+                                <div className="mb-6">
+                                  <h4 className="font-medium mb-2">Recomendações:</h4>
+                                  <div className="pl-4">
+                                    <p className="mb-1">• Consumir 2L de água por dia</p>
+                                    <p className="mb-1">• Evitar alimentos processados</p>
+                                    <p className="mb-1">• Incluir vegetais em todas as refeições</p>
+                                    <p className="mb-1">• Preferir grãos integrais</p>
+                                  </div>
+                                </div>
+                                
+                                <div className="mt-10 pt-4 border-t text-center text-sm text-gray-500">
+                                  Consultório Lidiane Dos Reis - Rua Exemplo, 123 - Centro - Cidade - Estado
+                                </div>
+                              </div>
+                            </div>
+                          </div>
                         </div>
-                        <div>
-                          <label className="block text-sm font-medium mb-1">Telefone</label>
-                          <Input defaultValue="55 66 99245-6034" />
+                        <Button className="mt-4">Salvar Configurações</Button>
+                      </TabsContentComponent>
+
+                      <TabsContentComponent value="pagamentos" className="border rounded-lg p-6">
+                        <h3 className="text-lg font-medium mb-4">Configurações de Gateway de Pagamento</h3>
+                        <div className="space-y-6">
+                          <div className="border rounded-lg p-4">
+                            <div className="flex items-center space-x-3 mb-3">
+                              <CreditCard className="text-purple-600" />
+                              <h3 className="font-medium">Pagar.me</h3>
+                            </div>
+                            <div className="space-y-3">
+                              <div>
+                                <label className="block text-sm font-medium mb-1">API Key</label>
+                                <Input type="password" placeholder="Digite sua API Key do Pagar.me" />
+                              </div>
+                              <div>
+                                <label className="block text-sm font-medium mb-1">Chave de Criptografia</label>
+                                <Input type="password" placeholder="Digite sua Chave de Criptografia" />
+                              </div>
+                            </div>
+                          </div>
+                          
+                          <div className="border rounded-lg p-4">
+                            <div className="flex items-center space-x-3 mb-3">
+                              <CreditCard className="text-green-600" />
+                              <h3 className="font-medium">Stone</h3>
+                            </div>
+                            <div className="space-y-3">
+                              <div>
+                                <label className="block text-sm font-medium mb-1">Código da Loja</label>
+                                <Input placeholder="Digite o código da sua loja Stone" />
+                              </div>
+                              <div>
+                                <label className="block text-sm font-medium mb-1">Token de Acesso</label>
+                                <Input type="password" placeholder="Digite seu Token de Acesso Stone" />
+                              </div>
+                            </div>
+                          </div>
+                          
+                          <div className="border rounded-lg p-4">
+                            <div className="flex items-center space-x-3 mb-3">
+                              <CreditCard className="text-blue-600" />
+                              <h3 className="font-medium">Mercado Pago</h3>
+                            </div>
+                            <div className="space-y-3">
+                              <div>
+                                <label className="block text-sm font-medium mb-1">Client ID</label>
+                                <Input placeholder="Digite seu Client ID" />
+                              </div>
+                              <div>
+                                <label className="block text-sm font-medium mb-1">Client Secret</label>
+                                <Input type="password" placeholder="Digite seu Client Secret" />
+                              </div>
+                              <div>
+                                <label className="block text-sm font-medium mb-1">Access Token</label>
+                                <Input type="password" placeholder="Digite seu Access Token" />
+                              </div>
+                            </div>
+                          </div>
                         </div>
-                        <div>
-                          <label className="block text-sm font-medium mb-1">Horário de Funcionamento</label>
-                          <Input defaultValue="Segunda à Sexta, 08:00 - 18:00" />
+                        <Button className="mt-4">Salvar Configurações</Button>
+                      </TabsContentComponent>
+
+                      <TabsContentComponent value="ia" className="border rounded-lg p-6">
+                        <h3 className="text-lg font-medium mb-4">Configurações de Inteligência Artificial</h3>
+                        <div className="space-y-4">
+                          <div className="flex items-center space-x-3 mb-2">
+                            <BrainCircuit className="text-purple-600" size={24} />
+                            <h4 className="font-medium">Recursos de IA para Nutrição</h4>
+                          </div>
+                          
+                          <div className="border rounded-lg p-4 space-y-4">
+                            <div>
+                              <div className="flex justify-between">
+                                <label className="block text-sm font-medium mb-1">Chave de API IA</label>
+                                <span className="text-xs text-gray-500">Recomendado: OpenAI</span>
+                              </div>
+                              <Input type="password" placeholder="Digite sua chave de API" />
+                              <p className="text-xs text-gray-500 mt-1">
+                                Esta chave será usada para gerar conteúdo e análises nutricionais.
+                              </p>
+                            </div>
+                            
+                            <div>
+                              <label className="block text-sm font-medium mb-1">Modelo de IA</label>
+                              <select className="w-full border border-input rounded-md p-2.5 text-sm">
+                                <option value="gpt-4">GPT-4 (Recomendado)</option>
+                                <option value="gpt-3.5">GPT-3.5 Turbo</option>
+                                <option value="davinci">Davinci</option>
+                                <option value="curie">Curie</option>
+                              </select>
+                            </div>
+                            
+                            <div className="space-y-2">
+                              <label className="block text-sm font-medium">Recursos de IA Disponíveis</label>
+                              <div className="flex flex-col gap-2">
+                                <div className="flex items-center space-x-2">
+                                  <input type="checkbox" id="ai-receitas" className="rounded border-gray-300" checked />
+                                  <label htmlFor="ai-receitas" className="text-sm">Geração de receitas personalizadas</label>
+                                </div>
+                                <div className="flex items-center space-x-2">
+                                  <input type="checkbox" id="ai-alimentos" className="rounded border-gray-300" checked />
+                                  <label htmlFor="ai-alimentos" className="text-sm">Análise de substituições alimentares</label>
+                                </div>
+                                <div className="flex items-center space-x-2">
+                                  <input type="checkbox" id="ai-planos" className="rounded border-gray-300" checked />
+                                  <label htmlFor="ai-planos" className="text-sm">Sugestão de planos alimentares</label>
+                                </div>
+                                <div className="flex items-center space-x-2">
+                                  <input type="checkbox" id="ai-textos" className="rounded border-gray-300" checked />
+                                  <label htmlFor="ai-textos" className="text-sm">Geração de textos educativos</label>
+                                </div>
+                                <div className="flex items-center space-x-2">
+                                  <input type="checkbox" id="ai-resumos" className="rounded border-gray-300" />
+                                  <label htmlFor="ai-resumos" className="text-sm">Resumos de consultas (Premium)</label>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
                         </div>
-                      </div>
-                      <Button className="mt-4">Salvar Alterações</Button>
-                    </div>
-                    
-                    <div>
-                      <h3 className="text-lg font-medium mb-4">Localização da Clínica</h3>
-                      <Map defaultZoom={15} />
-                    </div>
+                        <Button className="mt-4">Salvar Configurações</Button>
+                      </TabsContentComponent>
+                      
+                      <TabsContentComponent value="localizacao" className="border rounded-lg p-6">
+                        <h3 className="text-lg font-medium mb-4">Localização da Clínica</h3>
+                        <Map defaultZoom={15} />
+                      </TabsContentComponent>
+                    </TabsComponent>
                   </div>
                 )}
               </div>

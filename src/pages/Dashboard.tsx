@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -13,7 +12,8 @@ import {
   Printer, 
   Edit,
   Search,
-  Plus
+  Plus,
+  Pencil
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -25,11 +25,14 @@ import {
   TableHeader, 
   TableRow 
 } from "@/components/ui/table";
+import ContentEditor from "@/components/ContentEditor";
 
 import Map from "@/components/Map";
 
 const Dashboard = () => {
   const [activeTab, setActiveTab] = useState<string>("consultas");
+  const [editorOpen, setEditorOpen] = useState(false);
+  const [currentEditPage, setCurrentEditPage] = useState("");
   
   // Dados de exemplo para consultas
   const consultas = [
@@ -47,6 +50,26 @@ const Dashboard = () => {
     { id: 4, nome: "Carlos Ferreira", telefone: "(66) 99999-4444", ultimaConsulta: "25/04/2025" },
     { id: 5, nome: "Fernanda Lima", telefone: "(66) 99999-5555", ultimaConsulta: "01/05/2025" },
   ];
+
+  // Páginas do sistema para editar
+  const paginasSistema = [
+    { id: 1, nome: "Página Inicial", rota: "/" },
+    { id: 2, nome: "Sobre", rota: "/about" },
+    { id: 3, nome: "Serviços", rota: "/services" },
+    { id: 4, nome: "Comunidade", rota: "/community" },
+    { id: 5, nome: "Consulta", rota: "/consultation" },
+    { id: 6, nome: "Contato", rota: "/contact" },
+  ];
+
+  const handleOpenEditor = (pageName: string) => {
+    setCurrentEditPage(pageName);
+    setEditorOpen(true);
+  };
+
+  const handleSaveContent = (data: any) => {
+    console.log(`Salvando alterações para ${currentEditPage}:`, data);
+    // Aqui implementaríamos a lógica para salvar as alterações
+  };
 
   return (
     <>
@@ -95,6 +118,14 @@ const Dashboard = () => {
                   Mensagens
                 </Button>
                 <Button 
+                  variant={activeTab === "editar_paginas" ? "default" : "ghost"} 
+                  className="w-full justify-start" 
+                  onClick={() => setActiveTab("editar_paginas")}
+                >
+                  <Pencil className="mr-2" size={18} />
+                  Editar Páginas
+                </Button>
+                <Button 
                   variant={activeTab === "configuracoes" ? "default" : "ghost"} 
                   className="w-full justify-start" 
                   onClick={() => setActiveTab("configuracoes")}
@@ -115,6 +146,7 @@ const Dashboard = () => {
                     activeTab === "pacientes" ? "Lista de Pacientes" :
                     activeTab === "receituarios" ? "Receituários" :
                     activeTab === "mensagens" ? "Mensagens" :
+                    activeTab === "editar_paginas" ? "Editar Páginas do Sistema" :
                     "Configurações"
                   }</h1>
                   
@@ -126,7 +158,7 @@ const Dashboard = () => {
                         className="pl-9"
                       />
                     </div>
-                    {activeTab !== "configuracoes" && (
+                    {activeTab !== "configuracoes" && activeTab !== "editar_paginas" && (
                       <Button>
                         <Plus size={18} className="mr-1" /> Novo
                       </Button>
@@ -271,6 +303,30 @@ const Dashboard = () => {
                   </div>
                 )}
 
+                {activeTab === "editar_paginas" && (
+                  <div className="space-y-4">
+                    <p className="text-gray-600">
+                      Selecione uma página para editar seu conteúdo, imagens e formatação.
+                    </p>
+                    
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
+                      {paginasSistema.map((pagina) => (
+                        <div key={pagina.id} className="border rounded-lg p-4 hover:shadow-md transition-shadow">
+                          <div className="flex justify-between items-center">
+                            <div>
+                              <h3 className="font-medium">{pagina.nome}</h3>
+                              <p className="text-sm text-gray-500 mt-1">Rota: {pagina.rota}</p>
+                            </div>
+                            <Button variant="outline" onClick={() => handleOpenEditor(pagina.nome)}>
+                              <Pencil size={16} className="mr-2" /> Editar
+                            </Button>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
                 {activeTab === "configuracoes" && (
                   <div className="space-y-8">
                     <div>
@@ -308,6 +364,14 @@ const Dashboard = () => {
         </div>
       </main>
       <Footer />
+      
+      {/* Editor de conteúdo */}
+      <ContentEditor 
+        open={editorOpen}
+        onOpenChange={setEditorOpen}
+        pageType={currentEditPage}
+        onSave={handleSaveContent}
+      />
     </>
   );
 };

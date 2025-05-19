@@ -72,9 +72,9 @@ const Hero = ({
   }, [profileImage, image]);
 
   return (
-    <div className="relative overflow-hidden bg-nutrition-light-blue/10 pt-16 pb-24 md:pt-20 md:pb-32">
+    <div className="relative overflow-hidden bg-nutrition-light-blue/10 pt-12 pb-16 md:pt-16 md:pb-20">
       <div className="container-custom relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 items-center">
           <div className="text-center md:text-left">
             <h1 className="text-3xl md:text-5xl font-bold mb-4 animate-fade-in">
               {title}
@@ -93,10 +93,10 @@ const Hero = ({
                 <img 
                   src={profileImage} 
                   alt={title} 
-                  className="rounded-full border-4 border-white shadow-xl w-64 h-64 md:w-80 md:h-80 object-cover z-20 relative"
+                  className="rounded-full border-4 border-white shadow-xl w-56 h-56 md:w-72 md:h-72 object-cover z-20 relative"
                 />
               ) : (
-                <Skeleton className="rounded-full w-64 h-64 md:w-80 md:h-80" />
+                <Skeleton className="rounded-full w-56 h-56 md:w-72 md:h-72" />
               )}
               
               <div className="absolute inset-0 bg-nutrition-green/20 rounded-full blur-xl -z-10 transform scale-90" />

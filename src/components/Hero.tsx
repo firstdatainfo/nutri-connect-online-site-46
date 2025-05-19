@@ -31,38 +31,16 @@ const Hero = ({
 
   // Pré-carrega as imagens antes da montagem do componente
   useEffect(() => {
-    // Só mostra o loader na primeira vez que o site é carregado
+    // Se não for o primeiro carregamento, não mostrar loader
     if (!isFirstLoad) {
       setImagesLoaded(true);
       setPageReady(true);
       return;
     }
 
-    // Adicionar uma imagem de loader que será exibida enquanto o site carrega
-    const loaderElement = document.createElement('div');
-    loaderElement.id = 'pre-loader';
-    loaderElement.style.position = 'fixed';
-    loaderElement.style.top = '0';
-    loaderElement.style.left = '0';
-    loaderElement.style.width = '100%';
-    loaderElement.style.height = '100%';
-    loaderElement.style.backgroundColor = '#fff';
-    loaderElement.style.display = 'flex';
-    loaderElement.style.alignItems = 'center';
-    loaderElement.style.justifyContent = 'center';
-    loaderElement.style.zIndex = '9999';
-    loaderElement.style.transition = 'opacity 0.5s ease-out';
-    
-    const preloadProfileImage = new Image();
-    preloadProfileImage.src = profileImage;
-    preloadProfileImage.style.maxWidth = '300px';
-    preloadProfileImage.style.maxHeight = '300px';
-    preloadProfileImage.style.borderRadius = '50%';
-    preloadProfileImage.style.boxShadow = '0 10px 25px rgba(0, 0, 0, 0.1)';
-    loaderElement.appendChild(preloadProfileImage);
-    
-    document.body.appendChild(loaderElement);
-    
+    // Marcar que o primeiro carregamento já foi feito - fazemos isso imediatamente
+    isFirstLoad = false;
+
     const preloadImages = () => {
       const imagesToLoad = [profileImage, image].filter(Boolean);
       let loadedCount = 0;
@@ -75,57 +53,22 @@ const Hero = ({
           loadedCount++;
           if (loadedCount === imagesToLoad.length) {
             setImagesLoaded(true);
-            
-            // Quando as imagens estiverem carregadas, remover o loader com animação
-            setTimeout(() => {
-              if (loaderElement && loaderElement.parentNode) {
-                loaderElement.style.opacity = '0';
-                setTimeout(() => {
-                  if (loaderElement.parentNode) {
-                    document.body.removeChild(loaderElement);
-                  }
-                  setPageReady(true);
-                  // Marcamos que o primeiro carregamento já foi feito
-                  isFirstLoad = false;
-                }, 500);
-              }
-            }, 300);
+            setPageReady(true);
           }
         };
         
-        // Se a imagem já estiver em cache, podemos considerá-la carregada
+        // Se a imagem já estiver em cache, considerá-la carregada
         if (img.complete) {
           loadedCount++;
           if (loadedCount === imagesToLoad.length) {
             setImagesLoaded(true);
-            
-            // Quando as imagens estiverem carregadas, remover o loader com animação
-            setTimeout(() => {
-              if (loaderElement && loaderElement.parentNode) {
-                loaderElement.style.opacity = '0';
-                setTimeout(() => {
-                  if (loaderElement.parentNode) {
-                    document.body.removeChild(loaderElement);
-                  }
-                  setPageReady(true);
-                  // Marcamos que o primeiro carregamento já foi feito
-                  isFirstLoad = false;
-                }, 500);
-              }
-            }, 300);
+            setPageReady(true);
           }
         }
       });
     };
     
     preloadImages();
-    
-    return () => {
-      // Limpar o loader caso o componente seja desmontado
-      if (loaderElement && loaderElement.parentNode) {
-        document.body.removeChild(loaderElement);
-      }
-    };
   }, [profileImage, image]);
 
   return (

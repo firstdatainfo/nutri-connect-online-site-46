@@ -21,15 +21,42 @@ const Hero = ({
   ctaLink = "/consultation",
   image = "https://images.unsplash.com/photo-1490818387583-1baba5e638af?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1932&q=80",
   showWave = true,
-  profileImage = "/lovable-uploads/eb101949-77ca-4a72-80ff-91e3190e410a.png"
+  profileImage = "/lovable-uploads/f2516217-0055-405a-b448-25a9afd19bfb.png"
 }: HeroProps) => {
   const [imagesLoaded, setImagesLoaded] = useState(false);
+  const [pageReady, setPageReady] = useState(false);
 
-  // Pré-carrega as imagens assim que o componente montar
+  // Pré-carrega as imagens antes da montagem do componente
   useEffect(() => {
+    // Adicionar uma imagem de loader que será exibida enquanto o site carrega
+    const loaderElement = document.createElement('div');
+    loaderElement.id = 'pre-loader';
+    loaderElement.style.position = 'fixed';
+    loaderElement.style.top = '0';
+    loaderElement.style.left = '0';
+    loaderElement.style.width = '100%';
+    loaderElement.style.height = '100%';
+    loaderElement.style.backgroundColor = '#fff';
+    loaderElement.style.display = 'flex';
+    loaderElement.style.alignItems = 'center';
+    loaderElement.style.justifyContent = 'center';
+    loaderElement.style.zIndex = '9999';
+    loaderElement.style.transition = 'opacity 0.5s ease-out';
+    
+    const preloadProfileImage = new Image();
+    preloadProfileImage.src = profileImage;
+    preloadProfileImage.style.maxWidth = '300px';
+    preloadProfileImage.style.maxHeight = '300px';
+    preloadProfileImage.style.borderRadius = '50%';
+    preloadProfileImage.style.boxShadow = '0 10px 25px rgba(0, 0, 0, 0.1)';
+    loaderElement.appendChild(preloadProfileImage);
+    
+    document.body.appendChild(loaderElement);
+    
     const preloadImages = () => {
       const imagesToLoad = [profileImage, image].filter(Boolean);
       let loadedCount = 0;
+      
       imagesToLoad.forEach(imgSrc => {
         if (!imgSrc) return;
         const img = new Image();
@@ -38,21 +65,53 @@ const Hero = ({
           loadedCount++;
           if (loadedCount === imagesToLoad.length) {
             setImagesLoaded(true);
+            
+            // Quando as imagens estiverem carregadas, remover o loader com animação
+            setTimeout(() => {
+              if (loaderElement && loaderElement.parentNode) {
+                loaderElement.style.opacity = '0';
+                setTimeout(() => {
+                  if (loaderElement.parentNode) {
+                    document.body.removeChild(loaderElement);
+                  }
+                  setPageReady(true);
+                }, 500);
+              }
+            }, 300);
           }
         };
-        // Se a imagem já estiver em cache, podemos considerar carregada
+        
+        // Se a imagem já estiver em cache, podemos considerá-la carregada
         if (img.complete) {
           loadedCount++;
           if (loadedCount === imagesToLoad.length) {
             setImagesLoaded(true);
+            
+            // Quando as imagens estiverem carregadas, remover o loader com animação
+            setTimeout(() => {
+              if (loaderElement && loaderElement.parentNode) {
+                loaderElement.style.opacity = '0';
+                setTimeout(() => {
+                  if (loaderElement.parentNode) {
+                    document.body.removeChild(loaderElement);
+                  }
+                  setPageReady(true);
+                }, 500);
+              }
+            }, 300);
           }
         }
       });
-
-      // Fallback para garantir que as imagens sejam exibidas após um curto período
-      setTimeout(() => setImagesLoaded(true), 300);
     };
+    
     preloadImages();
+    
+    return () => {
+      // Limpar o loader caso o componente seja desmontado
+      if (loaderElement && loaderElement.parentNode) {
+        document.body.removeChild(loaderElement);
+      }
+    };
   }, [profileImage, image]);
 
   return (

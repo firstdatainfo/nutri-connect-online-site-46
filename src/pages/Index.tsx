@@ -42,25 +42,29 @@ const Index = () => {
     description: "Abordagem personalizada que integra diferentes aspectos da saúde para criar planos nutricionais completos.",
     icon: <Apple size={24} />,
     link: "/services",
-    color: "nutrition-green"
+    color: "nutrition-green",
+    buttonText: "Saiba Mais"
   }, {
     title: "Nutrição Esportiva",
     description: "Planos nutricionais especializados para atletas e praticantes de atividades físicas visando melhorar o desempenho.",
     icon: <Users size={24} />,
     link: "/services",
-    color: "nutrition-blue"
+    color: "nutrition-blue",
+    buttonText: "Saiba Mais"
   }, {
     title: "Nutrição Estética",
     description: "Programas alimentares focados em melhorar a aparência da pele, cabelos e composição corporal.",
     icon: <Carrot size={24} />,
     link: "/services",
-    color: "nutrition-orange"
+    color: "nutrition-orange",
+    buttonText: "Saiba Mais"
   }, {
     title: "Consultas Online",
     description: "Atendimento virtual personalizado com acompanhamento completo do seu progresso.",
     icon: <MessageCircle size={24} />,
     link: "/consultation",
-    color: "nutrition-teal"
+    color: "nutrition-teal",
+    buttonText: "Saiba Mais"
   }];
   const testimonials = [{
     quote: "A Lidiane transformou completamente minha relação com a alimentação. Não apenas perdi peso, mas também ganhei energia e confiança.",

@@ -8,6 +8,7 @@ interface ServiceCardProps {
   icon: React.ReactNode;
   link?: string;
   color?: string;
+  buttonText?: string;
 }
 
 const ServiceCard = ({
@@ -16,6 +17,7 @@ const ServiceCard = ({
   icon,
   link = "/services",
   color = "nutrition-green",
+  buttonText = "Saiba Mais",
 }: ServiceCardProps) => {
   // Create dynamic class names using template literals
   const iconBgClass = `bg-${color}/10`;
@@ -30,7 +32,7 @@ const ServiceCard = ({
       <h3 className="text-xl font-semibold mb-3">{title}</h3>
       <p className="text-gray-600 mb-6 flex-grow">{description}</p>
       <Button asChild variant="outline" className={buttonClass}>
-        <Link to={link}>Learn More</Link>
+        <Link to={link}>{buttonText}</Link>
       </Button>
     </div>
   );

@@ -1,3 +1,4 @@
+
 import { Apple, Carrot, MessageCircle, Users } from "lucide-react";
 import Hero from "@/components/Hero";
 import Navbar from "@/components/Navbar";
@@ -99,14 +100,23 @@ const Index = () => {
         {/* Services Section */}
         <section className="py-10 md:py-16 bg-white">
           <div className="container-custom">
-            <div className="text-center mb-8 md:mb-12">
-              <h2 className="text-2xl md:text-3xl font-bold mb-3 md:mb-4">Cuidado Individualizado e Especialização de Qualidade</h2>
-              <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
-                Acreditamos que uma nutrição eficaz vai além de fórmulas prontas ou dietas genéricas. Cada organismo é único, assim como cada objetivo de saúde. Por isso, nosso trabalho é guiado por um profundo cuidado com o paciente, aliando escuta ativa, diagnóstico preciso e acompanhamento contínuo.
-              </p>
-              <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto mt-4">
-                Contamos com uma equipe especializada em diferentes áreas da nutrição — clínica, funcional, esportiva e comportamental — garantindo que cada pessoa receba orientação técnica e humanizada. Nossa especialização permite oferecer soluções baseadas em evidências científicas, adaptadas às necessidades reais de quem busca não apenas resultados, mas também uma relação saudável e equilibrada com a alimentação. Aqui, o cuidado vem em primeiro lugar, e a especialização faz toda a diferença.
-              </p>
+            <div className="flex flex-col md:flex-row items-center justify-between mb-8 md:mb-12 gap-6">
+              <div className="max-w-3xl">
+                <h2 className="text-2xl md:text-3xl font-bold mb-3 md:mb-4">Cuidado Individualizado e Especialização de Qualidade</h2>
+                <p className="text-lg md:text-xl text-gray-600">
+                  Acreditamos que uma nutrição eficaz vai além de fórmulas prontas ou dietas genéricas. Cada organismo é único, assim como cada objetivo de saúde. Por isso, nosso trabalho é guiado por um profundo cuidado com o paciente, aliando escuta ativa, diagnóstico preciso e acompanhamento contínuo.
+                </p>
+                <p className="text-lg md:text-xl text-gray-600 mt-4">
+                  Contamos com uma equipe especializada em diferentes áreas da nutrição — clínica, funcional, esportiva e comportamental — garantindo que cada pessoa receba orientação técnica e humanizada. Nossa especialização permite oferecer soluções baseadas em evidências científicas, adaptadas às necessidades reais de quem busca não apenas resultados, mas também uma relação saudável e equilibrada com a alimentação. Aqui, o cuidado vem em primeiro lugar, e a especialização faz toda a diferença.
+                </p>
+              </div>
+              <div className="flex-shrink-0">
+                <img 
+                  src="/lovable-uploads/72e02af0-d74d-4ed9-930a-2d5f6fcdcae0.png" 
+                  alt="Frutas e vegetais saudáveis com estetoscópio" 
+                  className="h-auto max-h-64 md:max-h-80 object-contain" 
+                />
+              </div>
             </div>
             
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">

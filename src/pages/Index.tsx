@@ -37,35 +37,37 @@ if (typeof window !== 'undefined') {
 }
 
 const Index = () => {
-  const services = [{
-    title: "Nutrição Clínica Integrativa",
-    description: "Abordagem personalizada que integra diferentes aspectos da saúde para criar planos nutricionais completos.",
-    icon: <Apple size={24} />,
-    link: "/services",
-    color: "nutrition-green",
-    buttonText: "Saiba Mais"
-  }, {
-    title: "Nutrição Esportiva",
-    description: "Planos nutricionais especializados para atletas e praticantes de atividades físicas visando melhorar o desempenho.",
-    icon: <Users size={24} />,
-    link: "/services",
-    color: "nutrition-blue",
-    buttonText: "Saiba Mais"
-  }, {
-    title: "Nutrição Estética",
-    description: "Programas alimentares focados em melhorar a aparência da pele, cabelos e composição corporal.",
-    icon: <Carrot size={24} />,
-    link: "/services",
-    color: "nutrition-orange",
-    buttonText: "Saiba Mais"
-  }, {
-    title: "Consultas Online",
-    description: "Atendimento virtual personalizado com acompanhamento completo do seu progresso.",
-    icon: <MessageCircle size={24} />,
-    link: "/consultation",
-    color: "nutrition-teal",
-    buttonText: "Saiba Mais"
-  }];
+  const services = [
+    {
+      title: "Nutrição Clínica Integrativa",
+      description: "Abordagem personalizada que integra diferentes aspectos da saúde para criar planos nutricionais completos.",
+      icon: <Apple size={24} />,
+      link: "/services",
+      color: "nutrition-green",
+      buttonText: "Saiba Mais"
+    }, {
+      title: "Nutrição Esportiva",
+      description: "Planos nutricionais especializados para atletas e praticantes de atividades físicas visando melhorar o desempenho.",
+      icon: <Users size={24} />,
+      link: "/services",
+      color: "nutrition-blue",
+      buttonText: "Saiba Mais"
+    }, {
+      title: "Nutrição Estética",
+      description: "Programas alimentares focados em melhorar a aparência da pele, cabelos e composição corporal.",
+      icon: <Carrot size={24} />,
+      link: "/services",
+      color: "nutrition-orange",
+      buttonText: "Saiba Mais"
+    }, {
+      title: "Consultas Online",
+      description: "Atendimento virtual personalizado com acompanhamento completo do seu progresso.",
+      icon: <MessageCircle size={24} />,
+      link: "/consultation",
+      color: "nutrition-teal",
+      buttonText: "Saiba Mais"
+    }
+  ];
   const testimonials = [
     {
       quote: "A Lidiane transformou completamente minha relação com a alimentação. Não apenas perdi peso, mas também ganhei energia e confiança.",
@@ -99,18 +101,40 @@ const Index = () => {
         {/* Services Section */}
         <section className="py-10 md:py-16 bg-white">
           <div className="container-custom">
-            <div className="text-center mb-8 md:mb-12">
-              <h2 className="text-2xl md:text-3xl font-bold mb-3 md:mb-4">Cuidado Individualizado e Especialização de Qualidade</h2>
-              <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
-                Acreditamos que uma nutrição eficaz vai além de fórmulas prontas ou dietas genéricas. Cada organismo é único, assim como cada objetivo de saúde. Por isso, nosso trabalho é guiado por um profundo cuidado com o paciente, aliando escuta ativa, diagnóstico preciso e acompanhamento contínuo.
-              </p>
-              <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto mt-4">
-                Contamos com uma equipe especializada em diferentes áreas da nutrição — clínica, funcional, esportiva e comportamental — garantindo que cada pessoa receba orientação técnica e humanizada. Nossa especialização permite oferecer soluções baseadas em evidências científicas, adaptadas às necessidades reais de quem busca não apenas resultados, mas também uma relação saudável e equilibrada com a alimentação. Aqui, o cuidado vem em primeiro lugar, e a especialização faz toda a diferença.
-              </p>
-            </div>
-            
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
-              {services.map((service, index) => <ServiceCard key={index} {...service} />)}
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+              <div className="lg:col-span-8">
+                <div className="text-center lg:text-left mb-8 md:mb-12">
+                  <h2 className="text-2xl md:text-3xl font-bold mb-3 md:mb-4">Cuidado Individualizado e Especialização de Qualidade</h2>
+                  <p className="text-lg md:text-xl text-gray-600">
+                    Acreditamos que uma nutrição eficaz vai além de fórmulas prontas ou dietas genéricas. Cada organismo é único, assim como cada objetivo de saúde. Por isso, nosso trabalho é guiado por um profundo cuidado com o paciente, aliando escuta ativa, diagnóstico preciso e acompanhamento contínuo.
+                  </p>
+                  <p className="text-lg md:text-xl text-gray-600 mt-4">
+                    Contamos com uma equipe especializada em diferentes áreas da nutrição — clínica, funcional, esportiva e comportamental — garantindo que cada pessoa receba orientação técnica e humanizada. Nossa especialização permite oferecer soluções baseadas em evidências científicas, adaptadas às necessidades reais de quem busca não apenas resultados, mas também uma relação saudável e equilibrada com a alimentação. Aqui, o cuidado vem em primeiro lugar, e a especialização faz toda a diferença.
+                  </p>
+                </div>
+                
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
+                  {services.map((service, index) => (
+                    index < 2 && <ServiceCard key={index} {...service} />
+                  ))}
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6 mt-4 md:mt-6">
+                  {services.map((service, index) => (
+                    index >= 2 && <ServiceCard key={index} {...service} />
+                  ))}
+                </div>
+              </div>
+              
+              <div className="lg:col-span-4 flex items-center justify-center">
+                <div className="relative">
+                  <img 
+                    src="/lovable-uploads/1862c5bd-01cd-419d-8b1e-88c792e53562.png" 
+                    alt="Frutas e legumes com estetoscópio" 
+                    className="rounded-lg shadow-lg max-w-full h-auto"
+                  />
+                  <div className="absolute inset-0 rounded-lg bg-nutrition-green/10 transform hover:bg-transparent transition-all duration-300"></div>
+                </div>
+              </div>
             </div>
           </div>
         </section>

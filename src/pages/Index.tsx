@@ -8,6 +8,7 @@ import TestimonialCard from "@/components/TestimonialCard";
 import MapComponent from "@/components/Map";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 // Pré-carregamento de imagens principais
 const preloadImages = () => {
@@ -38,6 +39,8 @@ if (typeof window !== 'undefined') {
 }
 
 const Index = () => {
+  const isMobile = useIsMobile();
+  
   const services = [{
     title: "Nutrição Clínica Integrativa",
     description: "Abordagem personalizada que integra diferentes aspectos da saúde para criar planos nutricionais completos.",
@@ -67,6 +70,7 @@ const Index = () => {
     color: "nutrition-teal",
     buttonText: "Saiba Mais"
   }];
+  
   const testimonials = [
     {
       quote: "A Lidiane transformou completamente minha relação com a alimentação. Não apenas perdi peso, mas também ganhei energia e confiança.",
@@ -85,9 +89,10 @@ const Index = () => {
       image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=464&q=80"
     }
   ];
+  
   return <>
       <Navbar />
-      <main>
+      <main className="overflow-hidden">
         <Hero 
           title="Lidiane Dos Reis" 
           subtitle="Nutricionista Clínica Integrativa, Esportiva, Estética, Microbiota Intestinal e Genômica" 
@@ -98,48 +103,48 @@ const Index = () => {
         />
 
         {/* Services Section */}
-        <section className="py-10 md:py-16 bg-white">
+        <section className="py-8 md:py-12 bg-white">
           <div className="container-custom">
-            <div className="flex flex-col md:flex-row items-center justify-between mb-8 md:mb-12 gap-6">
+            <div className="flex flex-col md:flex-row items-center justify-between mb-6 md:mb-10 gap-4">
               <div className="max-w-3xl">
-                <h2 className="text-2xl md:text-3xl font-bold mb-3 md:mb-4">Cuidado Individualizado e Especialização de Qualidade</h2>
-                <p className="text-lg md:text-xl text-gray-600">
+                <h2 className="text-2xl md:text-3xl font-bold mb-3">Cuidado Individualizado e Especialização de Qualidade</h2>
+                <p className="text-base md:text-lg text-gray-600">
                   Acreditamos que uma nutrição eficaz vai além de fórmulas prontas ou dietas genéricas. Cada organismo é único, assim como cada objetivo de saúde. Por isso, nosso trabalho é guiado por um profundo cuidado com o paciente, aliando escuta ativa, diagnóstico preciso e acompanhamento contínuo.
                 </p>
-                <p className="text-lg md:text-xl text-gray-600 mt-4">
+                <p className="text-base md:text-lg text-gray-600 mt-3">
                   Contamos com uma equipe especializada em diferentes áreas da nutrição — clínica, funcional, esportiva e comportamental — garantindo que cada pessoa receba orientação técnica e humanizada. Nossa especialização permite oferecer soluções baseadas em evidências científicas, adaptadas às necessidades reais de quem busca não apenas resultados, mas também uma relação saudável e equilibrada com a alimentação. Aqui, o cuidado vem em primeiro lugar, e a especialização faz toda a diferença.
                 </p>
               </div>
-              <div className="flex-shrink-0">
+              <div className="flex-shrink-0 mt-4 md:mt-0">
                 <img 
                   src="/lovable-uploads/72e02af0-d74d-4ed9-930a-2d5f6fcdcae0.png" 
                   alt="Frutas e vegetais saudáveis com estetoscópio" 
-                  className="h-auto max-h-64 md:max-h-80 object-contain" 
+                  className="h-auto max-h-60 md:max-h-72 object-contain" 
                 />
               </div>
             </div>
             
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4">
               {services.map((service, index) => <ServiceCard key={index} {...service} />)}
             </div>
           </div>
         </section>
 
         {/* About Section */}
-        <section className="py-10 md:py-16 bg-nutrition-light-blue/20">
+        <section className="py-8 md:py-12 bg-nutrition-light-blue/20">
           <div className="container-custom">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-              <div>
-                <img src="https://images.unsplash.com/photo-1490818387583-1baba5e638af?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1932&q=80" alt="Sobre Lidiane Dos Reis" className="rounded-lg shadow-xl" />
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 items-center">
+              <div className="order-2 lg:order-1">
+                <img src="https://images.unsplash.com/photo-1490818387583-1baba5e638af?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1932&q=80" alt="Sobre Lidiane Dos Reis" className="rounded-lg shadow-xl h-full w-full object-cover max-h-[400px]" />
               </div>
-              <div>
-                <h2 className="text-2xl md:text-3xl font-bold mb-4 md:mb-6">Por que escolher a Lidiane?</h2>
-                <p className="text-base md:text-lg text-gray-700 mb-4 md:mb-6">
+              <div className="order-1 lg:order-2">
+                <h2 className="text-2xl md:text-3xl font-bold mb-3 md:mb-4">Por que escolher a Lidiane?</h2>
+                <p className="text-base md:text-lg text-gray-700 mb-4">
                   Acredito que uma boa nutrição é a base de uma vida saudável e satisfatória. Como nutricionista certificada, estou dedicada a fornecer orientação personalizada e suporte para ajudá-lo a alcançar seus objetivos de saúde.
                 </p>
-                <div className="space-y-3 md:space-y-4">
+                <div className="space-y-3">
                   <div className="flex items-start">
-                    <div className="bg-nutrition-green/10 rounded-full p-2 mr-3 md:mr-4 mt-1">
+                    <div className="bg-nutrition-green/10 rounded-full p-2 mr-3 mt-1">
                       <svg className="w-4 h-4 md:w-5 md:h-5 text-nutrition-green" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
                       </svg>
@@ -151,7 +156,7 @@ const Index = () => {
                   </div>
                   
                   <div className="flex items-start">
-                    <div className="bg-nutrition-green/10 rounded-full p-2 mr-3 md:mr-4 mt-1">
+                    <div className="bg-nutrition-green/10 rounded-full p-2 mr-3 mt-1">
                       <svg className="w-4 h-4 md:w-5 md:h-5 text-nutrition-green" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
                       </svg>
@@ -163,7 +168,7 @@ const Index = () => {
                   </div>
                   
                   <div className="flex items-start">
-                    <div className="bg-nutrition-green/10 rounded-full p-2 mr-3 md:mr-4 mt-1">
+                    <div className="bg-nutrition-green/10 rounded-full p-2 mr-3 mt-1">
                       <svg className="w-4 h-4 md:w-5 md:h-5 text-nutrition-green" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
                       </svg>
@@ -174,7 +179,7 @@ const Index = () => {
                     </div>
                   </div>
                 </div>
-                <div className="mt-6 md:mt-8">
+                <div className="mt-4 md:mt-6">
                   <Button asChild className="bg-nutrition-green hover:bg-nutrition-teal">
                     <Link to="/about">Saiba Mais Sobre Mim</Link>
                   </Button>
@@ -185,29 +190,29 @@ const Index = () => {
         </section>
 
         {/* Testimonials Section */}
-        <section className="py-10 md:py-16 bg-white">
+        <section className="py-8 md:py-12 bg-white">
           <div className="container-custom">
-            <div className="text-center mb-8 md:mb-12">
-              <h2 className="text-2xl md:text-3xl font-bold mb-3 md:mb-4">Histórias de Sucesso</h2>
-              <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
+            <div className="text-center mb-6 md:mb-8">
+              <h2 className="text-2xl md:text-3xl font-bold mb-2 md:mb-3">Histórias de Sucesso</h2>
+              <p className="text-base md:text-lg text-gray-600 max-w-3xl mx-auto">
                 Ouça de nossos clientes que transformaram sua saúde e vidas através de nossos programas de nutrição.
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               {testimonials.map((testimonial, index) => <TestimonialCard key={index} {...testimonial} />)}
             </div>
           </div>
         </section>
 
         {/* CTA Section */}
-        <section className="py-12 md:py-20 bg-gradient-to-r from-nutrition-green to-nutrition-teal text-white">
+        <section className="py-8 md:py-12 bg-gradient-to-r from-nutrition-green to-nutrition-teal text-white">
           <div className="container-custom text-center">
-            <h2 className="text-2xl md:text-3xl font-bold mb-4 md:mb-6">Pronto para Transformar sua Saúde?</h2>
-            <p className="text-lg md:text-xl mb-6 md:mb-8 max-w-3xl mx-auto">
+            <h2 className="text-2xl md:text-3xl font-bold mb-3 md:mb-4">Pronto para Transformar sua Saúde?</h2>
+            <p className="text-base md:text-lg mb-5 md:mb-6 max-w-3xl mx-auto">
               Dê o primeiro passo rumo a uma vida mais saudável. Agende uma consulta comigo hoje.
             </p>
-            <div className="flex flex-col sm:flex-row justify-center gap-4">
+            <div className="flex flex-col sm:flex-row justify-center gap-3">
               <Button asChild size="lg" variant="secondary" className="text-nutrition-green">
                 <Link to="/consultation">Agendar Consulta</Link>
               </Button>
@@ -219,11 +224,11 @@ const Index = () => {
         </section>
 
         {/* Contact Information/Map Section */}
-        <section className="py-10 md:py-16 bg-white">
+        <section className="py-8 md:py-12 bg-white">
           <div className="container-custom">
-            <div className="text-center mb-8 md:mb-12">
-              <h2 className="text-2xl md:text-3xl font-bold mb-3 md:mb-4">Localização e Contato</h2>
-              <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+            <div className="text-center mb-6 md:mb-8">
+              <h2 className="text-2xl md:text-3xl font-bold mb-2 md:mb-3">Localização e Contato</h2>
+              <p className="text-base md:text-lg text-gray-600 max-w-3xl mx-auto">
                 Venha nos visitar ou entre em contato para agendar sua consulta. Estamos aqui para ajudar você em sua jornada de saúde.
               </p>
             </div>

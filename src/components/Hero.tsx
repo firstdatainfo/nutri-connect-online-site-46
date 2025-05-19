@@ -30,7 +30,7 @@ const Hero = ({
                     alt="Lidiane Dos Reis" 
                     className="w-full h-full object-cover" 
                     loading="eager" 
-                    fetchpriority="high" 
+                    fetchPriority="high" 
                     decoding="sync"
                   />
                 </div>
@@ -56,7 +56,7 @@ const Hero = ({
                 alt="Hero Image" 
                 className="w-full h-full object-cover"
                 loading="eager"
-                fetchpriority="high"
+                fetchPriority="high"
                 decoding="sync" 
               />}
             </div>

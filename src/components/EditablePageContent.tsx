@@ -83,7 +83,7 @@ const EditablePageContent: React.FC<EditablePageContentProps> = ({ pageType, ini
               alt={content.title} 
               className="rounded-lg max-h-[400px] object-contain" 
               loading="eager"
-              fetchpriority="high"
+              fetchPriority="high"
               decoding="sync"
             />
           </div>

@@ -4,6 +4,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ServiceCard from "@/components/ServiceCard";
 import TestimonialCard from "@/components/TestimonialCard";
+import MapComponent from "@/components/Map";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 
@@ -80,7 +81,14 @@ const Index = () => {
   return <>
       <Navbar />
       <main>
-        <Hero title="Lidiane Dos Reis" subtitle="Nutricionista Clínica Integrativa, Esportiva, Estética, Microbiota Intestinal e Genômica" ctaText="Agende uma Consulta" ctaLink="/consultation" profileImage="/lovable-uploads/eb101949-77ca-4a72-80ff-91e3190e410a.png" image="https://images.unsplash.com/photo-1494597564530-871f2b93ac55?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1513&q=80" />
+        <Hero 
+          title="Lidiane Dos Reis" 
+          subtitle="Nutricionista Clínica Integrativa, Esportiva, Estética, Microbiota Intestinal e Genômica" 
+          ctaText="Agende uma Consulta" 
+          ctaLink="/consultation" 
+          profileImage="/lovable-uploads/eb101949-77ca-4a72-80ff-91e3190e410a.png" 
+          image="https://images.unsplash.com/photo-1494597564530-871f2b93ac55?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1513&q=80" 
+        />
 
         {/* Services Section */}
         <section className="py-10 md:py-16 bg-white">
@@ -191,8 +199,19 @@ const Index = () => {
           </div>
         </section>
 
-        {/* Contact Information */}
-        
+        {/* Contact Information/Map Section */}
+        <section className="py-10 md:py-16 bg-white">
+          <div className="container-custom">
+            <div className="text-center mb-8 md:mb-12">
+              <h2 className="text-2xl md:text-3xl font-bold mb-3 md:mb-4">Localização e Contato</h2>
+              <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+                Venha nos visitar ou entre em contato para agendar sua consulta. Estamos aqui para ajudar você em sua jornada de saúde.
+              </p>
+            </div>
+            
+            <MapComponent />
+          </div>
+        </section>
       </main>
       <Footer />
     </>;

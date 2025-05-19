@@ -1,7 +1,9 @@
+
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useEffect, useState } from "react";
+
 interface HeroProps {
   title: string;
   subtitle: string;
@@ -11,6 +13,7 @@ interface HeroProps {
   showWave?: boolean;
   profileImage?: string;
 }
+
 const Hero = ({
   title,
   subtitle,
@@ -51,16 +54,53 @@ const Hero = ({
     };
     preloadImages();
   }, [profileImage, image]);
-  return <div className="relative overflow-hidden">
+
+  return (
+    <div className="relative overflow-hidden bg-nutrition-light-blue/10 pt-16 pb-24 md:pt-20 md:pb-32">
       <div className="container-custom relative z-10">
-        
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+          <div className="text-center md:text-left">
+            <h1 className="text-3xl md:text-5xl font-bold mb-4 animate-fade-in">
+              {title}
+            </h1>
+            <p className="text-lg md:text-xl text-gray-600 mb-6 animate-slide-up">
+              {subtitle}
+            </p>
+            <Button asChild className="bg-nutrition-green hover:bg-nutrition-teal text-white px-8 py-6 text-lg h-auto animate-fade-in">
+              <Link to={ctaLink}>{ctaText}</Link>
+            </Button>
+          </div>
+
+          <div className="relative flex justify-center md:justify-end">
+            <div className="relative">
+              {imagesLoaded ? (
+                <img 
+                  src={profileImage} 
+                  alt={title} 
+                  className="rounded-full border-4 border-white shadow-xl w-64 h-64 md:w-80 md:h-80 object-cover z-20 relative"
+                />
+              ) : (
+                <Skeleton className="rounded-full w-64 h-64 md:w-80 md:h-80" />
+              )}
+              
+              <div className="absolute inset-0 bg-nutrition-green/20 rounded-full blur-xl -z-10 transform scale-90" />
+            </div>
+          </div>
+        </div>
       </div>
 
-      {showWave && <div className="hero-wave">
+      {showWave && (
+        <div className="hero-wave">
           <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
-            <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" className="shape-fill"></path>
+            <path 
+              d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" 
+              className="shape-fill">
+            </path>
           </svg>
-        </div>}
-    </div>;
+        </div>
+      )}
+    </div>
+  );
 };
+
 export default Hero;

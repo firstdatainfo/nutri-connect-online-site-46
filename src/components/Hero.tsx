@@ -1,6 +1,9 @@
 
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import { Skeleton } from "@/components/ui/skeleton";
+import { useEffect, useState } from "react";
+
 interface HeroProps {
   title: string;
   subtitle: string;
@@ -10,6 +13,7 @@ interface HeroProps {
   showWave?: boolean;
   profileImage?: string;
 }
+
 const Hero = ({
   title,
   subtitle,
@@ -19,22 +23,63 @@ const Hero = ({
   showWave = true,
   profileImage = "/lovable-uploads/eb101949-77ca-4a72-80ff-91e3190e410a.png"
 }: HeroProps) => {
-  return <div className="relative bg-gradient-to-br from-nutrition-light-green/30 to-nutrition-light-blue/30 overflow-hidden">
+  const [imagesLoaded, setImagesLoaded] = useState(false);
+
+  // Pré-carrega as imagens assim que o componente montar
+  useEffect(() => {
+    const preloadImages = () => {
+      const imagesToLoad = [profileImage, image].filter(Boolean);
+      let loadedCount = 0;
+      
+      imagesToLoad.forEach(imgSrc => {
+        if (!imgSrc) return;
+        const img = new Image();
+        img.src = imgSrc;
+        img.onload = () => {
+          loadedCount++;
+          if (loadedCount === imagesToLoad.length) {
+            setImagesLoaded(true);
+          }
+        };
+        // Se a imagem já estiver em cache, podemos considerar carregada
+        if (img.complete) {
+          loadedCount++;
+          if (loadedCount === imagesToLoad.length) {
+            setImagesLoaded(true);
+          }
+        }
+      });
+      
+      // Fallback para garantir que as imagens sejam exibidas após um curto período
+      setTimeout(() => setImagesLoaded(true), 300);
+    };
+    
+    preloadImages();
+  }, [profileImage, image]);
+
+  return (
+    <div className="relative overflow-hidden">
       <div className="container-custom relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 py-10 items-center md:py-0">
           <div>
-            {profileImage && <div className="mb-4 lg:mb-8 flex justify-center lg:justify-start py-[10px]">
+            {profileImage && (
+              <div className="mb-4 lg:mb-8 flex justify-center lg:justify-start py-[10px]">
                 <div className="relative w-48 h-48 md:w-64 md:h-64 lg:w-72 lg:h-72 rounded-full overflow-hidden border-4 border-white shadow-xl">
-                  <img 
-                    src={profileImage} 
-                    alt="Lidiane Dos Reis" 
-                    className="w-full h-full object-cover" 
-                    loading="eager" 
-                    fetchPriority="high" 
-                    decoding="sync"
-                  />
+                  {imagesLoaded ? (
+                    <img 
+                      src={profileImage} 
+                      alt="Lidiane Dos Reis" 
+                      className="w-full h-full object-cover" 
+                      loading="eager" 
+                      fetchPriority="high" 
+                      decoding="sync"
+                    />
+                  ) : (
+                    <Skeleton className="w-full h-full bg-gray-200" />
+                  )}
                 </div>
-              </div>}
+              </div>
+            )}
             <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-3 lg:mb-4 text-center lg:text-left">
               {title}
             </h1>
@@ -49,16 +94,19 @@ const Hero = ({
           </div>
 
           <div className="relative hidden sm:block">
-            <div className="absolute -inset-0.5 bg-gradient-to-r from-nutrition-green to-nutrition-teal rounded-lg blur opacity-30"></div>
             <div className="relative rounded-lg overflow-hidden shadow-xl max-h-80 lg:max-h-[350px]">
-              {image && <img 
-                src={image} 
-                alt="Hero Image" 
-                className="w-full h-full object-cover"
-                loading="eager"
-                fetchPriority="high"
-                decoding="sync" 
-              />}
+              {image && (imagesLoaded ? (
+                <img 
+                  src={image} 
+                  alt="Hero Image" 
+                  className="w-full h-full object-cover"
+                  loading="eager"
+                  fetchPriority="high"
+                  decoding="sync" 
+                />
+              ) : (
+                <Skeleton className="w-full h-full bg-gray-200 aspect-[16/9]" />
+              ))}
             </div>
           </div>
         </div>
@@ -69,6 +117,8 @@ const Hero = ({
             <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" className="shape-fill"></path>
           </svg>
         </div>}
-    </div>;
+    </div>
+  );
 };
+
 export default Hero;

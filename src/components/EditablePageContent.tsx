@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import useAdmin from '@/hooks/useAdmin';
 import PageEditor from './PageEditor';
+import { Skeleton } from '@/components/ui/skeleton';
 
 interface EditablePageContentProps {
   pageType: string;
@@ -18,6 +19,7 @@ interface EditablePageContentProps {
 const EditablePageContent: React.FC<EditablePageContentProps> = ({ pageType, initialContent }) => {
   const { isAdmin } = useAdmin();
   const [content, setContent] = useState(initialContent);
+  const [imagesLoaded, setImagesLoaded] = useState(false);
 
   // Pré-carrega todas as imagens do site imediatamente ao inicializar a aplicação
   useEffect(() => {
@@ -32,35 +34,46 @@ const EditablePageContent: React.FC<EditablePageContentProps> = ({ pageType, ini
         '/lovable-uploads/eb101949-77ca-4a72-80ff-91e3190e410a.png'
       ];
       
-      // Pré-carrega todas as imagens de uma vez com prioridade alta
+      let loadedCount = 0;
+      const totalImages = commonImages.length + (content.imageUrl ? 1 : 0);
+      
+      // Função para marcar uma imagem como carregada
+      const markImageLoaded = () => {
+        loadedCount++;
+        if (loadedCount >= totalImages) {
+          setImagesLoaded(true);
+        }
+      };
+      
+      // Pré-carrega todas as imagens uma a uma
       commonImages.forEach(src => {
-        const link = document.createElement('link');
-        link.rel = 'preload';
-        link.as = 'image';
-        link.href = src;
-        document.head.appendChild(link);
-        
-        // Também carrega em um objeto de imagem para garantir o cache
         const img = new Image();
+        img.onload = markImageLoaded;
+        img.onerror = markImageLoaded; // Em caso de erro, também marcar como "carregado"
         img.src = src;
+        
+        // Se a imagem já estiver em cache, também marcar como carregada
+        if (img.complete) markImageLoaded();
       });
       
       // Se o conteúdo atual tiver uma imagem, também pré-carregá-la com prioridade alta
       if (content.imageUrl) {
-        const link = document.createElement('link');
-        link.rel = 'preload';
-        link.as = 'image';
-        link.href = content.imageUrl;
-        document.head.appendChild(link);
-        
         const img = new Image();
+        img.onload = markImageLoaded;
+        img.onerror = markImageLoaded;
         img.src = content.imageUrl;
+        
+        // Se a imagem já estiver em cache, também marcar como carregada
+        if (img.complete) markImageLoaded();
       }
+      
+      // Fallback para garantir que as imagens sejam exibidas após um curto período
+      setTimeout(() => setImagesLoaded(true), 300);
     };
     
     // Executa o pré-carregamento imediatamente com prioridade máxima
-    setTimeout(preloadImages, 0);
-  }, []);
+    preloadImages();
+  }, [content.imageUrl]);
 
   const handleContentChange = (newContent: typeof content) => {
     setContent(newContent);
@@ -72,20 +85,23 @@ const EditablePageContent: React.FC<EditablePageContentProps> = ({ pageType, ini
         <h1 className="text-3xl font-bold mb-6">{content.title}</h1>
         
         <div className="prose max-w-none">
-          {/* Renderiza o conteúdo como HTML se necessário */}
           <p>{content.content}</p>
         </div>
         
         {content.imageUrl && (
           <div className="mt-6">
-            <img 
-              src={content.imageUrl} 
-              alt={content.title} 
-              className="rounded-lg max-h-[400px] object-contain" 
-              loading="eager"
-              fetchPriority="high"
-              decoding="sync"
-            />
+            {imagesLoaded ? (
+              <img 
+                src={content.imageUrl} 
+                alt={content.title} 
+                className="rounded-lg max-h-[400px] object-contain" 
+                loading="eager"
+                fetchPriority="high"
+                decoding="sync"
+              />
+            ) : (
+              <Skeleton className="w-full h-64 bg-gray-200" />
+            )}
           </div>
         )}
         

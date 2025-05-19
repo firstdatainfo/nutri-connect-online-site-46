@@ -12,6 +12,7 @@ interface HeroProps {
   image?: string;
   showWave?: boolean;
   profileImage?: string;
+  reducedSpacing?: boolean;
 }
 
 // Variável para controlar se é o primeiro carregamento da aplicação
@@ -24,7 +25,8 @@ const Hero = ({
   ctaLink = "/consultation",
   image = "https://images.unsplash.com/photo-1490818387583-1baba5e638af?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1932&q=80",
   showWave = true,
-  profileImage = "/lovable-uploads/f2516217-0055-405a-b448-25a9afd19bfb.png"
+  profileImage = "/lovable-uploads/f2516217-0055-405a-b448-25a9afd19bfb.png",
+  reducedSpacing = false
 }: HeroProps) => {
   const [imagesLoaded, setImagesLoaded] = useState(false);
   const [pageReady, setPageReady] = useState(false);
@@ -72,17 +74,17 @@ const Hero = ({
   }, [profileImage, image]);
 
   return (
-    <div className="relative overflow-hidden bg-nutrition-light-blue/10 pt-12 pb-16 md:pt-16 md:pb-20">
+    <div className={`relative overflow-hidden bg-nutrition-light-blue/10 ${reducedSpacing ? 'pt-6 pb-8 md:pt-10 md:pb-10' : 'pt-12 pb-16 md:pt-16 md:pb-20'}`}>
       <div className="container-custom relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 items-center">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 items-center">
           <div className="text-center md:text-left">
-            <h1 className="text-3xl md:text-5xl font-bold mb-4 animate-fade-in">
+            <h1 className="text-3xl md:text-5xl font-bold mb-3 animate-fade-in">
               {title}
             </h1>
-            <p className="text-lg md:text-xl text-gray-600 mb-6 animate-slide-up">
+            <p className="text-lg md:text-xl text-gray-600 mb-4 md:mb-5 animate-slide-up">
               {subtitle}
             </p>
-            <Button asChild className="bg-nutrition-green hover:bg-nutrition-teal text-white px-8 py-6 text-lg h-auto animate-fade-in">
+            <Button asChild className="bg-nutrition-green hover:bg-nutrition-teal text-white px-8 py-5 text-lg h-auto animate-fade-in">
               <Link to={ctaLink}>{ctaText}</Link>
             </Button>
           </div>
@@ -93,10 +95,10 @@ const Hero = ({
                 <img 
                   src={profileImage} 
                   alt={title} 
-                  className="rounded-full border-4 border-white shadow-xl w-56 h-56 md:w-72 md:h-72 object-cover z-20 relative"
+                  className={`rounded-full border-4 border-white shadow-xl ${reducedSpacing ? 'w-48 h-48 md:w-64 md:h-64' : 'w-56 h-56 md:w-72 md:h-72'} object-cover z-20 relative`}
                 />
               ) : (
-                <Skeleton className="rounded-full w-56 h-56 md:w-72 md:h-72" />
+                <Skeleton className={`rounded-full ${reducedSpacing ? 'w-48 h-48 md:w-64 md:h-64' : 'w-56 h-56 md:w-72 md:h-72'}`} />
               )}
               
               <div className="absolute inset-0 bg-nutrition-green/20 rounded-full blur-xl -z-10 transform scale-90" />

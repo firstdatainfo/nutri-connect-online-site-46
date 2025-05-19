@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -9,146 +8,121 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
-
 const Community = () => {
   const [newPostContent, setNewPostContent] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const { toast } = useToast();
+  const {
+    toast
+  } = useToast();
 
   // Dados de exemplo para posts da comunidade
-  const posts = [
-    {
-      id: "1",
-      author: "Maria Silva",
-      authorImage: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80",
-      content: "Acabei de completar minha primeira semana no novo plano nutricional e já estou me sentindo com mais energia! Alguém mais teve resultados rápidos com seus planos?",
-      timestamp: new Date(2023, 4, 15, 14, 30),
-      likes: 24,
-      comments: [
-        {
-          id: "1-1",
-          author: "João Santos",
-          authorImage: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80",
-          content: "Sim! Notei melhor sono e mais energia já na primeira semana. Continue assim!",
-          timestamp: new Date(2023, 4, 15, 15, 45),
-        },
-        {
-          id: "1-2",
-          author: "Ana Costa",
-          authorImage: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=464&q=80",
-          content: "Isso é incrível! Eu levei cerca de duas semanas para notar mudanças, mas agora me sinto fantástica!",
-          timestamp: new Date(2023, 4, 15, 16, 20),
-        },
-      ],
-    },
-    {
-      id: "2",
-      author: "Carlos Mendes",
-      authorImage: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80",
-      content: "Aqui está um café da manhã rápido e nutritivo que tenho apreciado: aveia overnight com frutas vermelhas, sementes de chia e uma colher de iogurte grego. Quais são seus cafés da manhã saudáveis preferidos?",
-      timestamp: new Date(2023, 4, 14, 9, 15),
-      likes: 36,
-      comments: [
-        {
-          id: "2-1",
-          author: "Sofia Almeida",
-          authorImage: "https://images.unsplash.com/photo-1499952127939-9bbf5af6c51c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1476&q=80",
-          content: "Adoro torrada de abacate com ovos pochê e tomates cereja!",
-          timestamp: new Date(2023, 4, 14, 9, 30),
-        },
-      ],
-      image: "https://images.unsplash.com/photo-1523438885200-e635ba2c371e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80",
-    },
-    {
-      id: "3",
-      author: "Mariana Oliveira",
+  const posts = [{
+    id: "1",
+    author: "Maria Silva",
+    authorImage: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80",
+    content: "Acabei de completar minha primeira semana no novo plano nutricional e já estou me sentindo com mais energia! Alguém mais teve resultados rápidos com seus planos?",
+    timestamp: new Date(2023, 4, 15, 14, 30),
+    likes: 24,
+    comments: [{
+      id: "1-1",
+      author: "João Santos",
+      authorImage: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80",
+      content: "Sim! Notei melhor sono e mais energia já na primeira semana. Continue assim!",
+      timestamp: new Date(2023, 4, 15, 15, 45)
+    }, {
+      id: "1-2",
+      author: "Ana Costa",
+      authorImage: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=464&q=80",
+      content: "Isso é incrível! Eu levei cerca de duas semanas para notar mudanças, mas agora me sinto fantástica!",
+      timestamp: new Date(2023, 4, 15, 16, 20)
+    }]
+  }, {
+    id: "2",
+    author: "Carlos Mendes",
+    authorImage: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80",
+    content: "Aqui está um café da manhã rápido e nutritivo que tenho apreciado: aveia overnight com frutas vermelhas, sementes de chia e uma colher de iogurte grego. Quais são seus cafés da manhã saudáveis preferidos?",
+    timestamp: new Date(2023, 4, 14, 9, 15),
+    likes: 36,
+    comments: [{
+      id: "2-1",
+      author: "Sofia Almeida",
       authorImage: "https://images.unsplash.com/photo-1499952127939-9bbf5af6c51c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1476&q=80",
-      content: "Estou procurando recomendações de boas fontes de proteína vegetal que não sejam à base de soja. Alguém tem sugestões?",
-      timestamp: new Date(2023, 4, 13, 18, 45),
-      likes: 18,
-      comments: [
-        {
-          id: "3-1",
-          author: "Dra. Maria Costa",
-          authorImage: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80",
-          content: "Lentilhas, grão-de-bico e sementes de cânhamo são opções excelentes! Quinoa também é uma fonte completa de proteínas.",
-          timestamp: new Date(2023, 4, 13, 19, 20),
-        },
-        {
-          id: "3-2",
-          author: "Ricardo Fernandes",
-          content: "Tenho usado proteína de ervilha em pó nos meus smoothies. O sabor é bem suave e funciona muito bem!",
-          timestamp: new Date(2023, 4, 13, 19, 45),
-        },
-      ],
-    },
-  ];
+      content: "Adoro torrada de abacate com ovos pochê e tomates cereja!",
+      timestamp: new Date(2023, 4, 14, 9, 30)
+    }],
+    image: "https://images.unsplash.com/photo-1523438885200-e635ba2c371e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80"
+  }, {
+    id: "3",
+    author: "Mariana Oliveira",
+    authorImage: "https://images.unsplash.com/photo-1499952127939-9bbf5af6c51c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1476&q=80",
+    content: "Estou procurando recomendações de boas fontes de proteína vegetal que não sejam à base de soja. Alguém tem sugestões?",
+    timestamp: new Date(2023, 4, 13, 18, 45),
+    likes: 18,
+    comments: [{
+      id: "3-1",
+      author: "Dra. Maria Costa",
+      authorImage: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80",
+      content: "Lentilhas, grão-de-bico e sementes de cânhamo são opções excelentes! Quinoa também é uma fonte completa de proteínas.",
+      timestamp: new Date(2023, 4, 13, 19, 20)
+    }, {
+      id: "3-2",
+      author: "Ricardo Fernandes",
+      content: "Tenho usado proteína de ervilha em pó nos meus smoothies. O sabor é bem suave e funciona muito bem!",
+      timestamp: new Date(2023, 4, 13, 19, 45)
+    }]
+  }];
 
   // Dados de exemplo para eventos futuros
-  const events = [
-    {
-      id: "e1",
-      title: "Workshop de Culinária Saudável",
-      date: "15 de Junho, 2023",
-      time: "18:00 - 20:00",
-      location: "Virtual - Zoom",
-      description: "Aprenda a preparar refeições rápidas e nutritivas que toda a família vai gostar. Inclui demonstração de culinária ao vivo e sessão de perguntas e respostas.",
-    },
-    {
-      id: "e2",
-      title: "Nutrição para Performance Atlética",
-      date: "22 de Junho, 2023",
-      time: "17:30 - 19:00",
-      location: "Centro NutriVida",
-      description: "Junte-se ao nosso nutricionista esportivo para uma discussão sobre como otimizar sua nutrição para melhorar o desempenho atlético e recuperação.",
-    },
-    {
-      id: "e3",
-      title: "Workshop de Alimentação Consciente",
-      date: "5 de Julho, 2023",
-      time: "12:00 - 13:30",
-      location: "Virtual - Zoom",
-      description: "Desenvolva uma relação mais saudável com a comida através de práticas de alimentação consciente. Este workshop combina ciência da nutrição com técnicas de mindfulness.",
-    },
-  ];
+  const events = [{
+    id: "e1",
+    title: "Workshop de Culinária Saudável",
+    date: "15 de Junho, 2023",
+    time: "18:00 - 20:00",
+    location: "Virtual - Zoom",
+    description: "Aprenda a preparar refeições rápidas e nutritivas que toda a família vai gostar. Inclui demonstração de culinária ao vivo e sessão de perguntas e respostas."
+  }, {
+    id: "e2",
+    title: "Nutrição para Performance Atlética",
+    date: "22 de Junho, 2023",
+    time: "17:30 - 19:00",
+    location: "Centro NutriVida",
+    description: "Junte-se ao nosso nutricionista esportivo para uma discussão sobre como otimizar sua nutrição para melhorar o desempenho atlético e recuperação."
+  }, {
+    id: "e3",
+    title: "Workshop de Alimentação Consciente",
+    date: "5 de Julho, 2023",
+    time: "12:00 - 13:30",
+    location: "Virtual - Zoom",
+    description: "Desenvolva uma relação mais saudável com a comida através de práticas de alimentação consciente. Este workshop combina ciência da nutrição com técnicas de mindfulness."
+  }];
 
   // Lidar com envio de novo post
   const handlePostSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    
     if (newPostContent.trim()) {
       setIsSubmitting(true);
-      
+
       // Simular chamada de API para postar
       setTimeout(() => {
         setIsSubmitting(false);
         setNewPostContent("");
         toast({
           title: "Post Compartilhado",
-          description: "Seu post foi compartilhado com a comunidade.",
+          description: "Seu post foi compartilhado com a comunidade."
         });
       }, 1500);
     }
   };
-
-  return (
-    <>
+  return <>
       <Navbar />
       <main>
-        <Hero
-          title="Comunidade NutriVida"
-          subtitle="Conecte-se com outras pessoas em sua jornada nutricional, compartilhe experiências e inspire-se."
-          ctaText="Participe da Discussão"
-          ctaLink="#community-feed"
-          image="https://images.unsplash.com/photo-1516156008625-3a9d6067fab5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
-          showWave={false}
-        />
+        <Hero title="Comunidade NutriVida" subtitle="Conecte-se com outras pessoas em sua jornada nutricional, compartilhe experiências e inspire-se." ctaText="Participe da Discussão" ctaLink="#community-feed" image="https://images.unsplash.com/photo-1516156008625-3a9d6067fab5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" showWave={false} />
 
         <section id="community-feed" className="py-16 bg-gray-50">
           <div className="container-custom">
             <Tabs defaultValue="feed" className="w-full">
               <TabsList className="grid grid-cols-3 mb-8">
-                <TabsTrigger value="feed">Feed da Comunidade</TabsTrigger>
+                
                 <TabsTrigger value="events">Próximos Eventos</TabsTrigger>
                 <TabsTrigger value="resources">Recursos</TabsTrigger>
               </TabsList>
@@ -158,19 +132,9 @@ const Community = () => {
                 <div className="bg-white rounded-lg shadow p-5 mb-8">
                   <h2 className="text-xl font-semibold mb-4">Compartilhe com a Comunidade</h2>
                   <form onSubmit={handlePostSubmit}>
-                    <Textarea
-                      placeholder="O que está em sua mente? Compartilhe dicas, faça perguntas ou celebre suas conquistas..."
-                      className="mb-4"
-                      value={newPostContent}
-                      onChange={(e) => setNewPostContent(e.target.value)}
-                      rows={4}
-                    />
+                    <Textarea placeholder="O que está em sua mente? Compartilhe dicas, faça perguntas ou celebre suas conquistas..." className="mb-4" value={newPostContent} onChange={e => setNewPostContent(e.target.value)} rows={4} />
                     <div className="flex justify-end">
-                      <Button 
-                        type="submit" 
-                        className="bg-nutrition-green hover:bg-nutrition-teal"
-                        disabled={!newPostContent.trim() || isSubmitting}
-                      >
+                      <Button type="submit" className="bg-nutrition-green hover:bg-nutrition-teal" disabled={!newPostContent.trim() || isSubmitting}>
                         {isSubmitting ? "Postando..." : "Compartilhar Post"}
                       </Button>
                     </div>
@@ -189,9 +153,7 @@ const Community = () => {
 
                 {/* Feed da comunidade */}
                 <div>
-                  {posts.map((post) => (
-                    <CommunityPost key={post.id} {...post} />
-                  ))}
+                  {posts.map(post => <CommunityPost key={post.id} {...post} />)}
                 </div>
 
                 {/* Botão para carregar mais */}
@@ -209,8 +171,7 @@ const Community = () => {
                     </p>
                     
                     <div className="space-y-6">
-                      {events.map((event) => (
-                        <div key={event.id} className="border-b border-gray-100 pb-6 last:border-0">
+                      {events.map(event => <div key={event.id} className="border-b border-gray-100 pb-6 last:border-0">
                           <h3 className="text-xl font-medium text-nutrition-green mb-2">{event.title}</h3>
                           <div className="flex flex-wrap gap-4 mb-3">
                             <div className="flex items-center text-gray-700">
@@ -237,8 +198,7 @@ const Community = () => {
                           <Button className="bg-nutrition-green hover:bg-nutrition-teal">
                             Inscrever-se
                           </Button>
-                        </div>
-                      ))}
+                        </div>)}
                     </div>
                   </div>
 
@@ -302,11 +262,7 @@ const Community = () => {
                     <h2 className="text-2xl font-semibold mb-6">Banco de Receitas Saudáveis</h2>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                       <div className="bg-gray-50 rounded-lg p-4">
-                        <img
-                          src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
-                          alt="Salada de Vegetais"
-                          className="w-full h-48 object-cover rounded-lg mb-4"
-                        />
+                        <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Salada de Vegetais" className="w-full h-48 object-cover rounded-lg mb-4" />
                         <h3 className="font-semibold mb-1">Salada de Quinoa Mediterrânea</h3>
                         <p className="text-sm text-gray-600 mb-3">15 minutos de preparo • Rica em proteínas • Sem glúten</p>
                         <Button className="w-full bg-nutrition-green hover:bg-nutrition-teal">
@@ -315,11 +271,7 @@ const Community = () => {
                       </div>
                       
                       <div className="bg-gray-50 rounded-lg p-4">
-                        <img
-                          src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1453&q=80"
-                          alt="Bowl de Café da Manhã"
-                          className="w-full h-48 object-cover rounded-lg mb-4"
-                        />
+                        <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1453&q=80" alt="Bowl de Café da Manhã" className="w-full h-48 object-cover rounded-lg mb-4" />
                         <h3 className="font-semibold mb-1">Bowl Energético para o Café da Manhã</h3>
                         <p className="text-sm text-gray-600 mb-3">10 minutos de preparo • Alto teor de fibras • Vegetariano</p>
                         <Button className="w-full bg-nutrition-green hover:bg-nutrition-teal">
@@ -328,11 +280,7 @@ const Community = () => {
                       </div>
                       
                       <div className="bg-gray-50 rounded-lg p-4">
-                        <img
-                          src="https://images.unsplash.com/photo-1513192800243-82f12f93ef79?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
-                          alt="Smoothie Bowl"
-                          className="w-full h-48 object-cover rounded-lg mb-4"
-                        />
+                        <img src="https://images.unsplash.com/photo-1513192800243-82f12f93ef79?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Smoothie Bowl" className="w-full h-48 object-cover rounded-lg mb-4" />
                         <h3 className="font-semibold mb-1">Smoothie de Proteína com Frutas Vermelhas</h3>
                         <p className="text-sm text-gray-600 mb-3">5 minutos de preparo • Rico em antioxidantes • Opção sem laticínios</p>
                         <Button className="w-full bg-nutrition-green hover:bg-nutrition-teal">
@@ -419,8 +367,6 @@ const Community = () => {
         </section>
       </main>
       <Footer />
-    </>
-  );
+    </>;
 };
-
 export default Community;

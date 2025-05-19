@@ -112,7 +112,7 @@ const Hero = ({
             <h1 className="text-3xl md:text-5xl font-bold mb-3 animate-fade-in">
               {title}
             </h1>
-            <p className="text-lg text-gray-600 mb-4 md:mb-5 animate-slide-up px-0 my-[20px] py-[14px] mx-0 md:text-xl">
+            <p className="text-lg md:text-xl text-gray-600 mb-4 md:mb-5 animate-slide-up">
               {subtitle}
             </p>
             {ctaText && <Button asChild className="bg-nutrition-green hover:bg-nutrition-teal text-white px-8 py-5 text-lg h-auto animate-fade-in">

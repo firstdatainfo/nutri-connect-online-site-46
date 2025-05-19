@@ -7,11 +7,27 @@ import './index.css'
 const style = document.createElement('style');
 style.textContent = `
   #root {
-    opacity: 0;
-    transition: opacity 0.5s ease-out;
+    opacity: 1;
+    transition: opacity 0.3s ease-out;
   }
   #root.loaded {
     opacity: 1;
+  }
+  
+  /* Estilos para transição de página */
+  .page-transition-enter {
+    opacity: 0;
+  }
+  .page-transition-enter-active {
+    opacity: 1;
+    transition: opacity 0.2s;
+  }
+  .page-transition-exit {
+    opacity: 1;
+  }
+  .page-transition-exit-active {
+    opacity: 0;
+    transition: opacity 0.2s;
   }
 `;
 document.head.appendChild(style);
@@ -27,4 +43,9 @@ window.addEventListener('load', () => {
       rootElement.classList.add('loaded');
     }, 100);
   }
+});
+
+// Prevenir o comportamento padrão de página branca durante navegação
+document.addEventListener('beforeunload', (event) => {
+  event.preventDefault();
 });

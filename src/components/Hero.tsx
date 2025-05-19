@@ -14,6 +14,9 @@ interface HeroProps {
   profileImage?: string;
 }
 
+// Variável para controlar se é o primeiro carregamento da aplicação
+let isFirstLoad = true;
+
 const Hero = ({
   title,
   subtitle,
@@ -28,6 +31,13 @@ const Hero = ({
 
   // Pré-carrega as imagens antes da montagem do componente
   useEffect(() => {
+    // Só mostra o loader na primeira vez que o site é carregado
+    if (!isFirstLoad) {
+      setImagesLoaded(true);
+      setPageReady(true);
+      return;
+    }
+
     // Adicionar uma imagem de loader que será exibida enquanto o site carrega
     const loaderElement = document.createElement('div');
     loaderElement.id = 'pre-loader';
@@ -75,6 +85,8 @@ const Hero = ({
                     document.body.removeChild(loaderElement);
                   }
                   setPageReady(true);
+                  // Marcamos que o primeiro carregamento já foi feito
+                  isFirstLoad = false;
                 }, 500);
               }
             }, 300);
@@ -96,6 +108,8 @@ const Hero = ({
                     document.body.removeChild(loaderElement);
                   }
                   setPageReady(true);
+                  // Marcamos que o primeiro carregamento já foi feito
+                  isFirstLoad = false;
                 }, 500);
               }
             }, 300);

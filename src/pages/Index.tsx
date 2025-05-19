@@ -66,22 +66,24 @@ const Index = () => {
     color: "nutrition-teal",
     buttonText: "Saiba Mais"
   }];
-  const testimonials = [{
-    quote: "A Lidiane transformou completamente minha relação com a alimentação. Não apenas perdi peso, mas também ganhei energia e confiança.",
-    author: "Maria Silva",
-    role: "Cliente - Gerenciamento de Peso",
-    image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
-  }, {
-    quote: "A abordagem personalizada para minhas necessidades nutricionais me ajudou a gerenciar minha diabetes de uma forma que eu nunca pensei ser possível.",
-    author: "Carlos Santos",
-    role: "Cliente - Gerenciamento de Saúde",
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80"
-  }, {
-    quote: "Como atleta, eu precisava de orientação nutricional específica. A Lidiane forneceu exatamente o que eu precisava para melhorar meu desempenho.",
-    author: "Ana Martins",
-    role: "Cliente - Nutrição Esportiva",
-    image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=464&q=80"
-  }];
+  const testimonials = [
+    {
+      quote: "A Lidiane transformou completamente minha relação com a alimentação. Não apenas perdi peso, mas também ganhei energia e confiança.",
+      author: "Maria Silva",
+      role: "Cliente - Gerenciamento de Peso",
+      image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
+    }, {
+      quote: "A abordagem personalizada para minhas necessidades nutricionais me ajudou a gerenciar minha diabetes de uma forma que eu nunca pensei ser possível.",
+      author: "Carlos Santos",
+      role: "Cliente - Gerenciamento de Saúde",
+      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80"
+    }, {
+      quote: "Como atleta, eu precisava de orientação nutricional específica. A Lidiane forneceu exatamente o que eu precisava para melhorar meu desempenho.",
+      author: "Ana Martins",
+      role: "Cliente - Nutrição Esportiva",
+      image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=464&q=80"
+    }
+  ];
   return <>
       <Navbar />
       <main>
@@ -98,9 +100,12 @@ const Index = () => {
         <section className="py-10 md:py-16 bg-white">
           <div className="container-custom">
             <div className="text-center mb-8 md:mb-12">
-              <h2 className="text-2xl md:text-3xl font-bold mb-3 md:mb-4">Nossos Serviços</h2>
+              <h2 className="text-2xl md:text-3xl font-bold mb-3 md:mb-4">Cuidado Individualizado e Especialização de Qualidade</h2>
               <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
-                Conheça as diferentes áreas de atuação e descubra como podemos ajudar você a alcançar seus objetivos de saúde.
+                Acreditamos que uma nutrição eficaz vai além de fórmulas prontas ou dietas genéricas. Cada organismo é único, assim como cada objetivo de saúde. Por isso, nosso trabalho é guiado por um profundo cuidado com o paciente, aliando escuta ativa, diagnóstico preciso e acompanhamento contínuo.
+              </p>
+              <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto mt-4">
+                Contamos com uma equipe especializada em diferentes áreas da nutrição — clínica, funcional, esportiva e comportamental — garantindo que cada pessoa receba orientação técnica e humanizada. Nossa especialização permite oferecer soluções baseadas em evidências científicas, adaptadas às necessidades reais de quem busca não apenas resultados, mas também uma relação saudável e equilibrada com a alimentação. Aqui, o cuidado vem em primeiro lugar, e a especialização faz toda a diferença.
               </p>
             </div>
             

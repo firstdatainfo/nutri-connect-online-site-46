@@ -98,6 +98,33 @@ const Services = () => {
           showWave={false}
         />
 
+        {/* Introdução aos Serviços */}
+        <section className="bg-white py-12">
+          <div className="container-custom">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+              <div>
+                <h2 className="text-2xl md:text-3xl font-bold mb-6">Nossos Serviços</h2>
+                <p className="text-gray-700 mb-4">
+                  Na busca por saúde e bem-estar, cada pessoa é única — e é exatamente assim que tratamos cada paciente. Oferecemos serviços personalizados, fundamentados em evidências científicas e aliados a uma visão holística da saúde.
+                </p>
+                <p className="text-gray-700 mb-4">
+                  Acreditamos que a nutrição vai muito além da dieta: ela envolve estilo de vida, hábitos, emoções e objetivos individuais. Por isso, atuamos em diferentes áreas da nutrição para entregar um atendimento completo e humanizado.
+                </p>
+                <p className="text-gray-700">
+                  Seja na prevenção de doenças, no acompanhamento clínico ou no apoio ao desempenho físico, estamos aqui para guiá-lo(a) com cuidado, atenção e excelência. Conheça nossas especialidades e descubra como podemos ajudar você a alcançar resultados duradouros e significativos.
+                </p>
+              </div>
+              <div className="flex justify-center md:justify-end">
+                <img 
+                  src="/lovable-uploads/328781bb-6e73-4640-a174-a95402b23668.png" 
+                  alt="Nutrição e saúde" 
+                  className="rounded-lg max-w-full h-auto shadow-lg" 
+                />
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Serviços */}
         <section className="bg-white py-16">
           <div className="container-custom">

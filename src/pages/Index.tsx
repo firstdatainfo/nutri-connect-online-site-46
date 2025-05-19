@@ -10,22 +10,13 @@ import { Link } from "react-router-dom";
 
 // Pré-carregamento de imagens principais
 const preloadImages = () => {
-  const images = [
-    "/lovable-uploads/eb101949-77ca-4a72-80ff-91e3190e410a.png",
-    "https://images.unsplash.com/photo-1494597564530-871f2b93ac55?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1513&q=80",
-    "https://images.unsplash.com/photo-1490818387583-1baba5e638af?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1932&q=80",
-    "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
-    "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80",
-    "https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=464&q=80"
-  ];
-  
+  const images = ["/lovable-uploads/eb101949-77ca-4a72-80ff-91e3190e410a.png", "https://images.unsplash.com/photo-1494597564530-871f2b93ac55?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1513&q=80", "https://images.unsplash.com/photo-1490818387583-1baba5e638af?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1932&q=80", "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80", "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80", "https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=464&q=80"];
   images.forEach(src => {
     const link = document.createElement('link');
     link.rel = 'preload';
     link.as = 'image';
     link.href = src;
     document.head.appendChild(link);
-    
     const img = new Image();
     img.src = src;
   });
@@ -35,68 +26,56 @@ const preloadImages = () => {
 if (typeof window !== 'undefined') {
   preloadImages();
 }
-
 const Index = () => {
-  const services = [
-    {
-      title: "Nutrição Clínica Integrativa",
-      description: "Abordagem personalizada que integra diferentes aspectos da saúde para criar planos nutricionais completos.",
-      icon: <Apple size={24} />,
-      link: "/services",
-      color: "nutrition-green",
-      buttonText: "Saiba Mais"
-    }, {
-      title: "Nutrição Esportiva",
-      description: "Planos nutricionais especializados para atletas e praticantes de atividades físicas visando melhorar o desempenho.",
-      icon: <Users size={24} />,
-      link: "/services",
-      color: "nutrition-blue",
-      buttonText: "Saiba Mais"
-    }, {
-      title: "Nutrição Estética",
-      description: "Programas alimentares focados em melhorar a aparência da pele, cabelos e composição corporal.",
-      icon: <Carrot size={24} />,
-      link: "/services",
-      color: "nutrition-orange",
-      buttonText: "Saiba Mais"
-    }, {
-      title: "Consultas Online",
-      description: "Atendimento virtual personalizado com acompanhamento completo do seu progresso.",
-      icon: <MessageCircle size={24} />,
-      link: "/consultation",
-      color: "nutrition-teal",
-      buttonText: "Saiba Mais"
-    }
-  ];
-  const testimonials = [
-    {
-      quote: "A Lidiane transformou completamente minha relação com a alimentação. Não apenas perdi peso, mas também ganhei energia e confiança.",
-      author: "Maria Silva",
-      role: "Cliente - Gerenciamento de Peso",
-      image: "https://images.unsplash.com/photo-1490818387583-1baba5e638af?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1932&q=80"
-    }, {
-      quote: "A abordagem personalizada para minhas necessidades nutricionais me ajudou a gerenciar minha diabetes de uma forma que eu nunca pensei ser possível.",
-      author: "Carlos Santos",
-      role: "Cliente - Gerenciamento de Saúde",
-      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80"
-    }, {
-      quote: "Como atleta, eu precisava de orientação nutricional específica. A Lidiane forneceu exatamente o que eu precisava para melhorar meu desempenho.",
-      author: "Ana Martins",
-      role: "Cliente - Nutrição Esportiva",
-      image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=464&q=80"
-    }
-  ];
+  const services = [{
+    title: "Nutrição Clínica Integrativa",
+    description: "Abordagem personalizada que integra diferentes aspectos da saúde para criar planos nutricionais completos.",
+    icon: <Apple size={24} />,
+    link: "/services",
+    color: "nutrition-green",
+    buttonText: "Saiba Mais"
+  }, {
+    title: "Nutrição Esportiva",
+    description: "Planos nutricionais especializados para atletas e praticantes de atividades físicas visando melhorar o desempenho.",
+    icon: <Users size={24} />,
+    link: "/services",
+    color: "nutrition-blue",
+    buttonText: "Saiba Mais"
+  }, {
+    title: "Nutrição Estética",
+    description: "Programas alimentares focados em melhorar a aparência da pele, cabelos e composição corporal.",
+    icon: <Carrot size={24} />,
+    link: "/services",
+    color: "nutrition-orange",
+    buttonText: "Saiba Mais"
+  }, {
+    title: "Consultas Online",
+    description: "Atendimento virtual personalizado com acompanhamento completo do seu progresso.",
+    icon: <MessageCircle size={24} />,
+    link: "/consultation",
+    color: "nutrition-teal",
+    buttonText: "Saiba Mais"
+  }];
+  const testimonials = [{
+    quote: "A Lidiane transformou completamente minha relação com a alimentação. Não apenas perdi peso, mas também ganhei energia e confiança.",
+    author: "Maria Silva",
+    role: "Cliente - Gerenciamento de Peso",
+    image: "https://images.unsplash.com/photo-1490818387583-1baba5e638af?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1932&q=80"
+  }, {
+    quote: "A abordagem personalizada para minhas necessidades nutricionais me ajudou a gerenciar minha diabetes de uma forma que eu nunca pensei ser possível.",
+    author: "Carlos Santos",
+    role: "Cliente - Gerenciamento de Saúde",
+    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80"
+  }, {
+    quote: "Como atleta, eu precisava de orientação nutricional específica. A Lidiane forneceu exatamente o que eu precisava para melhorar meu desempenho.",
+    author: "Ana Martins",
+    role: "Cliente - Nutrição Esportiva",
+    image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=464&q=80"
+  }];
   return <>
       <Navbar />
       <main>
-        <Hero 
-          title="Lidiane Dos Reis" 
-          subtitle="Nutricionista Clínica Integrativa, Esportiva, Estética, Microbiota Intestinal e Genômica" 
-          ctaText="Agende uma Consulta" 
-          ctaLink="/consultation" 
-          profileImage="/lovable-uploads/eb101949-77ca-4a72-80ff-91e3190e410a.png" 
-          image="https://images.unsplash.com/photo-1494597564530-871f2b93ac55?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1513&q=80" 
-        />
+        <Hero title="Lidiane Dos Reis" subtitle="Nutricionista Clínica Integrativa, Esportiva, Estética, Microbiota Intestinal e Genômica" ctaText="Agende uma Consulta" ctaLink="/consultation" profileImage="/lovable-uploads/eb101949-77ca-4a72-80ff-91e3190e410a.png" image="https://images.unsplash.com/photo-1494597564530-871f2b93ac55?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1513&q=80" />
 
         {/* Services Section */}
         <section className="py-10 md:py-16 bg-white">
@@ -114,22 +93,11 @@ const Index = () => {
                 </div>
                 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
-                  {services.map((service, index) => (
-                    <ServiceCard key={index} {...service} />
-                  ))}
+                  {services.map((service, index) => <ServiceCard key={index} {...service} />)}
                 </div>
               </div>
               
-              <div className="lg:col-span-4 flex items-center justify-center">
-                <div className="relative">
-                  <img 
-                    src="/lovable-uploads/a2cfd7a4-22fe-4473-b3e1-1825734085cc.png" 
-                    alt="Frutas e legumes" 
-                    className="rounded-lg shadow-lg max-w-full h-auto"
-                  />
-                  <div className="absolute inset-0 rounded-lg bg-nutrition-green/10 transform hover:bg-transparent transition-all duration-300"></div>
-                </div>
-              </div>
+              
             </div>
           </div>
         </section>

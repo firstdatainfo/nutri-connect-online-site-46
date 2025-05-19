@@ -120,7 +120,13 @@ const Hero = ({
               </Button>}
           </div>
 
-          
+          <div className="relative flex justify-center md:justify-end">
+            {profileImage && <div className="relative">
+                {imagesLoaded ? <img src={profileImage} alt={title} className={`rounded-full border-4 border-white shadow-xl ${reducedSpacing ? 'w-40 h-40 md:w-56 md:h-56' : 'w-56 h-56 md:w-72 md:h-72'} object-cover z-20 relative`} /> : <Skeleton className={`rounded-full ${reducedSpacing ? 'w-40 h-40 md:w-56 md:h-56' : 'w-56 h-56 md:w-72 md:h-72'}`} />}
+                
+                <div className="absolute inset-0 bg-nutrition-green/20 rounded-full blur-xl -z-10 transform scale-90" />
+              </div>}
+          </div>
         </div>
       </div>
 

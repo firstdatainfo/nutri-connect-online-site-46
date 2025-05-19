@@ -73,7 +73,7 @@ const Index = () => {
       quote: "A Lidiane transformou completamente minha relação com a alimentação. Não apenas perdi peso, mas também ganhei energia e confiança.",
       author: "Maria Silva",
       role: "Cliente - Gerenciamento de Peso",
-      image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
+      image: "https://images.unsplash.com/photo-1490818387583-1baba5e638af?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1932&q=80"
     }, {
       quote: "A abordagem personalizada para minhas necessidades nutricionais me ajudou a gerenciar minha diabetes de uma forma que eu nunca pensei ser possível.",
       author: "Carlos Santos",
@@ -115,12 +115,7 @@ const Index = () => {
                 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
                   {services.map((service, index) => (
-                    index < 2 && <ServiceCard key={index} {...service} />
-                  ))}
-                </div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6 mt-4 md:mt-6">
-                  {services.map((service, index) => (
-                    index >= 2 && <ServiceCard key={index} {...service} />
+                    <ServiceCard key={index} {...service} />
                   ))}
                 </div>
               </div>
@@ -128,8 +123,8 @@ const Index = () => {
               <div className="lg:col-span-4 flex items-center justify-center">
                 <div className="relative">
                   <img 
-                    src="/lovable-uploads/1862c5bd-01cd-419d-8b1e-88c792e53562.png" 
-                    alt="Frutas e legumes com estetoscópio" 
+                    src="/lovable-uploads/a2cfd7a4-22fe-4473-b3e1-1825734085cc.png" 
+                    alt="Frutas e legumes" 
                     className="rounded-lg shadow-lg max-w-full h-auto"
                   />
                   <div className="absolute inset-0 rounded-lg bg-nutrition-green/10 transform hover:bg-transparent transition-all duration-300"></div>

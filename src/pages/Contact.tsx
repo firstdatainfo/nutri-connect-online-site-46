@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -10,6 +11,7 @@ import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
 import { Mail, Phone, Instagram, MapPin, Clock } from "lucide-react";
 import MapComponent from "@/components/Map";
+
 const Contact = () => {
   const [formData, setFormData] = useState({
     name: "",
@@ -19,25 +21,17 @@ const Contact = () => {
     message: ""
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const {
-    toast
-  } = useToast();
+  const { toast } = useToast();
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const {
-      name,
-      value
-    } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
   };
+
   const handleSelectChange = (value: string) => {
-    setFormData(prev => ({
-      ...prev,
-      subject: value
-    }));
+    setFormData(prev => ({ ...prev, subject: value }));
   };
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
@@ -60,12 +54,23 @@ const Contact = () => {
       });
     }, 1500);
   };
-  return <>
+
+  return (
+    <>
       <Navbar />
       <main>
-        <Hero title="Contato" subtitle="Tem perguntas ou deseja saber mais sobre nossos serviços? Entre em contato conosco hoje." ctaText="" ctaLink="" showWave={false} image="https://images.unsplash.com/photo-1423666639041-f56000c27a9a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1474&q=80" profileImage="" />
+        <Hero 
+          title="Contato" 
+          subtitle="Tem perguntas ou deseja saber mais sobre nossos serviços? Entre em contato conosco hoje." 
+          ctaText="" 
+          ctaLink="" 
+          showWave={false} 
+          image="https://images.unsplash.com/photo-1423666639041-f56000c27a9a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1474&q=80" 
+          profileImage="" 
+          reducedSpacing={true}
+        />
 
-        <section className="bg-white py-0">
+        <section className="bg-white py-0 -mt-4 md:-mt-6">
           <div className="container-custom">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
               {/* Contact Form */}
@@ -191,6 +196,8 @@ const Contact = () => {
         </section>
       </main>
       <Footer />
-    </>;
+    </>
+  );
 };
+
 export default Contact;

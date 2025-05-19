@@ -11,7 +11,7 @@ import { useIsMobile } from "@/hooks/use-mobile";
 
 // Pré-carregamento de imagens principais
 const preloadImages = () => {
-  const images = ["/lovable-uploads/eb101949-77ca-4a72-80ff-91e3190e410a.png", "https://images.unsplash.com/photo-1494597564530-871f2b93ac55?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1513&q=80", "https://images.unsplash.com/photo-1490818387583-1baba5e638af?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1932&q=80", "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80", "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80", "https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=464&q=80"];
+  const images = ["/lovable-uploads/eb101949-77ca-4a72-80ff-91e3190e410a.png", "https://images.unsplash.com/photo-1490818387583-1baba5e638af?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1932&q=80", "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80", "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80", "https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=464&q=80"];
   images.forEach(src => {
     const link = document.createElement('link');
     link.rel = 'preload';
@@ -79,17 +79,19 @@ const Index = () => {
   return <>
       <Navbar />
       <main className="overflow-hidden">
-        <Hero title="Lidiane Dos Reis" 
-              subtitle="Nutricionista Clínica Integrativa, Esportiva, Estética, Microbiota Intestinal e Genômica" 
-              ctaText="Agende uma Consulta" 
-              ctaLink="/consultation" 
-              profileImage="/lovable-uploads/eb101949-77ca-4a72-80ff-91e3190e410a.png" 
-              image="https://images.unsplash.com/photo-1494597564530-871f2b93ac55?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1513&q=80" 
-              showWave={false} 
-              reducedSpacing={true} />
+        <Hero 
+          title="Lidiane Dos Reis" 
+          subtitle="Nutricionista Clínica Integrativa, Esportiva, Estética, Microbiota Intestinal e Genômica" 
+          ctaText="Agende uma Consulta" 
+          ctaLink="/consultation" 
+          profileImage="/lovable-uploads/eb101949-77ca-4a72-80ff-91e3190e410a.png" 
+          image="https://images.unsplash.com/photo-1494597564530-871f2b93ac55?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1513&q=80" 
+          showWave={false} 
+          reducedSpacing={true} 
+        />
 
         {/* Services Section - Reduzido ainda mais o padding superior */}
-        <section className="pt-0 pb-8 md:pt-0 md:pb-12 bg-white -mt-6 md:-mt-12">
+        <section className="pt-0 pb-8 md:pt-0 md:pb-12 bg-white -mt-8 md:-mt-10">
           <div className="container-custom">
             <div className="flex flex-col md:flex-row items-center justify-between mb-6 md:mb-10 gap-4">
               <div className="max-w-3xl">

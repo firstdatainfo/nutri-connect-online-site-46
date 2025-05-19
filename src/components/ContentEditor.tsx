@@ -20,9 +20,12 @@ import {
   FileImage,
   Link,
   List,
-  ListOrdered
+  ListOrdered,
+  Edit
 } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { useToast } from "@/components/ui/use-toast";
 
 // Esquema de validação para o formulário
 const formSchema = z.object({
@@ -45,6 +48,7 @@ type ContentEditorProps = {
 const ContentEditor = ({ open, onOpenChange, pageType, onSave, initialData }: ContentEditorProps) => {
   const [activeTab, setActiveTab] = useState<"text" | "format" | "media" | "contact">("text");
   const [previewImage, setPreviewImage] = useState<string | null>(initialData?.imageUrl || null);
+  const { toast } = useToast();
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -62,6 +66,12 @@ const ContentEditor = ({ open, onOpenChange, pageType, onSave, initialData }: Co
     onSave(data);
     onOpenChange(false);
     form.reset();
+    
+    toast({
+      title: "Conteúdo salvo",
+      description: `O conteúdo da página ${pageType} foi atualizado com sucesso.`,
+      duration: 3000,
+    });
   };
 
   const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {

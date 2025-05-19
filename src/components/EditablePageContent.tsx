@@ -1,7 +1,8 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import useAdmin from '@/hooks/useAdmin';
 import PageEditor from './PageEditor';
+import { Skeleton } from '@/components/ui/skeleton';
 
 interface EditablePageContentProps {
   pageType: string;
@@ -18,9 +19,36 @@ interface EditablePageContentProps {
 const EditablePageContent: React.FC<EditablePageContentProps> = ({ pageType, initialContent }) => {
   const { isAdmin } = useAdmin();
   const [content, setContent] = useState(initialContent);
+  const [imageLoaded, setImageLoaded] = useState(false);
+  const [imageLoading, setImageLoading] = useState(!!initialContent.imageUrl);
+
+  // Pré-carrega a imagem quando o componente for montado
+  useEffect(() => {
+    if (content.imageUrl) {
+      const img = new Image();
+      img.src = content.imageUrl;
+      setImageLoading(true);
+      
+      img.onload = () => {
+        setImageLoaded(true);
+        setImageLoading(false);
+      };
+      
+      img.onerror = () => {
+        console.error('Erro ao carregar imagem:', content.imageUrl);
+        setImageLoading(false);
+      };
+    }
+  }, [content.imageUrl]);
 
   const handleContentChange = (newContent: typeof content) => {
     setContent(newContent);
+    
+    // Reinicia o estado de carregamento se a imagem mudar
+    if (newContent.imageUrl !== content.imageUrl) {
+      setImageLoaded(false);
+      setImageLoading(!!newContent.imageUrl);
+    }
   };
 
   return (
@@ -35,11 +63,17 @@ const EditablePageContent: React.FC<EditablePageContentProps> = ({ pageType, ini
         
         {content.imageUrl && (
           <div className="mt-6">
-            <img 
-              src={content.imageUrl} 
-              alt={content.title} 
-              className="rounded-lg max-h-[400px] object-contain" 
-            />
+            {imageLoading && !imageLoaded ? (
+              <Skeleton className="rounded-lg w-full h-[400px]" />
+            ) : (
+              <img 
+                src={content.imageUrl} 
+                alt={content.title} 
+                className="rounded-lg max-h-[400px] object-contain" 
+                style={{ opacity: imageLoaded ? 1 : 0 }}
+                onLoad={() => setImageLoaded(true)}
+              />
+            )}
           </div>
         )}
         

@@ -10,7 +10,6 @@ import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
 import { Mail, Phone, Instagram, MapPin, Clock } from "lucide-react";
 import MapComponent from "@/components/Map";
-
 const Contact = () => {
   const [formData, setFormData] = useState({
     name: "",
@@ -23,7 +22,6 @@ const Contact = () => {
   const {
     toast
   } = useToast();
-  
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const {
       name,
@@ -34,14 +32,12 @@ const Contact = () => {
       [name]: value
     }));
   };
-  
   const handleSelectChange = (value: string) => {
     setFormData(prev => ({
       ...prev,
       subject: value
     }));
   };
-  
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
@@ -64,19 +60,10 @@ const Contact = () => {
       });
     }, 1500);
   };
-  
   return <>
       <Navbar />
       <main>
-        <Hero 
-          title="Contato" 
-          subtitle="Tem perguntas ou deseja saber mais sobre nossos serviços? Entre em contato conosco hoje." 
-          ctaText="" 
-          ctaLink="" 
-          showWave={false} 
-          image="https://images.unsplash.com/photo-1423666639041-f56000c27a9a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1474&q=80"
-          profileImage="" 
-        />
+        <Hero title="Contato" subtitle="Tem perguntas ou deseja saber mais sobre nossos serviços? Entre em contato conosco hoje." ctaText="" ctaLink="" showWave={false} image="https://images.unsplash.com/photo-1423666639041-f56000c27a9a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1474&q=80" profileImage="" />
 
         <section className="bg-white py-0">
           <div className="container-custom">
@@ -198,14 +185,8 @@ const Contact = () => {
         {/* Map Section */}
         <section className="bg-gray-50 py-16">
           <div className="container-custom">
-            <h2 className="text-3xl font-bold mb-8 text-center">Localização</h2>
-            <div className="w-full h-auto min-h-[24rem] bg-gray-200 rounded-lg overflow-hidden">
-              <MapComponent 
-                defaultLatitude={-15.8901} 
-                defaultLongitude={-52.2566} 
-                defaultZoom={13} 
-              />
-            </div>
+            
+            
           </div>
         </section>
       </main>

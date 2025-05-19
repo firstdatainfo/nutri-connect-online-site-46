@@ -1,9 +1,7 @@
-
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useEffect, useState } from "react";
-
 interface HeroProps {
   title: string;
   subtitle: string;
@@ -13,7 +11,6 @@ interface HeroProps {
   showWave?: boolean;
   profileImage?: string;
 }
-
 const Hero = ({
   title,
   subtitle,
@@ -30,7 +27,6 @@ const Hero = ({
     const preloadImages = () => {
       const imagesToLoad = [profileImage, image].filter(Boolean);
       let loadedCount = 0;
-      
       imagesToLoad.forEach(imgSrc => {
         if (!imgSrc) return;
         const img = new Image();
@@ -49,67 +45,15 @@ const Hero = ({
           }
         }
       });
-      
+
       // Fallback para garantir que as imagens sejam exibidas após um curto período
       setTimeout(() => setImagesLoaded(true), 300);
     };
-    
     preloadImages();
   }, [profileImage, image]);
-
-  return (
-    <div className="relative overflow-hidden">
+  return <div className="relative overflow-hidden">
       <div className="container-custom relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 py-10 items-center md:py-0">
-          <div>
-            {profileImage && (
-              <div className="mb-4 lg:mb-8 flex justify-center lg:justify-start py-[10px]">
-                <div className="relative w-48 h-48 md:w-64 md:h-64 lg:w-72 lg:h-72 rounded-full overflow-hidden border-4 border-white shadow-xl">
-                  {imagesLoaded ? (
-                    <img 
-                      src={profileImage} 
-                      alt="Lidiane Dos Reis" 
-                      className="w-full h-full object-cover" 
-                      loading="eager" 
-                      fetchPriority="high" 
-                      decoding="sync"
-                    />
-                  ) : (
-                    <Skeleton className="w-full h-full bg-gray-200" />
-                  )}
-                </div>
-              </div>
-            )}
-            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-3 lg:mb-4 text-center lg:text-left">
-              {title}
-            </h1>
-            <p className="text-base sm:text-lg md:text-xl text-gray-700 mb-6 lg:mb-8 text-center lg:text-left">
-              {subtitle}
-            </p>
-            {ctaText && <div className="flex justify-center lg:justify-start">
-              <Button asChild size="lg" className="bg-nutrition-green hover:bg-nutrition-teal text-base md:text-lg">
-                <Link to={ctaLink}>{ctaText}</Link>
-              </Button>
-            </div>}
-          </div>
-
-          <div className="relative hidden sm:block">
-            <div className="relative rounded-lg overflow-hidden shadow-xl max-h-80 lg:max-h-[350px]">
-              {image && (imagesLoaded ? (
-                <img 
-                  src={image} 
-                  alt="Hero Image" 
-                  className="w-full h-full object-cover"
-                  loading="eager"
-                  fetchPriority="high"
-                  decoding="sync" 
-                />
-              ) : (
-                <Skeleton className="w-full h-full bg-gray-200 aspect-[16/9]" />
-              ))}
-            </div>
-          </div>
-        </div>
+        
       </div>
 
       {showWave && <div className="hero-wave">
@@ -117,8 +61,6 @@ const Hero = ({
             <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" className="shape-fill"></path>
           </svg>
         </div>}
-    </div>
-  );
+    </div>;
 };
-
 export default Hero;

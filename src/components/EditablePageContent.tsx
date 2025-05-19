@@ -2,7 +2,6 @@
 import React, { useState, useEffect } from 'react';
 import useAdmin from '@/hooks/useAdmin';
 import PageEditor from './PageEditor';
-import { Skeleton } from '@/components/ui/skeleton';
 
 interface EditablePageContentProps {
   pageType: string;
@@ -19,36 +18,38 @@ interface EditablePageContentProps {
 const EditablePageContent: React.FC<EditablePageContentProps> = ({ pageType, initialContent }) => {
   const { isAdmin } = useAdmin();
   const [content, setContent] = useState(initialContent);
-  const [imageLoaded, setImageLoaded] = useState(false);
-  const [imageLoading, setImageLoading] = useState(!!initialContent.imageUrl);
 
-  // Pré-carrega a imagem quando o componente for montado
+  // Pré-carrega todas as imagens do site ao montar o componente
   useEffect(() => {
-    if (content.imageUrl) {
-      const img = new Image();
-      img.src = content.imageUrl;
-      setImageLoading(true);
+    // Função para pré-carregar imagens comuns do site
+    const preloadImages = () => {
+      const commonImages = [
+        '/lovable-uploads/ca42dc66-026e-45dc-818c-96ec602d6825.png',
+        '/lovable-uploads/19cefa6f-5a74-4dc2-9425-7df166d07de4.png',
+        '/lovable-uploads/7f21824b-576f-4ec6-8c01-344ca77b5a02.png',
+        '/lovable-uploads/8f1a6fd3-0913-42f9-afcb-77778ed69afb.png',
+        '/lovable-uploads/7a5efdad-1164-4363-aa4a-00030cdd18eb.png', // Nova imagem de perfil
+        '/lovable-uploads/eb101949-77ca-4a72-80ff-91e3190e410a.png'
+      ];
       
-      img.onload = () => {
-        setImageLoaded(true);
-        setImageLoading(false);
-      };
+      commonImages.forEach(src => {
+        const img = new Image();
+        img.src = src;
+      });
       
-      img.onerror = () => {
-        console.error('Erro ao carregar imagem:', content.imageUrl);
-        setImageLoading(false);
-      };
-    }
+      // Se o conteúdo atual tiver uma imagem, também pré-carregá-la
+      if (content.imageUrl) {
+        const img = new Image();
+        img.src = content.imageUrl;
+      }
+    };
+    
+    // Executar pré-carregamento imediatamente
+    preloadImages();
   }, [content.imageUrl]);
 
   const handleContentChange = (newContent: typeof content) => {
     setContent(newContent);
-    
-    // Reinicia o estado de carregamento se a imagem mudar
-    if (newContent.imageUrl !== content.imageUrl) {
-      setImageLoaded(false);
-      setImageLoading(!!newContent.imageUrl);
-    }
   };
 
   return (
@@ -63,17 +64,11 @@ const EditablePageContent: React.FC<EditablePageContentProps> = ({ pageType, ini
         
         {content.imageUrl && (
           <div className="mt-6">
-            {imageLoading && !imageLoaded ? (
-              <Skeleton className="rounded-lg w-full h-[400px]" />
-            ) : (
-              <img 
-                src={content.imageUrl} 
-                alt={content.title} 
-                className="rounded-lg max-h-[400px] object-contain" 
-                style={{ opacity: imageLoaded ? 1 : 0 }}
-                onLoad={() => setImageLoaded(true)}
-              />
-            )}
+            <img 
+              src={content.imageUrl} 
+              alt={content.title} 
+              className="rounded-lg max-h-[400px] object-contain" 
+            />
           </div>
         )}
         

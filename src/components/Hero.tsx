@@ -22,10 +22,17 @@ const Hero = ({
   return <div className="relative bg-gradient-to-br from-nutrition-light-green/30 to-nutrition-light-blue/30 overflow-hidden">
       <div className="container-custom relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 py-10 items-center md:py-0">
-          <div className="animate-fade-in">
+          <div>
             {profileImage && <div className="mb-4 lg:mb-8 flex justify-center lg:justify-start py-[10px]">
                 <div className="relative w-48 h-48 md:w-64 md:h-64 lg:w-72 lg:h-72 rounded-full overflow-hidden border-4 border-white shadow-xl">
-                  <img src={profileImage} alt="Lidiane Dos Reis" className="w-full h-full object-cover" />
+                  <img 
+                    src={profileImage} 
+                    alt="Lidiane Dos Reis" 
+                    className="w-full h-full object-cover" 
+                    loading="eager" 
+                    fetchpriority="high" 
+                    decoding="sync"
+                  />
                 </div>
               </div>}
             <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-3 lg:mb-4 text-center lg:text-left">
@@ -41,10 +48,17 @@ const Hero = ({
             </div>}
           </div>
 
-          <div className="relative animate-slide-up hidden sm:block">
+          <div className="relative hidden sm:block">
             <div className="absolute -inset-0.5 bg-gradient-to-r from-nutrition-green to-nutrition-teal rounded-lg blur opacity-30"></div>
             <div className="relative rounded-lg overflow-hidden shadow-xl max-h-80 lg:max-h-[350px]">
-              {image && <img src={image} alt="Hero Image" className="w-full h-full object-cover" />}
+              {image && <img 
+                src={image} 
+                alt="Hero Image" 
+                className="w-full h-full object-cover"
+                loading="eager"
+                fetchpriority="high"
+                decoding="sync" 
+              />}
             </div>
           </div>
         </div>

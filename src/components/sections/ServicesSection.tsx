@@ -1,7 +1,5 @@
-
 import { Apple, Carrot, MessageCircle, Users } from "lucide-react";
 import ServiceCard from "@/components/ServiceCard";
-
 const services = [{
   title: "Nutrição Clínica Integrativa",
   description: "Abordagem personalizada que integra diferentes aspectos da saúde para criar planos nutricionais completos.",
@@ -31,12 +29,10 @@ const services = [{
   color: "nutrition-teal",
   buttonText: "Saiba Mais"
 }];
-
 const ServicesSection = () => {
-  return (
-    <section className="py-1 md:py-2 bg-white w-full">
+  return <section className="py-1 md:py-2 bg-white w-full">
       <div className="container mx-auto px-2">
-        <div className="flex flex-col md:flex-row items-start justify-between mb-2 gap-2">
+        <div className="flex flex-col md:flex-row items-start justify-between mb-2 gap-2 py-0 my-[42px]">
           <div>
             <h2 className="text-lg sm:text-xl font-bold mb-1 py-1">Cuidado Individualizado e Especialização</h2>
             <p className="text-xs md:text-sm text-gray-600">
@@ -47,11 +43,7 @@ const ServicesSection = () => {
             </p>
           </div>
           <div className="flex-shrink-0 mt-1 md:mt-0">
-            <img 
-              src="/lovable-uploads/72e02af0-d74d-4ed9-930a-2d5f6fcdcae0.png" 
-              alt="Nutrição saudável" 
-              className="h-auto max-h-32 md:max-h-40 object-contain" 
-            />
+            <img src="/lovable-uploads/72e02af0-d74d-4ed9-930a-2d5f6fcdcae0.png" alt="Nutrição saudável" className="h-auto max-h-32 md:max-h-40 object-contain" />
           </div>
         </div>
         
@@ -59,8 +51,6 @@ const ServicesSection = () => {
           {services.map((service, index) => <ServiceCard key={index} {...service} />)}
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default ServicesSection;

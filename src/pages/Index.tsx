@@ -12,6 +12,7 @@ import CTASection from "@/components/sections/CTASection";
 if (typeof window !== 'undefined') {
   window.addEventListener('load', () => {
     [
+      "/lovable-uploads/8c1fea53-eb04-4989-9147-107275ce78ac.png",
       "/lovable-uploads/eb101949-77ca-4a72-80ff-91e3190e410a.png",
       "/lovable-uploads/72e02af0-d74d-4ed9-930a-2d5f6fcdcae0.png",
       "https://images.unsplash.com/photo-1490818387583-1baba5e638af?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",

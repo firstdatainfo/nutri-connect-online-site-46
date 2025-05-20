@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Apple, Instagram, Phone, Mail, Menu, X } from "lucide-react";
+import { Instagram, Phone, Mail, Menu, X } from "lucide-react";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -45,7 +45,11 @@ const Navbar = () => {
         <div className="flex justify-between items-center py-2">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-1">
-            <Apple size={24} className="text-nutrition-green" />
+            <img 
+              src="/lovable-uploads/8c1fea53-eb04-4989-9147-107275ce78ac.png" 
+              alt="Lidiane Dos Reis Logo" 
+              className="h-8 w-auto" 
+            />
             <span className="font-display font-bold text-base md:text-lg text-nutrition-green">Lidiane Dos Reis</span>
           </Link>
 

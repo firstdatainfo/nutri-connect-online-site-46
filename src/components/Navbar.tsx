@@ -12,9 +12,7 @@ const Navbar = () => {
   const navItems = [
     { name: "Home", path: "/" },
     { name: "Sobre", path: "/about" },
-    { name: "Serviços", path: "/services" },
-    { name: "Comunidade", path: "/community" },
-    { name: "Contato", path: "/contact" }
+    { name: "Serviços", path: "/services" }
   ];
   
   const isActive = (path: string) => {

@@ -37,6 +37,12 @@ const Navbar = () => {
     setIsMenuOpen(false);
   }, [location]);
 
+  // Função para abrir o WhatsApp com mensagem pré-definida
+  const openWhatsApp = () => {
+    const message = encodeURIComponent("Olá Lidiane, gostaria de saber mais sobre seus serviços de nutrição!");
+    window.open(`https://wa.me/5566992456034?text=${message}`, '_blank');
+  };
+
   return (
     <nav className={`sticky top-0 z-50 w-full transition-all duration-300 ${
       isScrolled ? "bg-white shadow-md" : "bg-white/95"
@@ -68,6 +74,12 @@ const Navbar = () => {
                 {item.name}
               </Link>
             ))}
+            <Button 
+              className="bg-green-500 hover:bg-green-600 text-white text-xs h-8 px-3"
+              onClick={openWhatsApp}
+            >
+              Fale no WhatsApp
+            </Button>
             <Button 
               asChild 
               className="bg-nutrition-green hover:bg-nutrition-teal text-white text-xs h-8 px-3"
@@ -105,9 +117,9 @@ const Navbar = () => {
                 <Instagram size={18} />
               </a>
               <a 
-                href="tel:5566992456034" 
+                href="https://wa.me/5566992456034" 
                 className="text-gray-600 hover:text-nutrition-green flex items-center space-x-1" 
-                aria-label="Telefone"
+                aria-label="WhatsApp"
               >
                 <Phone size={18} />
                 <span className="text-xs">55 66 99245-6034</span>
@@ -136,6 +148,12 @@ const Navbar = () => {
                 </Link>
               ))}
               <div className="px-3 pt-1">
+                <Button 
+                  className="w-full bg-green-500 hover:bg-green-600 text-white text-xs h-8 mb-2"
+                  onClick={openWhatsApp}
+                >
+                  Fale no WhatsApp
+                </Button>
                 <Button 
                   asChild 
                   className="w-full bg-nutrition-green hover:bg-nutrition-teal text-white text-xs h-8"

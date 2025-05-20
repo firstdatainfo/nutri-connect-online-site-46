@@ -12,7 +12,6 @@ import { Calendar as CalendarIcon, Loader2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useToast } from "@/hooks/use-toast";
 import InputMask from "react-input-mask";
-// import { Checkbox } from "@/components/ui/checkbox"; // Checkbox não está sendo usado, pode ser removido se não planeja usar
 import emailjs from '@emailjs/browser';
 
 // Configurações para envio de mensagens
@@ -20,11 +19,9 @@ const CONTACT_CONFIG = {
   whatsappNumber: "5566992456034",
   // Formato: código do país + DDD + número (sem espaços ou caracteres especiais)
   emailAddress: "lidiane_dosreis@outlook.com",
-  emailServiceId: "service_u2y1bq7", // Mantido conforme fornecido
-  // Service ID atualizado do EmailJS
-  emailTemplateId: "template_x2l793i", // Atualizado com o valor fornecido
-  // Este é um ID genérico, substitua pelo seu Template ID do EmailJS
-  emailPublicKey: "VMppyCObQswdims-9" // Atualizado com o valor fornecido
+  emailServiceId: "service_u2y1bq7",
+  emailTemplateId: "template_x2l793i",
+  emailPublicKey: "VMppyCObQswdims-9"
 };
 
 // Inicializar EmailJS
@@ -196,7 +193,7 @@ ${formData.notes ? `Observações: ${formData.notes}` : ''}`
         if (!emailSuccess) {
           toast({
             title: "Alerta",
-            description: "Não foi possível enviar o email. Verifique os dados ou tente novamente mais tarde.", // Mensagem de erro atualizada
+            description: "Não foi possível enviar o email. Verifique os dados ou tente novamente mais tarde.", 
             variant: "destructive"
           });
         } else {
@@ -211,17 +208,15 @@ ${formData.notes ? `Observações: ${formData.notes}` : ''}`
       // Enviar para WhatsApp se selecionado
       if (sendToWhatsApp) {
         const encodedMessage = encodeURIComponent(plainText);
-        const whatsappLink = `https://wa.me/${CONTACT_CONFIG.whatsappNumber}?text=${encodedMessage}`;
-        window.open(whatsappLink, '_blank');
+        window.location.href = `https://wa.me/${CONTACT_CONFIG.whatsappNumber}?text=${encodedMessage}`;
       }
 
-      // Finalizar submissão
-      // Apenas finalizar se o email foi enviado com sucesso OU se o envio de email não foi selecionado.
-      // Se o email falhou e estava selecionado, não resetamos o formulário automaticamente para permitir nova tentativa.
-      if (emailSuccess || !sendToEmail) {
+      // Finalizar submissão apenas se não redirecionar para WhatsApp
+      // Se WhatsApp foi selecionado, a página será redirecionada
+      if (!sendToWhatsApp) {
         finishSubmission(emailSuccess);
       } else {
-         setIsSubmitting(false); // Para reabilitar o botão de envio
+        setIsSubmitting(false);
       }
       
     } catch (error) {

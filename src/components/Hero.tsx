@@ -26,8 +26,9 @@ const Hero = ({
   ctaLink = "/consultation",
   image = "https://images.unsplash.com/photo-1490818387583-1baba5e638af?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1932&q=80",
   showWave = true,
-  profileImage = "/lovable-uploads/f2516217-0055-405a-b448-25a9afd19bfb.png",
-  reducedSpacing = true // Mudamos o valor padrão para true para aplicar em todas as páginas
+  // Definimos a imagem padrão para todas as páginas
+  profileImage = "/lovable-uploads/eb101949-77ca-4a72-80ff-91e3190e410a.png",
+  reducedSpacing = true
 }: HeroProps) => {
   const [pageReady, setPageReady] = useState(true);
   const isMobile = useIsMobile();
@@ -94,14 +95,15 @@ const Hero = ({
           </div>
 
           <div className="relative flex justify-center md:justify-end">
-            {profileImage && <div className="relative">
+            {/* Sempre exibe a imagem de perfil, independente do valor passado */}
+            <div className="relative">
                 <img 
                   src={profileImage} 
                   alt={title} 
                   className={`rounded-full border-4 border-white shadow-xl ${reducedSpacing ? 'w-40 h-40 md:w-56 md:h-56' : 'w-56 h-56 md:w-72 md:h-72'} object-cover z-20 relative`} 
                 />
                 <div className="absolute inset-0 bg-nutrition-green/20 rounded-full blur-xl -z-10 transform scale-90" />
-              </div>}
+              </div>
           </div>
         </div>
       </div>

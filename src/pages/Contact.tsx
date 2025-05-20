@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -64,9 +63,8 @@ const Contact = () => {
           subtitle="Tem perguntas ou deseja saber mais sobre nossos serviços? Entre em contato conosco hoje." 
           ctaText="" 
           ctaLink="" 
-          showWave={false} 
-          image="https://images.unsplash.com/photo-1423666639041-f56000c27a9a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1474&q=80" 
-          profileImage="" 
+          showWave={false}
+          image="https://images.unsplash.com/photo-1423666639041-f56000c27a9a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1474&q=80"
           reducedSpacing={true}
         />
 
@@ -190,7 +188,6 @@ const Contact = () => {
         {/* Map Section */}
         <section className="bg-gray-50 py-16">
           <div className="container-custom">
-            
             
           </div>
         </section>

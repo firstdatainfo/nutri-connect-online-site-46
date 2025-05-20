@@ -21,16 +21,12 @@ export function useIsMobile() {
     // Verificação inicial
     handleResize();
     
-    // Usar ResizeObserver para melhor performance
-    const resizeObserver = new ResizeObserver(() => {
-      handleResize();
-    });
+    // Usar event listener para detecção de redimensionamento
+    window.addEventListener("resize", handleResize);
     
-    resizeObserver.observe(document.body);
-    
-    // Limpar observer quando o componente for desmontado
+    // Limpar event listener quando o componente for desmontado
     return () => {
-      resizeObserver.disconnect();
+      window.removeEventListener("resize", handleResize);
     };
   }, []);
 

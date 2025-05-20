@@ -20,17 +20,18 @@ const ServiceCard = ({
   buttonText = "Saiba Mais",
 }: ServiceCardProps) => {
   return (
-    <div className="bg-white rounded-lg shadow-md h-full border border-gray-100 flex flex-col">
-      <div className="p-4 flex flex-col h-full">
-        <div className="bg-nutrition-green/10 rounded-full w-10 h-10 flex items-center justify-center mb-3">
+    <div className="bg-white rounded-md shadow-sm h-full border border-gray-200 flex flex-col">
+      <div className="p-3 flex flex-col h-full">
+        <div className="bg-nutrition-green/10 rounded-full w-9 h-9 flex items-center justify-center mb-2">
           <div className="text-nutrition-green">{icon}</div>
         </div>
-        <h3 className="text-base font-semibold mb-2">{title}</h3>
-        <p className="text-gray-600 mb-4 flex-grow text-sm">{description}</p>
+        <h3 className="text-base font-semibold mb-1">{title}</h3>
+        <p className="text-gray-600 mb-3 flex-grow text-sm">{description}</p>
         <Button 
           asChild 
           variant="outline" 
-          className="w-full justify-center border-nutrition-green text-nutrition-green hover:bg-nutrition-green/10 mt-auto"
+          size="sm"
+          className="w-full justify-center border-nutrition-green text-nutrition-green hover:bg-nutrition-green/5 mt-auto transition-none"
         >
           <Link to={link}>{buttonText}</Link>
         </Button>

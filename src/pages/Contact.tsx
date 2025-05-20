@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -10,6 +11,7 @@ import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
 import { Mail, Phone, Instagram, MapPin, Clock } from "lucide-react";
 import MapComponent from "@/components/Map";
+import InputMask from 'react-input-mask';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -70,32 +72,45 @@ const Contact = () => {
 
         <section className="bg-white py-0 -mt-4 md:-mt-6">
           <div className="container-custom">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
               {/* Contact Form */}
               <div>
-                <h2 className="text-3xl font-bold mb-6">Envie-nos uma Mensagem</h2>
-                <p className="text-gray-600 mb-8">
+                <h2 className="text-2xl font-bold mb-4">Envie-nos uma Mensagem</h2>
+                <p className="text-gray-600 mb-6">
                   Preencha o formulário abaixo e entraremos em contato o mais breve possível.
                 </p>
 
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div className="space-y-2">
+                <form onSubmit={handleSubmit} className="space-y-4">
+                  <div className="space-y-1">
                     <Label htmlFor="name">Nome Completo</Label>
                     <Input id="name" name="name" placeholder="Seu nome completo" value={formData.name} onChange={handleChange} required />
                   </div>
 
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div className="space-y-2">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="space-y-1">
                       <Label htmlFor="email">Email</Label>
                       <Input id="email" name="email" type="email" placeholder="seu@email.com" value={formData.email} onChange={handleChange} required />
                     </div>
-                    <div className="space-y-2">
+                    <div className="space-y-1">
                       <Label htmlFor="phone">Telefone</Label>
-                      <Input id="phone" name="phone" placeholder="Seu número de telefone" value={formData.phone} onChange={handleChange} />
+                      <InputMask 
+                        mask="(99) 99999-9999" 
+                        value={formData.phone} 
+                        onChange={handleChange}
+                      >
+                        {(inputProps: any) => (
+                          <Input 
+                            id="phone" 
+                            name="phone" 
+                            placeholder="(00) 00000-0000" 
+                            {...inputProps}
+                          />
+                        )}
+                      </InputMask>
                     </div>
                   </div>
 
-                  <div className="space-y-2">
+                  <div className="space-y-1">
                     <Label htmlFor="subject">Assunto</Label>
                     <Select value={formData.subject} onValueChange={handleSelectChange}>
                       <SelectTrigger>
@@ -111,28 +126,28 @@ const Contact = () => {
                     </Select>
                   </div>
 
-                  <div className="space-y-2">
+                  <div className="space-y-1">
                     <Label htmlFor="message">Mensagem</Label>
-                    <Textarea id="message" name="message" placeholder="Como podemos ajudá-lo?" value={formData.message} onChange={handleChange} rows={6} required />
+                    <Textarea id="message" name="message" placeholder="Como podemos ajudá-lo?" value={formData.message} onChange={handleChange} rows={5} required />
                   </div>
 
-                  <Button type="submit" className="w-full bg-nutrition-green hover:bg-nutrition-teal" disabled={isSubmitting}>
+                  <Button type="submit" className="w-full bg-nutrition-green hover:bg-nutrition-teal transition-none" disabled={isSubmitting}>
                     {isSubmitting ? "Enviando..." : "Enviar Mensagem"}
                   </Button>
                 </form>
               </div>
 
               {/* Contact Information */}
-              <div className="mt-12 lg:mt-0">
-                <h2 className="text-3xl font-bold mb-6">Informações de Contato</h2>
-                <p className="text-gray-600 mb-8">
+              <div className="mt-8 lg:mt-0">
+                <h2 className="text-2xl font-bold mb-4">Informações de Contato</h2>
+                <p className="text-gray-600 mb-6">
                   Entre em contato diretamente ou use o formulário à esquerda. Estamos sempre à disposição para ajudá-lo.
                 </p>
                 
-                <div className="space-y-6">
-                  <div className="flex items-start space-x-4">
-                    <div className="bg-nutrition-light-green/20 p-3 rounded-full">
-                      <Phone size={24} className="text-nutrition-green" />
+                <div className="space-y-4">
+                  <div className="flex items-start space-x-3">
+                    <div className="bg-nutrition-light-green/20 p-2 rounded-full">
+                      <Phone size={20} className="text-nutrition-green" />
                     </div>
                     <div>
                       <h3 className="text-lg font-semibold">Telefone</h3>
@@ -140,9 +155,9 @@ const Contact = () => {
                     </div>
                   </div>
                   
-                  <div className="flex items-start space-x-4">
-                    <div className="bg-nutrition-light-green/20 p-3 rounded-full">
-                      <Mail size={24} className="text-nutrition-green" />
+                  <div className="flex items-start space-x-3">
+                    <div className="bg-nutrition-light-green/20 p-2 rounded-full">
+                      <Mail size={20} className="text-nutrition-green" />
                     </div>
                     <div>
                       <h3 className="text-lg font-semibold">Email</h3>
@@ -150,9 +165,9 @@ const Contact = () => {
                     </div>
                   </div>
                   
-                  <div className="flex items-start space-x-4">
-                    <div className="bg-nutrition-light-green/20 p-3 rounded-full">
-                      <Instagram size={24} className="text-nutrition-green" />
+                  <div className="flex items-start space-x-3">
+                    <div className="bg-nutrition-light-green/20 p-2 rounded-full">
+                      <Instagram size={20} className="text-nutrition-green" />
                     </div>
                     <div>
                       <h3 className="text-lg font-semibold">Instagram</h3>
@@ -160,9 +175,9 @@ const Contact = () => {
                     </div>
                   </div>
                   
-                  <div className="flex items-start space-x-4">
-                    <div className="bg-nutrition-light-green/20 p-3 rounded-full">
-                      <MapPin size={24} className="text-nutrition-green" />
+                  <div className="flex items-start space-x-3">
+                    <div className="bg-nutrition-light-green/20 p-2 rounded-full">
+                      <MapPin size={20} className="text-nutrition-green" />
                     </div>
                     <div>
                       <h3 className="text-lg font-semibold">Endereço</h3>
@@ -170,9 +185,9 @@ const Contact = () => {
                     </div>
                   </div>
                   
-                  <div className="flex items-start space-x-4">
-                    <div className="bg-nutrition-light-green/20 p-3 rounded-full">
-                      <Clock size={24} className="text-nutrition-green" />
+                  <div className="flex items-start space-x-3">
+                    <div className="bg-nutrition-light-green/20 p-2 rounded-full">
+                      <Clock size={20} className="text-nutrition-green" />
                     </div>
                     <div>
                       <h3 className="text-lg font-semibold">Horário de Atendimento</h3>
@@ -182,13 +197,6 @@ const Contact = () => {
                 </div>
               </div>
             </div>
-          </div>
-        </section>
-
-        {/* Map Section */}
-        <section className="bg-gray-50 py-16">
-          <div className="container-custom">
-            
           </div>
         </section>
       </main>

@@ -8,10 +8,11 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { format } from "date-fns";
-import { pt } from "date-fns/locale"; // Importando o locale pt para datas
+import { pt } from "date-fns/locale";
 import { Calendar as CalendarIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useToast } from "@/hooks/use-toast";
+import InputMask from "react-input-mask";
 
 const consultationTypes = [
   { value: "initial", label: "Consulta Inicial (60 min)" },
@@ -80,7 +81,7 @@ const BookingForm = () => {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-3">
-      <div className="space-y-1.5">
+      <div className="space-y-1">
         <Label htmlFor="name">Nome Completo</Label>
         <Input
           id="name"
@@ -89,11 +90,12 @@ const BookingForm = () => {
           value={formData.name}
           onChange={handleInputChange}
           required
+          className="transition-none"
         />
       </div>
       
       <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-        <div className="space-y-1.5">
+        <div className="space-y-1">
           <Label htmlFor="email">E-mail</Label>
           <Input
             id="email"
@@ -103,25 +105,34 @@ const BookingForm = () => {
             value={formData.email}
             onChange={handleInputChange}
             required
+            className="transition-none"
           />
         </div>
-        <div className="space-y-1.5">
+        <div className="space-y-1">
           <Label htmlFor="phone">Telefone</Label>
-          <Input
-            id="phone"
-            name="phone"
-            placeholder="Seu número de telefone"
+          <InputMask
+            mask="(99) 99999-9999"
             value={formData.phone}
             onChange={handleInputChange}
-            required
-          />
+          >
+            {(inputProps: any) => (
+              <Input
+                id="phone"
+                name="phone"
+                placeholder="(00) 00000-0000"
+                required
+                className="transition-none"
+                {...inputProps}
+              />
+            )}
+          </InputMask>
         </div>
       </div>
 
-      <div className="space-y-1.5">
+      <div className="space-y-1">
         <Label>Tipo de Consulta</Label>
         <Select value={type} onValueChange={setType} required>
-          <SelectTrigger>
+          <SelectTrigger className="transition-none">
             <SelectValue placeholder="Selecione o tipo de consulta" />
           </SelectTrigger>
           <SelectContent>
@@ -135,14 +146,14 @@ const BookingForm = () => {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-        <div className="space-y-1.5">
+        <div className="space-y-1">
           <Label>Data Preferida</Label>
           <Popover>
             <PopoverTrigger asChild>
               <Button
                 variant="outline"
                 className={cn(
-                  "w-full justify-start text-left font-normal",
+                  "w-full justify-start text-left font-normal transition-none",
                   !date && "text-muted-foreground"
                 )}
               >
@@ -168,10 +179,10 @@ const BookingForm = () => {
           </Popover>
         </div>
 
-        <div className="space-y-1.5">
+        <div className="space-y-1">
           <Label>Horário Preferido</Label>
           <Select value={time} onValueChange={setTime} required>
-            <SelectTrigger>
+            <SelectTrigger className="transition-none">
               <SelectValue placeholder="Selecione um horário" />
             </SelectTrigger>
             <SelectContent>
@@ -185,7 +196,7 @@ const BookingForm = () => {
         </div>
       </div>
 
-      <div className="space-y-1.5">
+      <div className="space-y-1">
         <Label htmlFor="notes">Observações Adicionais</Label>
         <Textarea
           id="notes"
@@ -194,12 +205,13 @@ const BookingForm = () => {
           value={formData.notes}
           onChange={handleInputChange}
           rows={3}
+          className="transition-none"
         />
       </div>
 
       <Button
         type="submit"
-        className="w-full bg-nutrition-green hover:bg-nutrition-teal"
+        className="w-full bg-nutrition-green hover:bg-nutrition-teal transition-none"
         disabled={isSubmitting}
       >
         {isSubmitting ? "Agendando..." : "Agendar Consulta"}

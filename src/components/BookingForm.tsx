@@ -9,10 +9,11 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Textarea } from "@/components/ui/textarea";
 import { format } from "date-fns";
 import { pt } from "date-fns/locale";
-import { Calendar as CalendarIcon } from "lucide-react";
+import { Calendar as CalendarIcon, Mail, MessageCircle } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useToast } from "@/hooks/use-toast";
 import InputMask from "react-input-mask";
+import { Checkbox } from "@/components/ui/checkbox";
 
 const consultationTypes = [
   { value: "initial", label: "Consulta Inicial (60 min)" },
@@ -38,6 +39,8 @@ const BookingForm = () => {
     notes: ""
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [sendToWhatsApp, setSendToWhatsApp] = useState(true);
+  const [sendToEmail, setSendToEmail] = useState(true);
   const { toast } = useToast();
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -48,16 +51,49 @@ const BookingForm = () => {
     }));
   };
 
+  // Função para obter o tipo de consulta em português baseado no valor
+  const getTipoConsulta = (tipo: string): string => {
+    const consulta = consultationTypes.find(c => c.value === tipo);
+    return consulta ? consulta.label : "";
+  };
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Simulate API call
+    // Formatar a mensagem para WhatsApp
+    const formattedDate = date ? format(date, "d 'de' MMMM 'de' yyyy", { locale: pt }) : "";
+    const consultationType = getTipoConsulta(type);
+    
+    const whatsappMessage = `Olá, gostaria de agendar uma consulta:
+Nome: ${formData.name}
+Email: ${formData.email}
+Telefone: ${formData.phone}
+Tipo: ${consultationType}
+Data: ${formattedDate}
+Horário: ${time}
+${formData.notes ? `Observações: ${formData.notes}` : ''}`;
+    
+    if (sendToWhatsApp) {
+      const encodedMessage = encodeURIComponent(whatsappMessage);
+      // Usando o número do WhatsApp para envio (exemplo: 5511999999999)
+      const whatsappLink = `https://wa.me/5511999999999?text=${encodedMessage}`;
+      window.open(whatsappLink, '_blank');
+    }
+
+    if (sendToEmail) {
+      const emailSubject = encodeURIComponent(`Agendamento de ${consultationType}`);
+      const emailBody = encodeURIComponent(whatsappMessage);
+      const mailtoLink = `mailto:contato@nutrivida.com?subject=${emailSubject}&body=${emailBody}`;
+      window.open(mailtoLink, '_blank');
+    }
+    
+    // Simulate API call (maintain original functionality)
     setTimeout(() => {
       setIsSubmitting(false);
       toast({
         title: "Agendamento Confirmado",
-        description: `Sua consulta de ${getTipoConsulta(type)} foi agendada para ${date ? format(date, "d 'de' MMMM 'de' yyyy", { locale: pt }) : ""} às ${time}.`,
+        description: `Sua consulta de ${consultationType} foi agendada para ${formattedDate} às ${time}.`,
       });
       
       // Reset form
@@ -71,12 +107,6 @@ const BookingForm = () => {
         notes: ""
       });
     }, 1500);
-  };
-
-  // Função para obter o tipo de consulta em português baseado no valor
-  const getTipoConsulta = (tipo: string): string => {
-    const consulta = consultationTypes.find(c => c.value === tipo);
-    return consulta ? consulta.label : "";
   };
 
   return (
@@ -207,6 +237,38 @@ const BookingForm = () => {
           rows={3}
           className="transition-none"
         />
+      </div>
+      
+      <div className="space-y-2">
+        <div className="flex items-center space-x-2">
+          <Checkbox 
+            id="sendToWhatsApp" 
+            checked={sendToWhatsApp} 
+            onCheckedChange={(checked) => setSendToWhatsApp(checked as boolean)}
+          />
+          <Label 
+            htmlFor="sendToWhatsApp" 
+            className="text-sm font-medium leading-none cursor-pointer flex items-center"
+          >
+            <MessageCircle className="mr-1 h-4 w-4" /> 
+            Enviar para WhatsApp
+          </Label>
+        </div>
+        
+        <div className="flex items-center space-x-2">
+          <Checkbox 
+            id="sendToEmail" 
+            checked={sendToEmail} 
+            onCheckedChange={(checked) => setSendToEmail(checked as boolean)}
+          />
+          <Label 
+            htmlFor="sendToEmail" 
+            className="text-sm font-medium leading-none cursor-pointer flex items-center"
+          >
+            <Mail className="mr-1 h-4 w-4" /> 
+            Enviar para Email
+          </Label>
+        </div>
       </div>
 
       <Button

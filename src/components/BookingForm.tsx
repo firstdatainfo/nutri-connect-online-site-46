@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
@@ -14,12 +13,15 @@ import { cn } from "@/lib/utils";
 import { useToast } from "@/hooks/use-toast";
 import InputMask from "react-input-mask";
 import { Checkbox } from "@/components/ui/checkbox";
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import emailjs from '@emailjs/browser';
 
 // Configurações para envio de mensagens
 const CONTACT_CONFIG = {
   whatsappNumber: "5511999999999", // Formato: código do país + DDD + número (sem espaços ou caracteres especiais)
-  emailAddress: "contato@nutrivida.com"
+  emailAddress: "contato@nutrivida.com",
+  emailServiceId: "service_default", // Substitua pelo seu Service ID do EmailJS
+  emailTemplateId: "template_default", // Substitua pelo seu Template ID do EmailJS
+  emailUserId: "user_yourUserID" // Substitua pelo seu User ID do EmailJS
 };
 
 const consultationTypes = [
@@ -102,12 +104,46 @@ ${formData.notes ? `Observações: ${formData.notes}` : ''}`
     };
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  // Novo método para enviar email via EmailJS
+  const sendEmailViaEmailJS = async () => {
+    try {
+      const { subject } = formatEmailContent();
+      const formattedDate = date ? format(date, "d 'de' MMMM 'de' yyyy", { locale: pt }) : "";
+      const consultationType = getTipoConsulta(type);
+      
+      const templateParams = {
+        from_name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        subject: subject,
+        consultation_type: consultationType,
+        date: formattedDate,
+        time: time,
+        notes: formData.notes || "Nenhuma observação",
+        message: `Tipo: ${consultationType}, Data: ${formattedDate}, Hora: ${time}`
+      };
+      
+      await emailjs.send(
+        CONTACT_CONFIG.emailServiceId,
+        CONTACT_CONFIG.emailTemplateId,
+        templateParams,
+        CONTACT_CONFIG.emailUserId
+      );
+      
+      return true;
+    } catch (error) {
+      console.error('Erro ao enviar email:', error);
+      return false;
+    }
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
     
     // Formatar a mensagem para WhatsApp
-    const { plainText, subject, body } = formatEmailContent();
+    const { plainText } = formatEmailContent();
+    let emailSuccess = true;
     
     // Enviar para WhatsApp se selecionado
     if (sendToWhatsApp) {
@@ -116,19 +152,31 @@ ${formData.notes ? `Observações: ${formData.notes}` : ''}`
       window.open(whatsappLink, '_blank');
     }
 
-    // Enviar para email se selecionado (agora automaticamente, sem preview)
+    // Enviar para email via EmailJS se selecionado
     if (sendToEmail) {
-      const encodedSubject = encodeURIComponent(subject);
-      const encodedBody = encodeURIComponent(plainText); // Usando texto plano para compatibilidade
-      const mailtoLink = `mailto:${CONTACT_CONFIG.emailAddress}?subject=${encodedSubject}&body=${encodedBody}`;
-      window.open(mailtoLink, '_blank');
+      emailSuccess = await sendEmailViaEmailJS();
+      
+      if (!emailSuccess) {
+        // Fallback para o método mailto: se EmailJS falhar
+        const { subject } = formatEmailContent();
+        const encodedSubject = encodeURIComponent(subject);
+        const encodedBody = encodeURIComponent(plainText);
+        const mailtoLink = `mailto:${CONTACT_CONFIG.emailAddress}?subject=${encodedSubject}&body=${encodedBody}`;
+        window.open(mailtoLink, '_blank');
+        
+        toast({
+          title: "Alerta",
+          description: "Não foi possível enviar email diretamente. O cliente de email foi aberto.",
+          variant: "default",
+        });
+      }
     }
     
     // Finalizar submissão
-    finishSubmission();
+    finishSubmission(emailSuccess);
   };
 
-  const finishSubmission = () => {
+  const finishSubmission = (emailSuccess = true) => {
     // Simulação de uma chamada API (mantém a funcionalidade original)
     setTimeout(() => {
       setIsSubmitting(false);
@@ -137,7 +185,8 @@ ${formData.notes ? `Observações: ${formData.notes}` : ''}`
       
       toast({
         title: "Agendamento Enviado",
-        description: `Sua solicitação de ${consultationType} para ${formattedDate} às ${time} foi enviada.`,
+        description: `Sua solicitação de ${consultationType} para ${formattedDate} às ${time} foi enviada${!emailSuccess ? ' (exceto email)' : ''}.`,
+        variant: emailSuccess ? "default" : "destructive",
       });
       
       // Reset form

@@ -119,16 +119,11 @@ const About = () => {
 
             <div className="flex justify-center">
               <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow max-w-md">
-                <div className="w-full h-[500px] overflow-hidden">
-                  <img 
-                    src="/lovable-uploads/66d8f232-ba58-456e-bb29-6e6e3d4efe7c.png" 
-                    alt={teamMember.name} 
-                    className="w-full h-full object-contain"
-                    loading="eager"
-                    fetchPriority="high"
-                    decoding="sync"
-                  />
-                </div>
+                <img 
+                  src={teamMember.image} 
+                  alt={teamMember.name} 
+                  className="w-full h-96 object-cover object-center"
+                />
                 <div className="p-6">
                   <h3 className="text-xl font-semibold mb-1">{teamMember.name}</h3>
                   <p className="text-nutrition-green font-medium mb-3">{teamMember.title}</p>

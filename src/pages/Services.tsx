@@ -4,88 +4,49 @@ import Hero from "@/components/Hero";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { Apple, Carrot, Heart, MessageCircle, Users } from "lucide-react";
-
 const Services = () => {
-  const services = [
-    {
-      id: "personal-nutrition",
-      title: "Planos Nutricionais Personalizados",
-      description: "Planos de nutrição personalizados adaptados ao seu corpo único, estilo de vida, preocupações de saúde e objetivos.",
-      icon: <Apple size={32} />,
-      benefits: [
-        "Avaliação do seu estado atual de saúde e necessidades nutricionais",
-        "Planos de refeições personalizados baseados em suas preferências e restrições alimentares",
-        "Educação nutricional para ajudá-lo a entender o 'porquê' das recomendações",
-        "Ajustes contínuos para otimizar seus resultados",
-        "Check-ins regulares para monitorar o progresso e fornecer suporte"
-      ],
-      image: "https://images.unsplash.com/photo-1498837167922-ddd27525d352?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
-      color: "nutrition-green"
-    },
-    {
-      id: "wellness-coaching",
-      title: "Coaching de Bem-Estar",
-      description: "Abordagem holística à saúde que aborda nutrição junto com sono, estresse, atividade física e outros fatores de estilo de vida.",
-      icon: <Heart size={32} />,
-      benefits: [
-        "Avaliação abrangente do estilo de vida",
-        "Definição de metas e responsabilidade",
-        "Estratégias de mudança comportamental",
-        "Técnicas de gerenciamento de estresse",
-        "Orientação para otimização do sono"
-      ],
-      image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
-      color: "nutrition-teal"
-    },
-    {
-      id: "meal-planning",
-      title: "Planejamento de Refeições",
-      description: "Planos de refeições práticos e receitas projetadas para se adequar à sua agenda, orçamento e habilidades culinárias.",
-      icon: <Carrot size={32} />,
-      benefits: [
-        "Planos de refeições semanais com receitas fáceis de seguir",
-        "Listas de compras",
-        "Orientação para preparação de refeições em lote",
-        "Opções econômicas",
-        "Ideias de refeições para toda a família"
-      ],
-      image: "/lovable-uploads/4307f02a-427b-4f6d-a244-b658a9d78848.png",
-      color: "nutrition-orange"
-    },
-    {
-      id: "virtual-consultations",
-      title: "Consultas Virtuais",
-      description: "Sessões online convenientes com nossos especialistas em nutrição no conforto da sua casa.",
-      icon: <MessageCircle size={32} />,
-      benefits: [
-        "Agendamento flexível",
-        "Sem tempo de deslocamento",
-        "Mesma qualidade de atendimento das sessões presenciais",
-        "Compartilhamento de tela para recursos educacionais",
-        "Plataforma segura e privada"
-      ],
-      image: "https://images.unsplash.com/photo-1577563908411-5077b6dc7624?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
-      color: "nutrition-blue"
-    },
-    {
-      id: "group-programs",
-      title: "Programas em Grupo",
-      description: "Participe dos nossos grupos de nutrição para educação, responsabilidade e comunidade.",
-      icon: <Users size={32} />,
-      benefits: [
-        "Orientação nutricional com bom custo-benefício",
-        "Apoio e motivação da comunidade",
-        "Experiências de aprendizado compartilhado",
-        "Programas estruturados com objetivos claros",
-        "Troca de receitas saudáveis"
-      ],
-      image: "https://images.unsplash.com/photo-1517649763962-0c623066013b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
-      color: "nutrition-green"
-    }
-  ];
-
-  return (
-    <>
+  const services = [{
+    id: "personal-nutrition",
+    title: "Planos Nutricionais Personalizados",
+    description: "Planos de nutrição personalizados adaptados ao seu corpo único, estilo de vida, preocupações de saúde e objetivos.",
+    icon: <Apple size={32} />,
+    benefits: ["Avaliação do seu estado atual de saúde e necessidades nutricionais", "Planos de refeições personalizados baseados em suas preferências e restrições alimentares", "Educação nutricional para ajudá-lo a entender o 'porquê' das recomendações", "Ajustes contínuos para otimizar seus resultados", "Check-ins regulares para monitorar o progresso e fornecer suporte"],
+    image: "https://images.unsplash.com/photo-1498837167922-ddd27525d352?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
+    color: "nutrition-green"
+  }, {
+    id: "wellness-coaching",
+    title: "Coaching de Bem-Estar",
+    description: "Abordagem holística à saúde que aborda nutrição junto com sono, estresse, atividade física e outros fatores de estilo de vida.",
+    icon: <Heart size={32} />,
+    benefits: ["Avaliação abrangente do estilo de vida", "Definição de metas e responsabilidade", "Estratégias de mudança comportamental", "Técnicas de gerenciamento de estresse", "Orientação para otimização do sono"],
+    image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
+    color: "nutrition-teal"
+  }, {
+    id: "meal-planning",
+    title: "Planejamento de Refeições",
+    description: "Planos de refeições práticos e receitas projetadas para se adequar à sua agenda, orçamento e habilidades culinárias.",
+    icon: <Carrot size={32} />,
+    benefits: ["Planos de refeições semanais com receitas fáceis de seguir", "Listas de compras", "Orientação para preparação de refeições em lote", "Opções econômicas", "Ideias de refeições para toda a família"],
+    image: "/lovable-uploads/4307f02a-427b-4f6d-a244-b658a9d78848.png",
+    color: "nutrition-orange"
+  }, {
+    id: "virtual-consultations",
+    title: "Consultas Virtuais",
+    description: "Sessões online convenientes com nossos especialistas em nutrição no conforto da sua casa.",
+    icon: <MessageCircle size={32} />,
+    benefits: ["Agendamento flexível", "Sem tempo de deslocamento", "Mesma qualidade de atendimento das sessões presenciais", "Compartilhamento de tela para recursos educacionais", "Plataforma segura e privada"],
+    image: "https://images.unsplash.com/photo-1577563908411-5077b6dc7624?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
+    color: "nutrition-blue"
+  }, {
+    id: "group-programs",
+    title: "Programas em Grupo",
+    description: "Participe dos nossos grupos de nutrição para educação, responsabilidade e comunidade.",
+    icon: <Users size={32} />,
+    benefits: ["Orientação nutricional com bom custo-benefício", "Apoio e motivação da comunidade", "Experiências de aprendizado compartilhado", "Programas estruturados com objetivos claros", "Troca de receitas saudáveis"],
+    image: "https://images.unsplash.com/photo-1517649763962-0c623066013b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
+    color: "nutrition-green"
+  }];
+  return <>
       <Navbar />
       <main>
         {/* Hero Section com espaçamento reduzido */}
@@ -102,14 +63,7 @@ const Services = () => {
                 </Button>
               </div>
               <div className="order-1 md:order-2 flex justify-center">
-                <img 
-                  src="/lovable-uploads/d08fb607-d036-44b3-a7ea-8bcb1e13ff7a.png" 
-                  alt="Dra. Lidiane dos Reis - Nutricionista" 
-                  className="max-h-[500px] object-contain rounded-lg"
-                  loading="eager" 
-                  fetchPriority="high" 
-                  decoding="sync"
-                />
+                <img src="/lovable-uploads/d08fb607-d036-44b3-a7ea-8bcb1e13ff7a.png" alt="Dra. Lidiane dos Reis - Nutricionista" className="max-h-[500px] object-contain rounded-lg" loading="eager" fetchPriority="high" decoding="sync" />
               </div>
             </div>
           </div>
@@ -132,14 +86,7 @@ const Services = () => {
                 </p>
               </div>
               <div className="flex justify-center md:justify-end">
-                <img 
-                  src="/lovable-uploads/328781bb-6e73-4640-a174-a95402b23668.png" 
-                  alt="Nutrição e saúde" 
-                  className="rounded-lg max-w-full h-auto shadow-lg" 
-                  loading="eager" 
-                  fetchPriority="high" 
-                  decoding="sync"
-                />
+                <img src="/lovable-uploads/328781bb-6e73-4640-a174-a95402b23668.png" alt="Nutrição e saúde" className="rounded-lg max-w-full h-auto shadow-lg" loading="eager" fetchPriority="high" decoding="sync" />
               </div>
             </div>
           </div>
@@ -148,25 +95,11 @@ const Services = () => {
         {/* Serviços com imagens sem animação */}
         <section className="bg-white py-12">
           <div className="container-custom">
-            {services.map((service, index) => (
-              <div 
-                key={service.id} 
-                id={service.id}
-                className={`grid grid-cols-1 lg:grid-cols-2 gap-8 items-center ${
-                  index !== 0 ? "pt-16 mt-16 border-t border-gray-100" : ""
-                }`}
-              >
+            {services.map((service, index) => <div key={service.id} id={service.id} className={`grid grid-cols-1 lg:grid-cols-2 gap-8 items-center ${index !== 0 ? "pt-16 mt-16 border-t border-gray-100" : ""}`}>
                 {/* Imagem (alternando lados) sem animação */}
                 <div className={`relative ${index % 2 === 1 ? "lg:order-2" : ""}`}>
                   <div className={`absolute -inset-1 bg-${service.color}/20 rounded-lg blur-xl opacity-70`}></div>
-                  <img 
-                    src={service.image} 
-                    alt={service.title} 
-                    className="w-full h-auto rounded-lg shadow-xl relative z-10"
-                    loading="eager"
-                    fetchPriority="high"
-                    decoding="sync"
-                  />
+                  
                 </div>
 
                 {/* Conteúdo */}
@@ -179,24 +112,21 @@ const Services = () => {
                   
                   <h3 className="text-xl font-semibold mb-3">Benefícios:</h3>
                   <ul className="space-y-2 mb-6">
-                    {service.benefits.map((benefit, i) => (
-                      <li key={i} className="flex items-start">
+                    {service.benefits.map((benefit, i) => <li key={i} className="flex items-start">
                         <div className={`bg-${service.color}/10 rounded-full p-1 mr-3 mt-1`}>
                           <svg className={`w-4 h-4 text-${service.color}`} fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
                           </svg>
                         </div>
                         <span className="text-gray-700">{benefit}</span>
-                      </li>
-                    ))}
+                      </li>)}
                   </ul>
                   
                   <Button asChild className={`bg-${service.color} hover:bg-${service.color}/90`}>
                     <Link to="/consultation">Agendar Este Serviço</Link>
                   </Button>
                 </div>
-              </div>
-            ))}
+              </div>)}
           </div>
         </section>
 
@@ -265,8 +195,6 @@ const Services = () => {
         </section>
       </main>
       <Footer />
-    </>
-  );
+    </>;
 };
-
 export default Services;

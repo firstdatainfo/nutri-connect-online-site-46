@@ -89,14 +89,29 @@ const Services = () => {
     <>
       <Navbar />
       <main>
-        <Hero
-          title="Nossos Serviços Nutricionais"
-          subtitle="Conheça nossa variedade de serviços nutricionais personalizados projetados para ajudá-lo a alcançar seus objetivos de saúde."
-          ctaText="Agendar uma Consulta"
-          ctaLink="/consultation"
-          image="https://images.unsplash.com/photo-1490818387583-1baba5e638af?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1932&q=80"
-          showWave={false}
-        />
+        {/* Hero Section com a nova imagem */}
+        <section className="bg-nutrition-light-blue/10 py-12 md:py-20">
+          <div className="container-custom">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+              <div className="order-2 md:order-1">
+                <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">Nossos Serviços Nutricionais</h1>
+                <p className="text-lg text-gray-700 mb-8">
+                  Conheça nossa variedade de serviços nutricionais personalizados projetados para ajudá-lo a alcançar seus objetivos de saúde.
+                </p>
+                <Button asChild size="lg" className="bg-nutrition-green hover:bg-nutrition-green/90">
+                  <Link to="/consultation">Agendar uma Consulta</Link>
+                </Button>
+              </div>
+              <div className="order-1 md:order-2 flex justify-center">
+                <img 
+                  src="/lovable-uploads/d08fb607-d036-44b3-a7ea-8bcb1e13ff7a.png" 
+                  alt="Dra. Lidiane dos Reis - Nutricionista" 
+                  className="max-h-[500px] object-contain rounded-lg"
+                />
+              </div>
+            </div>
+          </div>
+        </section>
 
         {/* Introdução aos Serviços */}
         <section className="bg-white py-12">

@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
@@ -21,11 +20,11 @@ const CONTACT_CONFIG = {
   whatsappNumber: "5566992456034",
   // Formato: código do país + DDD + número (sem espaços ou caracteres especiais)
   emailAddress: "lidiane_dosreis@outlook.com",
-  emailServiceId: "service_u2y1bq7",
+  emailServiceId: "service_u2y1bq7", // Mantido conforme fornecido
   // Service ID atualizado do EmailJS
-  emailTemplateId: "template_dw1xf0n",
+  emailTemplateId: "template_x2l793i", // Atualizado com o valor fornecido
   // Este é um ID genérico, substitua pelo seu Template ID do EmailJS
-  emailPublicKey: "Z3J1fbUFxsR_bRszD" // Este é um ID genérico, substitua pelo seu Public Key do EmailJS
+  emailPublicKey: "VMppyCObQswdims-9" // Atualizado com o valor fornecido
 };
 
 // Inicializar EmailJS
@@ -197,7 +196,7 @@ ${formData.notes ? `Observações: ${formData.notes}` : ''}`
         if (!emailSuccess) {
           toast({
             title: "Alerta",
-            description: "Não foi possível enviar o email. Tente novamente mais tarde.",
+            description: "Não foi possível enviar o email. Verifique os dados ou tente novamente mais tarde.", // Mensagem de erro atualizada
             variant: "destructive"
           });
         } else {
@@ -217,7 +216,14 @@ ${formData.notes ? `Observações: ${formData.notes}` : ''}`
       }
 
       // Finalizar submissão
-      finishSubmission(emailSuccess);
+      // Apenas finalizar se o email foi enviado com sucesso OU se o envio de email não foi selecionado.
+      // Se o email falhou e estava selecionado, não resetamos o formulário automaticamente para permitir nova tentativa.
+      if (emailSuccess || !sendToEmail) {
+        finishSubmission(emailSuccess);
+      } else {
+         setIsSubmitting(false); // Para reabilitar o botão de envio
+      }
+      
     } catch (error) {
       console.error("Erro durante o envio:", error);
       setIsSubmitting(false);
@@ -237,25 +243,34 @@ ${formData.notes ? `Observações: ${formData.notes}` : ''}`
       const formattedDate = date ? format(date, "d 'de' MMMM 'de' yyyy", {
         locale: pt
       }) : "";
-      toast({
-        title: "Agendamento Enviado",
-        description: `Sua solicitação de ${consultationType} para ${formattedDate} às ${time} foi enviada${!emailSuccess ? ' (exceto email)' : ''}.`,
-        variant: emailSuccess ? "default" : "destructive"
-      });
+      
+      // Mostrar toast de sucesso geral, mesmo que o email tenha falhado,
+      // mas indicando a falha do email se for o caso.
+      // A notificação específica de falha do email já foi mostrada no handleSubmit.
+      if (emailSuccess || sendToWhatsApp) { // Se email foi sucesso OU whatsapp foi aberto
+        toast({
+          title: "Agendamento Enviado",
+          description: `Sua solicitação de ${consultationType} para ${formattedDate} às ${time} foi processada. ${!emailSuccess && sendToEmail ? 'O envio do email falhou.' : ''}`,
+          variant: emailSuccess || !sendToEmail ? "default" : "destructive" // default se email sucesso ou não selecionado, destructive se falhou e estava selecionado
+        });
+      }
 
-      // Reset form
-      setDate(undefined);
-      setType("");
-      setTime("");
-      setFormData({
-        name: "",
-        email: "",
-        phone: "",
-        cpf: "",
-        age: "",
-        birthDate: "",
-        notes: ""
-      });
+
+      // Reset form only if email was successful or not attempted
+      if (emailSuccess || !sendToEmail) {
+          setDate(undefined);
+          setType("");
+          setTime("");
+          setFormData({
+            name: "",
+            email: "",
+            phone: "",
+            cpf: "",
+            age: "",
+            birthDate: "",
+            notes: ""
+          });
+      }
     }, 1500);
   };
 

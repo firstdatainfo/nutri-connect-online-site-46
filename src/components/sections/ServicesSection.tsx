@@ -33,7 +33,7 @@ const ServicesSection = () => {
   return <section className="py-16 bg-white w-full">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <h2 className="text-2xl sm:text-3xl font-bold mb-3">Nutrir e mais que alimentear : é promover Beneficios.</h2>
+          <h2 className="text-2xl sm:text-3xl font-bold mb-3">Nutrir e mais que alimentar : é promover Beneficios seu corpo .</h2>
           <p className="text-lg text-gray-600 max-w-3xl mx-auto">
             "Nutrir é mais que alimentar: é transformar vidas, promover saúde e despertar o potencial máximo de cada corpo e mente através do poder dos alimentos."
           </p>

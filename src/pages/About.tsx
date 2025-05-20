@@ -1,29 +1,16 @@
+
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Hero from "@/components/Hero";
 
 const About = () => {
-  const teamMembers = [{
+  // Modificado para manter apenas a Dra. Lidiane dos Reis
+  const teamMember = {
     name: "Dra. Lidiane dos Reis",
-    title: "Nutricionista Chefe",
-    image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80",
-    bio: "Dra. Lidiane dos Reis tem mais de 15 anos de experiência em nutrição clínica e possui doutorado em Ciências Nutricionais."
-  }, {
-    name: "João Silva",
-    title: "Nutricionista Esportivo",
-    image: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80",
-    bio: "João é especialista em nutrição esportiva e trabalhou com atletas profissionais e equipes esportivas em todo o país."
-  }, {
-    name: "Ana Santos",
-    title: "Coach de Bem-Estar",
-    image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=464&q=80",
-    bio: "Ana é uma coach de bem-estar certificada que ajuda clientes a integrar hábitos nutricionais saudáveis em suas vidas cotidianas."
-  }, {
-    name: "Carlos Mendes",
     title: "Nutricionista",
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80",
-    bio: "Carlos é especializado em terapia nutricional médica para gerenciamento de doenças crônicas e perda de peso."
-  }];
+    image: "/lovable-uploads/c96454b9-5d50-458c-8a97-2cb785105770.png", // Nova imagem carregada
+    bio: "Dra. Lidiane dos Reis tem mais de 15 anos de experiência em nutrição clínica e possui doutorado em Ciências Nutricionais."
+  };
 
   return (
     <>
@@ -120,23 +107,29 @@ const About = () => {
           </div>
         </section>
 
-        {/* Seção Nossa Equipe */}
+        {/* Seção Conheça Meu Trabalho - Modificada para mostrar apenas Dra. Lidiane */}
         <section className="section-padding bg-white">
           <div className="container-custom">
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-bold mb-4">Conheça Meu Trabalho</h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">Sou  nutricionista certificada e especialista em bem-estar estou dedicada a ajudá-lo a alcançar seus objetivos de saúde.</p>
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                Sou nutricionista certificada e especialista em bem-estar, dedicada a ajudá-lo a alcançar seus objetivos de saúde.
+              </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-              {teamMembers.map((member, index) => <div key={index} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
-                  <img src={member.image} alt={member.name} className="w-full h-64 object-cover object-center" />
-                  <div className="p-6">
-                    <h3 className="text-xl font-semibold mb-1">{member.name}</h3>
-                    <p className="text-nutrition-green font-medium mb-3">{member.title}</p>
-                    <p className="text-gray-600">{member.bio}</p>
-                  </div>
-                </div>)}
+            <div className="flex justify-center">
+              <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow max-w-md">
+                <img 
+                  src={teamMember.image} 
+                  alt={teamMember.name} 
+                  className="w-full h-96 object-cover object-center"
+                />
+                <div className="p-6">
+                  <h3 className="text-xl font-semibold mb-1">{teamMember.name}</h3>
+                  <p className="text-nutrition-green font-medium mb-3">{teamMember.title}</p>
+                  <p className="text-gray-600">{teamMember.bio}</p>
+                </div>
+              </div>
             </div>
           </div>
         </section>
@@ -145,9 +138,9 @@ const About = () => {
         <section className="section-padding bg-nutrition-light-green/10">
           <div className="container-custom">
             <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">Nossas Credenciais</h2>
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">Minhas Credenciais</h2>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                Orgulhamo-nos de manter os mais altos padrões profissionais e educação contínua.
+                Orgulho-me de manter os mais altos padrões profissionais e educação contínua.
               </p>
             </div>
 
@@ -161,7 +154,7 @@ const About = () => {
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
                       </svg>
                     </div>
-                    <span className="text-gray-700">Nutricionistas Dietistas Registrados</span>
+                    <span className="text-gray-700">Nutricionista Registrada</span>
                   </li>
                   <li className="flex items-start">
                     <div className="bg-nutrition-green/10 rounded-full p-1 mr-3 mt-1">
@@ -169,7 +162,7 @@ const About = () => {
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
                       </svg>
                     </div>
-                    <span className="text-gray-700">Nutricionistas Esportivos Certificados</span>
+                    <span className="text-gray-700">Especialista em Nutrição Esportiva</span>
                   </li>
                   <li className="flex items-start">
                     <div className="bg-nutrition-green/10 rounded-full p-1 mr-3 mt-1">
@@ -177,7 +170,7 @@ const About = () => {
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
                       </svg>
                     </div>
-                    <span className="text-gray-700">Educadores de Diabetes Certificados</span>
+                    <span className="text-gray-700">Educadora em Diabetes</span>
                   </li>
                   <li className="flex items-start">
                     <div className="bg-nutrition-green/10 rounded-full p-1 mr-3 mt-1">
@@ -185,7 +178,7 @@ const About = () => {
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
                       </svg>
                     </div>
-                    <span className="text-gray-700">Coaches de Saúde e Bem-Estar Certificados</span>
+                    <span className="text-gray-700">Coach de Saúde e Bem-Estar</span>
                   </li>
                 </ul>
               </div>
@@ -207,7 +200,7 @@ const About = () => {
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
                       </svg>
                     </div>
-                    <span className="text-gray-700">Sociedade Americana de Nutrição</span>
+                    <span className="text-gray-700">Sociedade Brasileira de Nutrição</span>
                   </li>
                   <li className="flex items-start">
                     <div className="bg-nutrition-green/10 rounded-full p-1 mr-3 mt-1">

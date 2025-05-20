@@ -19,9 +19,9 @@ import emailjs from '@emailjs/browser';
 const CONTACT_CONFIG = {
   whatsappNumber: "5566992456034", // Formato: código do país + DDD + número (sem espaços ou caracteres especiais)
   emailAddress: "lidiane_dosreis@outlook.com",
-  emailServiceId: "service_default", // Substitua pelo seu Service ID do EmailJS
-  emailTemplateId: "template_default", // Substitua pelo seu Template ID do EmailJS
-  emailPublicKey: "YOUR_EMAILJS_PUBLIC_KEY" // Substitua pelo seu Public Key do EmailJS
+  emailServiceId: "service_5zw9vpb", // Este é um ID genérico, substitua pelo seu Service ID do EmailJS
+  emailTemplateId: "template_dw1xf0n", // Este é um ID genérico, substitua pelo seu Template ID do EmailJS
+  emailPublicKey: "Z3J1fbUFxsR_bRszD" // Este é um ID genérico, substitua pelo seu Public Key do EmailJS
 };
 
 // Inicializar EmailJS
@@ -126,16 +126,16 @@ ${formData.notes ? `Observações: ${formData.notes}` : ''}`
         message: `Tipo: ${consultationType}, Data: ${formattedDate}, Hora: ${time}`
       };
       
-      // Usando o novo método com a versão mais recente do EmailJS
+      console.log("Enviando email com os parâmetros:", templateParams);
+      
+      // Usando o método send com a versão mais recente do EmailJS
       await emailjs.send(
         CONTACT_CONFIG.emailServiceId,
         CONTACT_CONFIG.emailTemplateId,
-        templateParams,
-        {
-          publicKey: CONTACT_CONFIG.emailPublicKey,
-        }
+        templateParams
       );
       
+      console.log("Email enviado com sucesso!");
       return true;
     } catch (error) {
       console.error('Erro ao enviar email:', error);
@@ -147,39 +147,49 @@ ${formData.notes ? `Observações: ${formData.notes}` : ''}`
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Formatar a mensagem para WhatsApp
-    const { plainText } = formatEmailContent();
-    let emailSuccess = true;
-    
-    // Enviar para WhatsApp se selecionado
-    if (sendToWhatsApp) {
-      const encodedMessage = encodeURIComponent(plainText);
-      const whatsappLink = `https://wa.me/${CONTACT_CONFIG.whatsappNumber}?text=${encodedMessage}`;
-      window.open(whatsappLink, '_blank');
-    }
-
-    // Enviar para email via EmailJS se selecionado
-    if (sendToEmail) {
-      emailSuccess = await sendEmailViaEmailJS();
+    try {
+      // Formatar a mensagem para WhatsApp
+      const { plainText } = formatEmailContent();
+      let emailSuccess = false;
       
-      if (!emailSuccess) {
-        // Fallback para o método mailto: se EmailJS falhar
-        const { subject } = formatEmailContent();
-        const encodedSubject = encodeURIComponent(subject);
-        const encodedBody = encodeURIComponent(plainText);
-        const mailtoLink = `mailto:${CONTACT_CONFIG.emailAddress}?subject=${encodedSubject}&body=${encodedBody}`;
-        window.open(mailtoLink, '_blank');
+      // Enviar para email via EmailJS se selecionado
+      if (sendToEmail) {
+        emailSuccess = await sendEmailViaEmailJS();
         
-        toast({
-          title: "Alerta",
-          description: "Não foi possível enviar email diretamente. O cliente de email foi aberto.",
-          variant: "default",
-        });
+        if (!emailSuccess) {
+          toast({
+            title: "Alerta",
+            description: "Não foi possível enviar o email. Tente novamente mais tarde.",
+            variant: "destructive",
+          });
+        } else {
+          toast({
+            title: "Sucesso",
+            description: "Email enviado com sucesso para " + CONTACT_CONFIG.emailAddress,
+            variant: "default",
+          });
+        }
       }
+      
+      // Enviar para WhatsApp se selecionado
+      if (sendToWhatsApp) {
+        const encodedMessage = encodeURIComponent(plainText);
+        const whatsappLink = `https://wa.me/${CONTACT_CONFIG.whatsappNumber}?text=${encodedMessage}`;
+        window.open(whatsappLink, '_blank');
+      }
+      
+      // Finalizar submissão
+      finishSubmission(emailSuccess);
+    } catch (error) {
+      console.error("Erro durante o envio:", error);
+      setIsSubmitting(false);
+      
+      toast({
+        title: "Erro",
+        description: "Ocorreu um erro ao processar sua solicitação. Tente novamente.",
+        variant: "destructive",
+      });
     }
-    
-    // Finalizar submissão
-    finishSubmission(emailSuccess);
   };
 
   const finishSubmission = (emailSuccess = true) => {

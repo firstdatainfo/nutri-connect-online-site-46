@@ -1,3 +1,4 @@
+
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Hero from "@/components/Hero";
@@ -53,12 +54,17 @@ const About = () => {
                   Hoje, continuamos a expandir nossos serviços e alcance, ajudando indivíduos e famílias em todo o país a alcançar melhor saúde através de planos nutricionais personalizados, educação e suporte contínuo.
                 </p>
               </div>
-              {/* Coluna da direita modificada */}
+              {/* Coluna da direita com a nova imagem */}
               <div className="flex items-center justify-center">
-                <div className="bg-nutrition-light-green/60 p-12 rounded-xl shadow-xl w-full max-w-md aspect-[4/3] flex items-center justify-center text-center">
-                  <p className="text-3xl font-semibold text-gray-700">
-                     Nossa história
-                  </p>
+                <div className="rounded-xl shadow-xl w-full max-w-md overflow-hidden">
+                  <img 
+                    src="/lovable-uploads/894c9023-eca4-4285-b688-55e31cb06ec5.png" 
+                    alt="Nossa história - nutrição e alimentação saudável" 
+                    className="w-full h-auto object-cover"
+                    loading="eager"
+                    fetchPriority="high"
+                    decoding="sync"
+                  />
                 </div>
               </div>
             </div>

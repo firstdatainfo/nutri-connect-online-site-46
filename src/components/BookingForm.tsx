@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
@@ -18,29 +17,32 @@ import emailjs from '@emailjs/browser';
 
 // Configurações para envio de mensagens
 const CONTACT_CONFIG = {
-  whatsappNumber: "5566992456034", // Formato: código do país + DDD + número (sem espaços ou caracteres especiais)
+  whatsappNumber: "5566992456034",
+  // Formato: código do país + DDD + número (sem espaços ou caracteres especiais)
   emailAddress: "lidiane_dosreis@outlook.com",
-  emailServiceId: "service_u2y1bq7", // Service ID atualizado do EmailJS
-  emailTemplateId: "template_dw1xf0n", // Este é um ID genérico, substitua pelo seu Template ID do EmailJS
+  emailServiceId: "service_u2y1bq7",
+  // Service ID atualizado do EmailJS
+  emailTemplateId: "template_dw1xf0n",
+  // Este é um ID genérico, substitua pelo seu Template ID do EmailJS
   emailPublicKey: "Z3J1fbUFxsR_bRszD" // Este é um ID genérico, substitua pelo seu Public Key do EmailJS
 };
 
 // Inicializar EmailJS
 emailjs.init(CONTACT_CONFIG.emailPublicKey);
-
-const consultationTypes = [
-  { value: "initial", label: "Consulta Inicial (60 min)" },
-  { value: "followup", label: "Sessão de Acompanhamento (30 min)" },
-  { value: "plan", label: "Planejamento Alimentar Personalizado (45 min)" },
-  { value: "coaching", label: "Coaching de Saúde (60 min)" },
-];
-
-const timeSlots = [
-  "09:00", "09:30", "10:00", "10:30", "11:00", "11:30",
-  "13:00", "13:30", "14:00", "14:30", "15:00", "15:30",
-  "16:00", "16:30", "17:00"
-];
-
+const consultationTypes = [{
+  value: "initial",
+  label: "Consulta Inicial (60 min)"
+}, {
+  value: "followup",
+  label: "Sessão de Acompanhamento (30 min)"
+}, {
+  value: "plan",
+  label: "Planejamento Alimentar Personalizado (45 min)"
+}, {
+  value: "coaching",
+  label: "Coaching de Saúde (60 min)"
+}];
+const timeSlots = ["09:00", "09:30", "10:00", "10:30", "11:00", "11:30", "13:00", "13:30", "14:00", "14:30", "15:00", "15:30", "16:00", "16:30", "17:00"];
 const BookingForm = () => {
   const [date, setDate] = useState<Date | undefined>(undefined);
   const [type, setType] = useState<string>("");
@@ -54,11 +56,15 @@ const BookingForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [sendToWhatsApp, setSendToWhatsApp] = useState(true);
   const [sendToEmail, setSendToEmail] = useState(true);
-  const { toast } = useToast();
-
+  const {
+    toast
+  } = useToast();
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({
+    const {
+      name,
+      value
+    } = e.target;
+    setFormData(prev => ({
       ...prev,
       [name]: value
     }));
@@ -69,11 +75,11 @@ const BookingForm = () => {
     const consulta = consultationTypes.find(c => c.value === tipo);
     return consulta ? consulta.label : "";
   };
-
   const formatEmailContent = () => {
-    const formattedDate = date ? format(date, "d 'de' MMMM 'de' yyyy", { locale: pt }) : "";
+    const formattedDate = date ? format(date, "d 'de' MMMM 'de' yyyy", {
+      locale: pt
+    }) : "";
     const consultationType = getTipoConsulta(type);
-    
     return {
       subject: `Agendamento de ${consultationType}`,
       body: `
@@ -107,13 +113,15 @@ Horário: ${time}
 ${formData.notes ? `Observações: ${formData.notes}` : ''}`
     };
   };
-
   const sendEmailViaEmailJS = async () => {
     try {
-      const { subject } = formatEmailContent();
-      const formattedDate = date ? format(date, "d 'de' MMMM 'de' yyyy", { locale: pt }) : "";
+      const {
+        subject
+      } = formatEmailContent();
+      const formattedDate = date ? format(date, "d 'de' MMMM 'de' yyyy", {
+        locale: pt
+      }) : "";
       const consultationType = getTipoConsulta(type);
-      
       const templateParams = {
         from_name: formData.name,
         email: formData.email,
@@ -126,16 +134,10 @@ ${formData.notes ? `Observações: ${formData.notes}` : ''}`
         notes: formData.notes || "Nenhuma observação",
         message: `Tipo: ${consultationType}, Data: ${formattedDate}, Hora: ${time}`
       };
-      
       console.log("Enviando email com os parâmetros:", templateParams);
-      
+
       // Usando o método send com a versão mais recente do EmailJS
-      await emailjs.send(
-        CONTACT_CONFIG.emailServiceId,
-        CONTACT_CONFIG.emailTemplateId,
-        templateParams
-      );
-      
+      await emailjs.send(CONTACT_CONFIG.emailServiceId, CONTACT_CONFIG.emailTemplateId, templateParams);
       console.log("Email enviado com sucesso!");
       return true;
     } catch (error) {
@@ -143,69 +145,67 @@ ${formData.notes ? `Observações: ${formData.notes}` : ''}`
       return false;
     }
   };
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
     try {
       // Formatar a mensagem para WhatsApp
-      const { plainText } = formatEmailContent();
+      const {
+        plainText
+      } = formatEmailContent();
       let emailSuccess = false;
-      
+
       // Enviar para email via EmailJS se selecionado
       if (sendToEmail) {
         emailSuccess = await sendEmailViaEmailJS();
-        
         if (!emailSuccess) {
           toast({
             title: "Alerta",
             description: "Não foi possível enviar o email. Tente novamente mais tarde.",
-            variant: "destructive",
+            variant: "destructive"
           });
         } else {
           toast({
             title: "Sucesso",
             description: "Email enviado com sucesso para " + CONTACT_CONFIG.emailAddress,
-            variant: "default",
+            variant: "default"
           });
         }
       }
-      
+
       // Enviar para WhatsApp se selecionado
       if (sendToWhatsApp) {
         const encodedMessage = encodeURIComponent(plainText);
         const whatsappLink = `https://wa.me/${CONTACT_CONFIG.whatsappNumber}?text=${encodedMessage}`;
         window.open(whatsappLink, '_blank');
       }
-      
+
       // Finalizar submissão
       finishSubmission(emailSuccess);
     } catch (error) {
       console.error("Erro durante o envio:", error);
       setIsSubmitting(false);
-      
       toast({
         title: "Erro",
         description: "Ocorreu um erro ao processar sua solicitação. Tente novamente.",
-        variant: "destructive",
+        variant: "destructive"
       });
     }
   };
-
   const finishSubmission = (emailSuccess = true) => {
     // Simulação de uma chamada API (mantém a funcionalidade original)
     setTimeout(() => {
       setIsSubmitting(false);
       const consultationType = getTipoConsulta(type);
-      const formattedDate = date ? format(date, "d 'de' MMMM 'de' yyyy", { locale: pt }) : "";
-      
+      const formattedDate = date ? format(date, "d 'de' MMMM 'de' yyyy", {
+        locale: pt
+      }) : "";
       toast({
         title: "Agendamento Enviado",
         description: `Sua solicitação de ${consultationType} para ${formattedDate} às ${time} foi enviada${!emailSuccess ? ' (exceto email)' : ''}.`,
-        variant: emailSuccess ? "default" : "destructive",
+        variant: emailSuccess ? "default" : "destructive"
       });
-      
+
       // Reset form
       setDate(undefined);
       setType("");
@@ -218,54 +218,22 @@ ${formData.notes ? `Observações: ${formData.notes}` : ''}`
       });
     }, 1500);
   };
-
-  return (
-    <>
+  return <>
       <form onSubmit={handleSubmit} className="space-y-3">
         <div className="space-y-1">
           <Label htmlFor="name">Nome Completo</Label>
-          <Input
-            id="name"
-            name="name"
-            placeholder="Seu nome completo"
-            value={formData.name}
-            onChange={handleInputChange}
-            required
-            className="transition-none"
-          />
+          <Input id="name" name="name" placeholder="Seu nome completo" value={formData.name} onChange={handleInputChange} required className="transition-none" />
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
           <div className="space-y-1">
             <Label htmlFor="email">E-mail</Label>
-            <Input
-              id="email"
-              name="email"
-              type="email"
-              placeholder="seu@email.com"
-              value={formData.email}
-              onChange={handleInputChange}
-              required
-              className="transition-none"
-            />
+            <Input id="email" name="email" type="email" placeholder="seu@email.com" value={formData.email} onChange={handleInputChange} required className="transition-none" />
           </div>
           <div className="space-y-1">
             <Label htmlFor="phone">Telefone</Label>
-            <InputMask
-              mask="(99) 99999-9999"
-              value={formData.phone}
-              onChange={handleInputChange}
-            >
-              {(inputProps: any) => (
-                <Input
-                  id="phone"
-                  name="phone"
-                  placeholder="(00) 00000-0000"
-                  required
-                  className="transition-none"
-                  {...inputProps}
-                />
-              )}
+            <InputMask mask="(99) 99999-9999" value={formData.phone} onChange={handleInputChange}>
+              {(inputProps: any) => <Input id="phone" name="phone" placeholder="(00) 00000-0000" required className="transition-none" {...inputProps} />}
             </InputMask>
           </div>
         </div>
@@ -277,11 +245,9 @@ ${formData.notes ? `Observações: ${formData.notes}` : ''}`
               <SelectValue placeholder="Selecione o tipo de consulta" />
             </SelectTrigger>
             <SelectContent>
-              {consultationTypes.map((consultationType) => (
-                <SelectItem key={consultationType.value} value={consultationType.value}>
+              {consultationTypes.map(consultationType => <SelectItem key={consultationType.value} value={consultationType.value}>
                   {consultationType.label}
-                </SelectItem>
-              ))}
+                </SelectItem>)}
             </SelectContent>
           </Select>
         </div>
@@ -291,31 +257,15 @@ ${formData.notes ? `Observações: ${formData.notes}` : ''}`
             <Label>Data Preferida</Label>
             <Popover>
               <PopoverTrigger asChild>
-                <Button
-                  variant="outline"
-                  className={cn(
-                    "w-full justify-start text-left font-normal transition-none",
-                    !date && "text-muted-foreground"
-                  )}
-                >
+                <Button variant="outline" className={cn("w-full justify-start text-left font-normal transition-none", !date && "text-muted-foreground")}>
                   <CalendarIcon className="mr-2 h-4 w-4" />
-                  {date ? format(date, "d 'de' MMMM 'de' yyyy", { locale: pt }) : "Selecione uma data"}
+                  {date ? format(date, "d 'de' MMMM 'de' yyyy", {
+                  locale: pt
+                }) : "Selecione uma data"}
                 </Button>
               </PopoverTrigger>
               <PopoverContent className="w-auto p-0" align="start">
-                <Calendar
-                  mode="single"
-                  selected={date}
-                  onSelect={setDate}
-                  initialFocus
-                  locale={pt}
-                  className="pointer-events-auto"
-                  disabled={(date) => 
-                    date < new Date(new Date().setHours(0, 0, 0, 0)) || 
-                    date.getDay() === 0 || 
-                    date.getDay() === 6
-                  }
-                />
+                <Calendar mode="single" selected={date} onSelect={setDate} initialFocus locale={pt} className="pointer-events-auto" disabled={date => date < new Date(new Date().setHours(0, 0, 0, 0)) || date.getDay() === 0 || date.getDay() === 6} />
               </PopoverContent>
             </Popover>
           </div>
@@ -327,11 +277,9 @@ ${formData.notes ? `Observações: ${formData.notes}` : ''}`
                 <SelectValue placeholder="Selecione um horário" />
               </SelectTrigger>
               <SelectContent>
-                {timeSlots.map((slot) => (
-                  <SelectItem key={slot} value={slot}>
+                {timeSlots.map(slot => <SelectItem key={slot} value={slot}>
                     {slot}
-                  </SelectItem>
-                ))}
+                  </SelectItem>)}
               </SelectContent>
             </Select>
           </div>
@@ -339,64 +287,18 @@ ${formData.notes ? `Observações: ${formData.notes}` : ''}`
 
         <div className="space-y-1">
           <Label htmlFor="notes">Observações Adicionais</Label>
-          <Textarea
-            id="notes"
-            name="notes"
-            placeholder="Qualquer informação adicional ou requisitos especiais"
-            value={formData.notes}
-            onChange={handleInputChange}
-            rows={3}
-            className="transition-none"
-          />
+          <Textarea id="notes" name="notes" placeholder="Qualquer informação adicional ou requisitos especiais" value={formData.notes} onChange={handleInputChange} rows={3} className="transition-none" />
         </div>
         
-        <div className="space-y-2">
-          <div className="flex items-center space-x-2">
-            <Checkbox 
-              id="sendToWhatsApp" 
-              checked={sendToWhatsApp} 
-              onCheckedChange={(checked) => setSendToWhatsApp(checked as boolean)}
-            />
-            <Label 
-              htmlFor="sendToWhatsApp" 
-              className="text-sm font-medium leading-none cursor-pointer flex items-center"
-            >
-              <MessageCircle className="mr-1 h-4 w-4" /> 
-              Enviar para WhatsApp
-            </Label>
-          </div>
-          
-          <div className="flex items-center space-x-2">
-            <Checkbox 
-              id="sendToEmail" 
-              checked={sendToEmail} 
-              onCheckedChange={(checked) => setSendToEmail(checked as boolean)}
-            />
-            <Label 
-              htmlFor="sendToEmail" 
-              className="text-sm font-medium leading-none cursor-pointer flex items-center"
-            >
-              <Mail className="mr-1 h-4 w-4" /> 
-              Enviar para Email
-            </Label>
-          </div>
-        </div>
+        
 
-        <Button
-          type="submit"
-          className="w-full bg-nutrition-green hover:bg-nutrition-teal transition-none"
-          disabled={isSubmitting}
-        >
-          {isSubmitting ? (
-            <>
+        <Button type="submit" className="w-full bg-nutrition-green hover:bg-nutrition-teal transition-none" disabled={isSubmitting}>
+          {isSubmitting ? <>
               <Loader2 className="mr-2 h-4 w-4 animate-spin" />
               Enviando...
-            </>
-          ) : "Agendar Consulta"}
+            </> : "Agendar Consulta"}
         </Button>
       </form>
-    </>
-  );
+    </>;
 };
-
 export default BookingForm;

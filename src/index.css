@@ -78,11 +78,11 @@
   }
   
   .section-padding {
-    @apply py-4 md:py-6;
+    @apply py-2 md:py-3;
   }
   
   .container-custom {
-    @apply max-w-7xl mx-auto px-3 sm:px-5 lg:px-6 w-full;
+    @apply max-w-7xl mx-auto px-2 sm:px-3 lg:px-4 w-full;
   }
   
   .card-grid {
@@ -90,7 +90,7 @@
   }
   
   .content-section {
-    @apply py-2 md:py-4;
+    @apply py-1 md:py-2;
   }
 }
 
@@ -121,7 +121,7 @@ img {
   position: relative;
   display: block;
   width: calc(100% + 1.3px);
-  height: 50px;
+  height: 35px;
   transform: none !important;
 }
 

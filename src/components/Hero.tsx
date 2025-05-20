@@ -29,11 +29,11 @@ const Hero = ({
   // Layout para dispositivos móveis
   if (isMobile) {
     return (
-      <div className={`relative bg-nutrition-light-blue/10 ${reducedSpacing ? 'py-4' : 'py-6'} w-full`}>
-        <div className="container mx-auto px-4">
+      <div className={`relative bg-nutrition-light-blue/10 ${reducedSpacing ? 'py-2' : 'py-3'} w-full`}>
+        <div className="container mx-auto px-2">
           <div className="flex flex-col items-center">
             {profileImage && (
-              <div className="mb-3 w-32 h-32 relative">
+              <div className="mb-2 w-28 h-28 relative">
                 <img 
                   src={profileImage} 
                   alt={title} 
@@ -45,13 +45,13 @@ const Hero = ({
               </div>
             )}
             
-            <div className="text-center mt-1">
-              <h1 className="text-xl font-bold mb-2">{title}</h1>
-              <p className="text-sm text-gray-700 mb-3 max-w-md mx-auto">{subtitle}</p>
+            <div className="text-center">
+              <h1 className="text-lg font-bold mb-1">{title}</h1>
+              <p className="text-xs text-gray-700 mb-2 max-w-md mx-auto">{subtitle}</p>
               {ctaText && (
                 <Button 
                   asChild 
-                  className="bg-nutrition-green hover:bg-nutrition-teal text-white px-4 py-1 text-sm h-auto"
+                  className="bg-nutrition-green hover:bg-nutrition-teal text-white px-3 py-1 text-xs h-auto"
                 >
                   <Link to={ctaLink}>{ctaText}</Link>
                 </Button>
@@ -73,23 +73,23 @@ const Hero = ({
 
   // Layout para desktop
   return (
-    <div className={`relative bg-nutrition-light-blue/10 ${reducedSpacing ? 'py-6' : 'py-8'} w-full`}>
-      <div className="container mx-auto px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-center">
+    <div className={`relative bg-nutrition-light-blue/10 ${reducedSpacing ? 'py-3' : 'py-4'} w-full`}>
+      <div className="container mx-auto px-3 lg:px-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 items-center">
           <div className="text-center md:text-left">
-            <h1 className="text-2xl md:text-3xl font-bold mb-2">{title}</h1>
-            <p className="text-base text-gray-700 mb-4 max-w-lg">{subtitle}</p>
+            <h1 className="text-xl md:text-2xl font-bold mb-1">{title}</h1>
+            <p className="text-sm text-gray-700 mb-2 max-w-lg">{subtitle}</p>
             {ctaText && (
               <Button 
                 asChild 
-                className="bg-nutrition-green hover:bg-nutrition-teal text-white px-5 py-1.5 text-base h-auto"
+                className="bg-nutrition-green hover:bg-nutrition-teal text-white px-4 py-1 text-sm h-auto"
               >
                 <Link to={ctaLink}>{ctaText}</Link>
               </Button>
             )}
           </div>
 
-          <div className="flex justify-center md:justify-end mt-4 md:mt-0">
+          <div className="flex justify-center md:justify-end mt-0">
             {profileImage && (
               <div className="relative">
                 <img 

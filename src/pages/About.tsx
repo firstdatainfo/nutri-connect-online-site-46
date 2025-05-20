@@ -35,6 +35,19 @@ const About = () => {
         {/* Seção Nossa História */}
         <section className="section-padding bg-white" id="nossa-historia">
           <div className="container-custom">
+            {/* Imagem NUTRIÇÃO feita com alimentos */}
+            <div className="flex justify-center mb-8">
+              <div className="rounded-lg overflow-hidden max-w-3xl">
+                <img 
+                  src="/lovable-uploads/a1ec3244-e783-4d5e-ab69-5fcc273a7b49.png" 
+                  alt="Nutricionista Clínica Integrativa, Esportiva, Estética, Microbiota Intestinal e Genômica" 
+                  className="w-full h-auto"
+                  loading="eager"
+                />
+                <p className="text-center text-sm text-gray-600 mt-2">Nutricionista Clínica Integrativa, Esportiva, Estética, Microbiota Intestinal e Genômica</p>
+              </div>
+            </div>
+            
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div>
                 <h2 className="text-3xl md:text-4xl font-bold mb-6">Nossa História</h2>

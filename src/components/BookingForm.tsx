@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
@@ -17,8 +18,8 @@ import emailjs from '@emailjs/browser';
 
 // Configurações para envio de mensagens
 const CONTACT_CONFIG = {
-  whatsappNumber: "5511999999999", // Formato: código do país + DDD + número (sem espaços ou caracteres especiais)
-  emailAddress: "contato@nutrivida.com",
+  whatsappNumber: "5566992456034", // Formato: código do país + DDD + número (sem espaços ou caracteres especiais)
+  emailAddress: "lidiane_dosreis@outlook.com",
   emailServiceId: "service_default", // Substitua pelo seu Service ID do EmailJS
   emailTemplateId: "template_default", // Substitua pelo seu Template ID do EmailJS
   emailUserId: "user_yourUserID" // Substitua pelo seu User ID do EmailJS
@@ -76,8 +77,8 @@ const BookingForm = () => {
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e0e0e0; border-radius: 5px;">
         <h2 style="color: #4caf50; border-bottom: 2px solid #4caf50; padding-bottom: 10px;">Solicitação de Agendamento</h2>
         
-        <p>Olá,</p>
-        <p>Gostaria de agendar uma consulta com os seguintes detalhes:</p>
+        <p>Olá Lidiane,</p>
+        <p>Recebemos uma nova solicitação de agendamento com os seguintes detalhes:</p>
         
         <div style="background-color: #f9f9f9; padding: 15px; border-radius: 5px; margin: 15px 0;">
           <p><strong>Nome:</strong> ${formData.name}</p>
@@ -89,11 +90,11 @@ const BookingForm = () => {
           ${formData.notes ? `<p><strong>Observações:</strong> ${formData.notes}</p>` : ''}
         </div>
         
-        <p>Aguardo confirmação da disponibilidade.</p>
-        <p>Atenciosamente,<br>${formData.name}</p>
+        <p>Por favor, confirme este agendamento quando possível.</p>
+        <p>Atenciosamente,<br>Sistema de Agendamento</p>
       </div>
       `,
-      plainText: `Olá, gostaria de agendar uma consulta:
+      plainText: `Olá Lidiane, gostaria de agendar uma consulta:
 Nome: ${formData.name}
 Email: ${formData.email}
 Telefone: ${formData.phone}
@@ -104,7 +105,6 @@ ${formData.notes ? `Observações: ${formData.notes}` : ''}`
     };
   };
 
-  // Novo método para enviar email via EmailJS
   const sendEmailViaEmailJS = async () => {
     try {
       const { subject } = formatEmailContent();
@@ -116,6 +116,7 @@ ${formData.notes ? `Observações: ${formData.notes}` : ''}`
         email: formData.email,
         phone: formData.phone,
         subject: subject,
+        to_email: CONTACT_CONFIG.emailAddress,
         consultation_type: consultationType,
         date: formattedDate,
         time: time,

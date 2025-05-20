@@ -42,7 +42,7 @@ const Hero = ({
                 fetchPriority="high"
                 decoding="sync"
               />
-              <div className="absolute inset-0 bg-nutrition-green/20 rounded-full blur-xl -z-10 transform scale-90" />
+              {/* Removendo o efeito de fundo verde */}
             </div>
             
             {/* Conteúdo de texto abaixo da imagem */}
@@ -96,7 +96,7 @@ const Hero = ({
                   fetchPriority="high"
                   decoding="sync"
                 />
-                <div className="absolute inset-0 bg-nutrition-green/20 rounded-full blur-xl -z-10 transform scale-90" />
+                {/* Removendo o efeito de fundo verde */}
               </div>
           </div>
         </div>

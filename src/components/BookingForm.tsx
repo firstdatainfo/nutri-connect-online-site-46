@@ -15,6 +15,12 @@ import { useToast } from "@/hooks/use-toast";
 import InputMask from "react-input-mask";
 import { Checkbox } from "@/components/ui/checkbox";
 
+// Configurações para envio de mensagens
+const CONTACT_CONFIG = {
+  whatsappNumber: "5511999999999", // Formato: código do país + DDD + número (sem espaços ou caracteres especiais)
+  emailAddress: "contato@nutrivida.com"
+};
+
 const consultationTypes = [
   { value: "initial", label: "Consulta Inicial (60 min)" },
   { value: "followup", label: "Sessão de Acompanhamento (30 min)" },
@@ -76,15 +82,14 @@ ${formData.notes ? `Observações: ${formData.notes}` : ''}`;
     
     if (sendToWhatsApp) {
       const encodedMessage = encodeURIComponent(whatsappMessage);
-      // Usando o número do WhatsApp para envio (exemplo: 5511999999999)
-      const whatsappLink = `https://wa.me/5511999999999?text=${encodedMessage}`;
+      const whatsappLink = `https://wa.me/${CONTACT_CONFIG.whatsappNumber}?text=${encodedMessage}`;
       window.open(whatsappLink, '_blank');
     }
 
     if (sendToEmail) {
       const emailSubject = encodeURIComponent(`Agendamento de ${consultationType}`);
       const emailBody = encodeURIComponent(whatsappMessage);
-      const mailtoLink = `mailto:contato@nutrivida.com?subject=${emailSubject}&body=${emailBody}`;
+      const mailtoLink = `mailto:${CONTACT_CONFIG.emailAddress}?subject=${emailSubject}&body=${emailBody}`;
       window.open(mailtoLink, '_blank');
     }
     

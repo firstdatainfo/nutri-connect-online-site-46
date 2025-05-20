@@ -1,8 +1,6 @@
 
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { Skeleton } from "@/components/ui/skeleton";
-import { useEffect, useState } from "react";
 import { useIsMobile } from "@/hooks/use-mobile";
 
 interface HeroProps {
@@ -16,9 +14,6 @@ interface HeroProps {
   reducedSpacing?: boolean;
 }
 
-// Variável para controlar se é o primeiro carregamento da aplicação
-let isFirstLoad = true;
-
 const Hero = ({
   title,
   subtitle,
@@ -30,14 +25,7 @@ const Hero = ({
   profileImage = "/lovable-uploads/eb101949-77ca-4a72-80ff-91e3190e410a.png",
   reducedSpacing = true
 }: HeroProps) => {
-  const [pageReady, setPageReady] = useState(true);
   const isMobile = useIsMobile();
-
-  // Removemos o sistema de pré-carregamento para exibir as imagens imediatamente
-  useEffect(() => {
-    // Marca que o primeiro carregamento já foi feito
-    isFirstLoad = false;
-  }, []);
 
   // Renderização condicional para dispositivos móveis
   if (isMobile && profileImage) {
@@ -50,6 +38,9 @@ const Hero = ({
                 src={profileImage} 
                 alt={title} 
                 className={`rounded-full border-4 border-white shadow-xl ${reducedSpacing ? 'w-40 h-40' : 'w-56 h-56'} object-cover z-20 relative`} 
+                loading="eager"
+                fetchPriority="high"
+                decoding="sync"
               />
               <div className="absolute inset-0 bg-nutrition-green/20 rounded-full blur-xl -z-10 transform scale-90" />
             </div>
@@ -101,6 +92,9 @@ const Hero = ({
                   src={profileImage} 
                   alt={title} 
                   className={`rounded-full border-4 border-white shadow-xl ${reducedSpacing ? 'w-40 h-40 md:w-56 md:h-56' : 'w-56 h-56 md:w-72 md:h-72'} object-cover z-20 relative`} 
+                  loading="eager"
+                  fetchPriority="high"
+                  decoding="sync"
                 />
                 <div className="absolute inset-0 bg-nutrition-green/20 rounded-full blur-xl -z-10 transform scale-90" />
               </div>

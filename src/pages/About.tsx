@@ -58,8 +58,8 @@ const About = () => {
               <div className="flex items-center justify-center">
                 <div className="rounded-xl shadow-xl w-full max-w-md overflow-hidden">
                   <img 
-                    src="/lovable-uploads/894c9023-eca4-4285-b688-55e31cb06ec5.png" 
-                    alt="Nossa história - nutrição e alimentação saudável" 
+                    src="/lovable-uploads/dda64908-e685-4ed3-8c2f-0579aa21112c.png" 
+                    alt="Alimentos saudáveis incluindo frutas, vegetais e proteínas" 
                     className="w-full h-auto object-cover"
                     loading="eager"
                     fetchPriority="high"

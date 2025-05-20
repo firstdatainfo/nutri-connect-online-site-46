@@ -1,8 +1,6 @@
-
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { useIsMobile } from "@/hooks/use-mobile";
-
 interface HeroProps {
   title: string;
   subtitle: string;
@@ -13,7 +11,6 @@ interface HeroProps {
   profileImage?: string;
   reducedSpacing?: boolean;
 }
-
 const Hero = ({
   title,
   subtitle,
@@ -34,15 +31,9 @@ const Hero = ({
           <div className="flex flex-col items-center">
             {/* Imagem de perfil no topo sem qualquer efeito */}
             <div className="mb-4">
-              <img 
-                src={profileImage} 
-                alt={title} 
-                className={`rounded-full border-4 border-white shadow-xl ${reducedSpacing ? 'w-40 h-40' : 'w-56 h-56'} object-cover`} 
-                style={{display: 'block'}}
-                loading="eager"
-                fetchPriority="high"
-                decoding="sync"
-              />
+              <img src={profileImage} alt={title} className={`rounded-full border-4 border-white shadow-xl ${reducedSpacing ? 'w-40 h-40' : 'w-56 h-56'} object-cover`} style={{
+              display: 'block'
+            }} loading="eager" fetchPriority="high" decoding="sync" />
             </div>
             
             {/* Conteúdo de texto abaixo da imagem */}
@@ -88,15 +79,9 @@ const Hero = ({
           <div className="relative flex justify-center md:justify-end">
             {/* Imagem de perfil sem qualquer efeito */}
             <div className="relative">
-                <img 
-                  src={profileImage} 
-                  alt={title} 
-                  className={`rounded-full border-4 border-white shadow-xl ${reducedSpacing ? 'w-40 h-40 md:w-56 md:h-56' : 'w-56 h-56 md:w-72 md:h-72'} object-cover`} 
-                  style={{display: 'block'}}
-                  loading="eager"
-                  fetchPriority="high"
-                  decoding="sync"
-                />
+                <img src={profileImage} alt={title} style={{
+              display: 'block'
+            }} loading="eager" fetchPriority="high" decoding="sync" className="object-none" />
               </div>
           </div>
         </div>
@@ -110,5 +95,4 @@ const Hero = ({
         </div>}
     </div>;
 };
-
 export default Hero;

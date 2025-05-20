@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
@@ -22,8 +21,11 @@ const CONTACT_CONFIG = {
   emailAddress: "lidiane_dosreis@outlook.com",
   emailServiceId: "service_default", // Substitua pelo seu Service ID do EmailJS
   emailTemplateId: "template_default", // Substitua pelo seu Template ID do EmailJS
-  emailUserId: "user_yourUserID" // Substitua pelo seu User ID do EmailJS
+  emailPublicKey: "YOUR_EMAILJS_PUBLIC_KEY" // Substitua pelo seu Public Key do EmailJS
 };
+
+// Inicializar EmailJS
+emailjs.init(CONTACT_CONFIG.emailPublicKey);
 
 const consultationTypes = [
   { value: "initial", label: "Consulta Inicial (60 min)" },
@@ -124,11 +126,14 @@ ${formData.notes ? `Observações: ${formData.notes}` : ''}`
         message: `Tipo: ${consultationType}, Data: ${formattedDate}, Hora: ${time}`
       };
       
+      // Usando o novo método com a versão mais recente do EmailJS
       await emailjs.send(
         CONTACT_CONFIG.emailServiceId,
         CONTACT_CONFIG.emailTemplateId,
         templateParams,
-        CONTACT_CONFIG.emailUserId
+        {
+          publicKey: CONTACT_CONFIG.emailPublicKey,
+        }
       );
       
       return true;

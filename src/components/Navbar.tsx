@@ -45,11 +45,13 @@ const Navbar = () => {
         <div className="flex justify-between items-center py-2">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-1">
-            <img 
-              src="/lovable-uploads/8c1fea53-eb04-4989-9147-107275ce78ac.png" 
-              alt="Lidiane Dos Reis Logo" 
-              className="h-8 w-auto" 
-            />
+            <div className="h-8 flex items-center">
+              <img 
+                src="/lovable-uploads/8c1fea53-eb04-4989-9147-107275ce78ac.png" 
+                alt="Lidiane Dos Reis Logo" 
+                className="h-8 w-auto filter brightness-0 sepia(100%) hue-rotate(70deg) saturate(500%)" 
+              />
+            </div>
             <span className="font-display font-bold text-base md:text-lg text-nutrition-green">Lidiane Dos Reis</span>
           </Link>
 

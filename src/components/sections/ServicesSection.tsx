@@ -17,12 +17,13 @@ const services = [{
   color: "nutrition-blue",
   buttonText: "Saiba Mais"
 }, {
-  title: "Gestão de Pacientes",
-  description: "Controle completo da sua agenda, dados dos pacientes e histórico de consultas em um só lugar.",
+  title: "Planejamento de Refeições",
+  description: "Planos de refeições práticos e receitas projetadas para se adequar à sua agenda, orçamento e habilidades culinárias.",
   icon: <Carrot size={24} />,
-  link: "/services",
+  link: "/services#meal-planning",
   color: "nutrition-orange",
-  buttonText: "Saiba Mais"
+  buttonText: "Saiba Mais",
+  imageUrl: "/lovable-uploads/4307f02a-427b-4f6d-a244-b658a9d78848.png"
 }, {
   title: "Atendimento Online",
   description: "Realize consultas online, compartilhe materiais e mantenha contato direto com seus pacientes.",

@@ -48,7 +48,6 @@ const BookingForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [sendToWhatsApp, setSendToWhatsApp] = useState(true);
   const [sendToEmail, setSendToEmail] = useState(true);
-  const [emailPreviewOpen, setEmailPreviewOpen] = useState(false);
   const { toast } = useToast();
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -110,34 +109,22 @@ ${formData.notes ? `Observações: ${formData.notes}` : ''}`
     // Formatar a mensagem para WhatsApp
     const { plainText, subject, body } = formatEmailContent();
     
+    // Enviar para WhatsApp se selecionado
     if (sendToWhatsApp) {
       const encodedMessage = encodeURIComponent(plainText);
       const whatsappLink = `https://wa.me/${CONTACT_CONFIG.whatsappNumber}?text=${encodedMessage}`;
       window.open(whatsappLink, '_blank');
     }
 
+    // Enviar para email se selecionado (agora automaticamente, sem preview)
     if (sendToEmail) {
-      // Se o usuário quiser visualizar o email antes, mostra o preview
-      setEmailPreviewOpen(true);
-    } else {
-      // Envio direto sem preview
       const encodedSubject = encodeURIComponent(subject);
-      const encodedBody = encodeURIComponent(plainText); // Usa o texto plano para compatibilidade
+      const encodedBody = encodeURIComponent(plainText); // Usando texto plano para compatibilidade
       const mailtoLink = `mailto:${CONTACT_CONFIG.emailAddress}?subject=${encodedSubject}&body=${encodedBody}`;
       window.open(mailtoLink, '_blank');
-      
-      finishSubmission();
     }
-  };
-
-  const sendEmailAfterPreview = () => {
-    const { subject, plainText } = formatEmailContent();
-    const encodedSubject = encodeURIComponent(subject);
-    const encodedBody = encodeURIComponent(plainText); // Usa o texto plano para compatibilidade
-    const mailtoLink = `mailto:${CONTACT_CONFIG.emailAddress}?subject=${encodedSubject}&body=${encodedBody}`;
-    window.open(mailtoLink, '_blank');
     
-    setEmailPreviewOpen(false);
+    // Finalizar submissão
     finishSubmission();
   };
 
@@ -342,27 +329,6 @@ ${formData.notes ? `Observações: ${formData.notes}` : ''}`
           ) : "Agendar Consulta"}
         </Button>
       </form>
-
-      <Dialog open={emailPreviewOpen} onOpenChange={setEmailPreviewOpen}>
-        <DialogContent className="max-w-lg">
-          <DialogHeader>
-            <DialogTitle>Visualização do Email</DialogTitle>
-          </DialogHeader>
-          
-          <div className="mt-2 border rounded-md p-4 max-h-[60vh] overflow-auto">
-            <div dangerouslySetInnerHTML={{ __html: formatEmailContent().body }} />
-          </div>
-          
-          <div className="flex justify-end gap-2 mt-4">
-            <Button variant="outline" onClick={() => setEmailPreviewOpen(false)}>
-              Cancelar
-            </Button>
-            <Button onClick={sendEmailAfterPreview} className="bg-nutrition-green hover:bg-nutrition-teal">
-              Enviar Email
-            </Button>
-          </div>
-        </DialogContent>
-      </Dialog>
     </>
   );
 };

@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
@@ -56,8 +57,6 @@ const BookingForm = () => {
     notes: ""
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [sendToWhatsApp, setSendToWhatsApp] = useState(true);
-  const [sendToEmail, setSendToEmail] = useState(true);
   const {
     toast
   } = useToast();
@@ -156,14 +155,14 @@ ${formData.notes ? `Observações: ${formData.notes}` : ''}`
         phone: formData.phone,
         cpf: formData.cpf,
         age: formData.age,
-        birth_date: formattedBirthDate, // Certifique-se que o nome da variável aqui (birth_date) corresponde ao que você usará no template EmailJS, ex: {{birth_date}}
+        birth_date: formattedBirthDate,
         subject: subject,
         to_email: CONTACT_CONFIG.emailAddress,
         consultation_type: consultationType,
         date: formattedDate,
         time: time,
         notes: formData.notes || "Nenhuma observação",
-        message: `Tipo: ${consultationType}, Data: ${formattedDate}, Hora: ${time}` // Pode ser ajustado ou removido se redundante com os outros campos
+        message: `Tipo: ${consultationType}, Data: ${formattedDate}, Hora: ${time}`
       };
       console.log("Enviando email com os parâmetros:", templateParams);
 
@@ -177,96 +176,90 @@ ${formData.notes ? `Observações: ${formData.notes}` : ''}`
     }
   };
 
+  const sendDirectToWhatsApp = () => {
+    const { plainText } = formatEmailContent();
+    const encodedMessage = encodeURIComponent(plainText);
+    window.location.href = `https://wa.me/${CONTACT_CONFIG.whatsappNumber}?text=${encodedMessage}`;
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    if (!validateForm()) {
+      return;
+    }
+    
     setIsSubmitting(true);
+    
     try {
-      // Formatar a mensagem para WhatsApp
-      const {
-        plainText
-      } = formatEmailContent();
-      let emailSuccess = false;
-
-      // Enviar para email via EmailJS se selecionado
-      if (sendToEmail) {
-        emailSuccess = await sendEmailViaEmailJS();
-        if (!emailSuccess) {
-          toast({
-            title: "Alerta",
-            description: "Não foi possível enviar o email. Verifique os dados ou tente novamente mais tarde.", 
-            variant: "destructive"
-          });
-        } else {
-          toast({
-            title: "Sucesso",
-            description: "Email enviado com sucesso para " + CONTACT_CONFIG.emailAddress,
-            variant: "default"
-          });
-        }
-      }
-
-      // Enviar para WhatsApp se selecionado
-      if (sendToWhatsApp) {
-        const encodedMessage = encodeURIComponent(plainText);
-        window.location.href = `https://wa.me/${CONTACT_CONFIG.whatsappNumber}?text=${encodedMessage}`;
-      }
-
-      // Finalizar submissão apenas se não redirecionar para WhatsApp
-      // Se WhatsApp foi selecionado, a página será redirecionada
-      if (!sendToWhatsApp) {
-        finishSubmission(emailSuccess);
-      } else {
-        setIsSubmitting(false);
-      }
+      // Enviar email
+      const emailSuccess = await sendEmailViaEmailJS();
       
+      if (emailSuccess) {
+        toast({
+          title: "Agendamento Enviado",
+          description: "Sua solicitação foi enviada com sucesso por email.",
+          variant: "default"
+        });
+        
+        // Enviar para WhatsApp diretamente
+        sendDirectToWhatsApp();
+        
+        // Limpar formulário
+        resetForm();
+      } else {
+        toast({
+          title: "Erro no Envio",
+          description: "Não foi possível enviar o email. Redirecionando para WhatsApp...",
+          variant: "destructive"
+        });
+        
+        // Se email falhar, tenta pelo menos o WhatsApp
+        sendDirectToWhatsApp();
+      }
     } catch (error) {
       console.error("Erro durante o envio:", error);
-      setIsSubmitting(false);
       toast({
         title: "Erro",
         description: "Ocorreu um erro ao processar sua solicitação. Tente novamente.",
         variant: "destructive"
       });
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
-  const finishSubmission = (emailSuccess = true) => {
-    // Simulação de uma chamada API (mantém a funcionalidade original)
-    setTimeout(() => {
-      setIsSubmitting(false);
-      const consultationType = getTipoConsulta(type);
-      const formattedDate = date ? format(date, "d 'de' MMMM 'de' yyyy", {
-        locale: pt
-      }) : "";
+  const validateForm = () => {
+    // Verificar se todos os campos obrigatórios estão preenchidos
+    if (!formData.name || !formData.email || !formData.phone || 
+        !formData.cpf || !formData.age || !formData.birthDate || 
+        !type || !date || !time) {
       
-      // Mostrar toast de sucesso geral, mesmo que o email tenha falhado,
-      // mas indicando a falha do email se for o caso.
-      // A notificação específica de falha do email já foi mostrada no handleSubmit.
-      if (emailSuccess || sendToWhatsApp) { // Se email foi sucesso OU whatsapp foi aberto
-        toast({
-          title: "Agendamento Enviado",
-          description: `Sua solicitação de ${consultationType} para ${formattedDate} às ${time} foi processada. ${!emailSuccess && sendToEmail ? 'O envio do email falhou.' : ''}`,
-          variant: emailSuccess || !sendToEmail ? "default" : "destructive" // default se email sucesso ou não selecionado, destructive se falhou e estava selecionado
-        });
-      }
+      toast({
+        title: "Campos incompletos",
+        description: "Por favor, preencha todos os campos obrigatórios.",
+        variant: "destructive"
+      });
+      
+      return false;
+    }
+    
+    return true;
+  };
 
-
-      // Reset form only if email was successful or not attempted
-      if (emailSuccess || !sendToEmail) {
-          setDate(undefined);
-          setType("");
-          setTime("");
-          setFormData({
-            name: "",
-            email: "",
-            phone: "",
-            cpf: "",
-            age: "",
-            birthDate: "",
-            notes: ""
-          });
-      }
-    }, 1500);
+  const resetForm = () => {
+    setDate(undefined);
+    setType("");
+    setTime("");
+    setFormData({
+      name: "",
+      email: "",
+      phone: "",
+      cpf: "",
+      age: "",
+      birthDate: "",
+      notes: ""
+    });
   };
 
   return <>
@@ -362,7 +355,7 @@ ${formData.notes ? `Observações: ${formData.notes}` : ''}`
           {isSubmitting ? <>
               <Loader2 className="mr-2 h-4 w-4 animate-spin" />
               Enviando...
-            </> : "Agendar Consulta"}
+            </> : "Agendar Consulta Agora"}
         </Button>
       </form>
     </>;

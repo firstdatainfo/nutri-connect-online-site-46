@@ -13,6 +13,7 @@ const Consultation = () => {
               <h1 className="text-3xl md:text-4xl font-bold mb-2">Agende sua Consulta</h1>
               <p className="text-lg text-gray-600 max-w-3xl mx-auto">
                 Dê o primeiro passo rumo a uma saúde melhor com uma consulta nutricional personalizada.
+                <span className="block mt-2 text-nutrition-green font-medium">Agendamento direto e rápido - envio automático por WhatsApp!</span>
               </p>
             </div>
 
@@ -27,7 +28,11 @@ const Consultation = () => {
                     </TabsList>
                     
                     <TabsContent value="book">
-                      
+                      <div className="mb-4 p-3 bg-green-50 border border-green-100 rounded-lg">
+                        <p className="text-sm text-green-800">
+                          <strong>Agendamento Direto:</strong> Complete o formulário abaixo e será automaticamente redirecionado para o WhatsApp para confirmar sua consulta!
+                        </p>
+                      </div>
                       <BookingForm />
                     </TabsContent>
                     

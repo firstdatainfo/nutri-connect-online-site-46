@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
@@ -19,7 +20,7 @@ import emailjs from '@emailjs/browser';
 const CONTACT_CONFIG = {
   whatsappNumber: "5566992456034", // Formato: código do país + DDD + número (sem espaços ou caracteres especiais)
   emailAddress: "lidiane_dosreis@outlook.com",
-  emailServiceId: "service_5zw9vpb", // Este é um ID genérico, substitua pelo seu Service ID do EmailJS
+  emailServiceId: "service_u2y1bq7", // Service ID atualizado do EmailJS
   emailTemplateId: "template_dw1xf0n", // Este é um ID genérico, substitua pelo seu Template ID do EmailJS
   emailPublicKey: "Z3J1fbUFxsR_bRszD" // Este é um ID genérico, substitua pelo seu Public Key do EmailJS
 };

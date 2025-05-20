@@ -14,6 +14,16 @@ import { cn } from "@/lib/utils";
 import { useToast } from "@/hooks/use-toast";
 import InputMask from "react-input-mask";
 import emailjs from '@emailjs/browser';
+import { 
+  AlertDialog, 
+  AlertDialogAction, 
+  AlertDialogCancel, 
+  AlertDialogContent, 
+  AlertDialogDescription, 
+  AlertDialogFooter, 
+  AlertDialogHeader, 
+  AlertDialogTitle 
+} from "@/components/ui/alert-dialog";
 
 // Configurações para envio de mensagens
 const CONTACT_CONFIG = {
@@ -28,19 +38,13 @@ const CONTACT_CONFIG = {
 // Inicializar EmailJS
 emailjs.init(CONTACT_CONFIG.emailPublicKey);
 
-const consultationTypes = [{
-  value: "initial",
-  label: "Consulta Inicial (60 min)"
-}, {
-  value: "followup",
-  label: "Sessão de Acompanhamento (30 min)"
-}, {
-  value: "plan",
-  label: "Planejamento Alimentar Personalizado (45 min)"
-}, {
-  value: "coaching",
-  label: "Coaching de Saúde (60 min)"
-}];
+const consultationTypes = [
+  { value: "initial", label: "Consulta Inicial (60 min)" },
+  { value: "followup", label: "Sessão de Acompanhamento (30 min)" },
+  { value: "plan", label: "Planejamento Alimentar Personalizado (45 min)" },
+  { value: "coaching", label: "Coaching de Saúde (60 min)" }
+];
+
 const timeSlots = ["09:00", "09:30", "10:00", "10:30", "11:00", "11:30", "13:00", "13:30", "14:00", "14:30", "15:00", "15:30", "16:00", "16:30", "17:00"];
 
 const BookingForm = () => {
@@ -57,15 +61,11 @@ const BookingForm = () => {
     notes: ""
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const {
-    toast
-  } = useToast();
+  const [showWhatsappDialog, setShowWhatsappDialog] = useState(false);
+  const { toast } = useToast();
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const {
-      name,
-      value
-    } = e.target;
+    const { name, value } = e.target;
     setFormData(prev => ({
       ...prev,
       [name]: value
@@ -83,7 +83,7 @@ const BookingForm = () => {
     try {
       const [year, month, day] = birthDateString.split("-");
       if (year && month && day) {
-        return format(new Date(parseInt(year), parseInt(month) -1, parseInt(day)), "dd/MM/yyyy", { locale: pt });
+        return format(new Date(parseInt(year), parseInt(month) - 1, parseInt(day)), "dd/MM/yyyy", { locale: pt });
       }
     } catch (e) {
       console.error("Error formatting birth date", e);
@@ -140,9 +140,7 @@ ${formData.notes ? `Observações: ${formData.notes}` : ''}`
 
   const sendEmailViaEmailJS = async () => {
     try {
-      const {
-        subject
-      } = formatEmailContent();
+      const { subject } = formatEmailContent();
       const formattedDate = date ? format(date, "d 'de' MMMM 'de' yyyy", {
         locale: pt
       }) : "";
@@ -202,20 +200,17 @@ ${formData.notes ? `Observações: ${formData.notes}` : ''}`
           variant: "default"
         });
         
-        // Enviar para WhatsApp diretamente
-        sendDirectToWhatsApp();
+        // Mostrar diálogo perguntando se quer enviar por WhatsApp também
+        setShowWhatsappDialog(true);
         
         // Limpar formulário
         resetForm();
       } else {
         toast({
           title: "Erro no Envio",
-          description: "Não foi possível enviar o email. Redirecionando para WhatsApp...",
+          description: "Não foi possível enviar o email. Tente novamente mais tarde.",
           variant: "destructive"
         });
-        
-        // Se email falhar, tenta pelo menos o WhatsApp
-        sendDirectToWhatsApp();
       }
     } catch (error) {
       console.error("Erro durante o envio:", error);
@@ -262,7 +257,8 @@ ${formData.notes ? `Observações: ${formData.notes}` : ''}`
     });
   };
 
-  return <>
+  return (
+    <>
       <form onSubmit={handleSubmit} className="space-y-3">
         <div className="space-y-1">
           <Label htmlFor="name">Nome Completo</Label>
@@ -306,9 +302,11 @@ ${formData.notes ? `Observações: ${formData.notes}` : ''}`
               <SelectValue placeholder="Selecione o tipo de consulta" />
             </SelectTrigger>
             <SelectContent>
-              {consultationTypes.map(consultationType => <SelectItem key={consultationType.value} value={consultationType.value}>
+              {consultationTypes.map(consultationType => (
+                <SelectItem key={consultationType.value} value={consultationType.value}>
                   {consultationType.label}
-                </SelectItem>)}
+                </SelectItem>
+              ))}
             </SelectContent>
           </Select>
         </div>
@@ -321,8 +319,8 @@ ${formData.notes ? `Observações: ${formData.notes}` : ''}`
                 <Button variant="outline" className={cn("w-full justify-start text-left font-normal transition-none", !date && "text-muted-foreground")}>
                   <CalendarIcon className="mr-2 h-4 w-4" />
                   {date ? format(date, "d 'de' MMMM 'de' yyyy", {
-                  locale: pt
-                }) : "Selecione uma data"}
+                    locale: pt
+                  }) : "Selecione uma data"}
                 </Button>
               </PopoverTrigger>
               <PopoverContent className="w-auto p-0" align="start">
@@ -338,9 +336,11 @@ ${formData.notes ? `Observações: ${formData.notes}` : ''}`
                 <SelectValue placeholder="Selecione um horário" />
               </SelectTrigger>
               <SelectContent>
-                {timeSlots.map(slot => <SelectItem key={slot} value={slot}>
+                {timeSlots.map(slot => (
+                  <SelectItem key={slot} value={slot}>
                     {slot}
-                  </SelectItem>)}
+                  </SelectItem>
+                ))}
               </SelectContent>
             </Select>
           </div>
@@ -352,12 +352,34 @@ ${formData.notes ? `Observações: ${formData.notes}` : ''}`
         </div>
         
         <Button type="submit" className="w-full bg-nutrition-green hover:bg-nutrition-teal transition-none" disabled={isSubmitting}>
-          {isSubmitting ? <>
+          {isSubmitting ? (
+            <>
               <Loader2 className="mr-2 h-4 w-4 animate-spin" />
               Enviando...
-            </> : "Agendar Consulta Agora"}
+            </>
+          ) : "Agendar Consulta Agora"}
         </Button>
       </form>
-    </>;
+
+      {/* Diálogo para perguntar sobre WhatsApp */}
+      <AlertDialog open={showWhatsappDialog} onOpenChange={setShowWhatsappDialog}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Agendamento Enviado com Sucesso!</AlertDialogTitle>
+            <AlertDialogDescription>
+              Seu agendamento foi enviado com sucesso por email. Deseja também enviar as informações pelo WhatsApp para confirmação mais rápida?
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel onClick={() => setShowWhatsappDialog(false)}>Não, obrigado</AlertDialogCancel>
+            <AlertDialogAction onClick={sendDirectToWhatsApp}>
+              Sim, enviar por WhatsApp
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
+    </>
+  );
 };
+
 export default BookingForm;

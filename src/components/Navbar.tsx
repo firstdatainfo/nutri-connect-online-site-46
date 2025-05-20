@@ -1,24 +1,24 @@
+
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Instagram, Phone, Mail, Menu, X } from "lucide-react";
+
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
-  const navItems = [{
-    name: "Home",
-    path: "/"
-  }, {
-    name: "Sobre",
-    path: "/about"
-  }, {
-    name: "Serviços",
-    path: "/services"
-  }];
+
+  const navItems = [
+    { name: "Home", path: "/" },
+    { name: "Sobre", path: "/about" },
+    { name: "Serviços", path: "/services" }
+  ];
+
   const isActive = (path: string) => {
     return location.pathname === path;
   };
+
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 10) {
@@ -41,7 +41,9 @@ const Navbar = () => {
     const message = encodeURIComponent("Olá Lidiane, gostaria de saber mais sobre seus serviços de nutrição!");
     window.open(`https://wa.me/5566992456034?text=${message}`, '_blank');
   };
-  return <nav className={`sticky top-0 z-50 w-full transition-all duration-300 ${isScrolled ? "bg-white shadow-md" : "bg-white/95"}`}>
+
+  return (
+    <nav className={`sticky top-0 z-50 w-full transition-all duration-300 ${isScrolled ? "bg-white shadow-md" : "bg-white/95"}`}>
       <div className="container mx-auto px-3 sm:px-4">
         <div className="flex justify-between items-center py-2">
           {/* Logo */}
@@ -54,9 +56,15 @@ const Navbar = () => {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-4">
-            {navItems.map(item => <Link key={item.name} to={item.path} className={`text-xs font-medium transition-colors hover:text-nutrition-green ${isActive(item.path) ? "text-nutrition-green" : "text-gray-700"}`}>
+            {navItems.map(item => (
+              <Link 
+                key={item.name} 
+                to={item.path} 
+                className={`text-xs font-medium transition-colors hover:text-nutrition-green ${isActive(item.path) ? "text-nutrition-green" : "text-gray-700"}`}
+              >
                 {item.name}
-              </Link>)}
+              </Link>
+            ))}
             <Button className="bg-green-500 hover:bg-green-600 text-white text-xs h-8 px-3" onClick={openWhatsApp}>
               Fale no WhatsApp
             </Button>
@@ -72,7 +80,8 @@ const Navbar = () => {
         </div>
 
         {/* Mobile Navigation */}
-        {isMenuOpen && <div className="md:hidden py-2 border-t">
+        {isMenuOpen && (
+          <div className="md:hidden py-2 border-t">
             {/* Social Media & Contact - Mobile */}
             <div className="flex items-center justify-center space-x-3 mb-2">
               <a href="https://www.instagram.com/lidianedosreisnutri/" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-nutrition-green" aria-label="Instagram">
@@ -88,9 +97,15 @@ const Navbar = () => {
             </div>
             
             <div className="flex flex-col space-y-1">
-              {navItems.map(item => <Link key={item.name} to={item.path} className={`text-xs font-medium px-3 py-1.5 rounded-md ${isActive(item.path) ? "bg-nutrition-light-green/10 text-nutrition-green" : "text-gray-700 hover:bg-gray-50"}`}>
+              {navItems.map(item => (
+                <Link 
+                  key={item.name} 
+                  to={item.path} 
+                  className={`text-xs font-medium px-3 py-1.5 rounded-md ${isActive(item.path) ? "bg-nutrition-light-green/10 text-nutrition-green" : "text-gray-700 hover:bg-gray-50"}`}
+                >
                   {item.name}
-                </Link>)}
+                </Link>
+              ))}
               <div className="px-3 pt-1">
                 <Button className="w-full bg-green-500 hover:bg-green-600 text-white text-xs h-8 mb-2" onClick={openWhatsApp}>
                   Fale no WhatsApp
@@ -100,8 +115,11 @@ const Navbar = () => {
                 </Button>
               </div>
             </div>
-          </div>}
+          </div>
+        )}
       </div>
-    </nav>;
+    </nav>
+  );
 };
+
 export default Navbar;

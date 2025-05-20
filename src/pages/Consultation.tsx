@@ -3,8 +3,11 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import BookingForm from "@/components/BookingForm";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Toaster } from "@/components/ui/toaster";
+
 const Consultation = () => {
-  return <>
+  return (
+    <>
       <Navbar />
       <main>
         <section className="bg-white py-4 md:py-6">
@@ -13,7 +16,7 @@ const Consultation = () => {
               <h1 className="text-3xl md:text-4xl font-bold mb-2">Agende sua Consulta</h1>
               <p className="text-lg text-gray-600 max-w-3xl mx-auto">
                 Dê o primeiro passo rumo a uma saúde melhor com uma consulta nutricional personalizada.
-                <span className="block mt-2 text-nutrition-green font-medium">Agendamento direto e rápido - envio automático por WhatsApp!</span>
+                <span className="block mt-2 text-nutrition-green font-medium">Agendamento direto - com envio por email e opção de WhatsApp!</span>
               </p>
             </div>
 
@@ -30,7 +33,7 @@ const Consultation = () => {
                     <TabsContent value="book">
                       <div className="mb-4 p-3 bg-green-50 border border-green-100 rounded-lg">
                         <p className="text-sm text-green-800">
-                          <strong>Agendamento Direto:</strong> Complete o formulário abaixo e será automaticamente redirecionado para o WhatsApp para confirmar sua consulta!
+                          <strong>Agendamento Direto:</strong> Complete o formulário abaixo para agendar sua consulta. Você receberá uma confirmação por email e poderá escolher se deseja enviar também pelo WhatsApp!
                         </p>
                       </div>
                       <BookingForm />
@@ -196,9 +199,11 @@ const Consultation = () => {
                     </blockquote>
                     
                     <div className="flex">
-                      {[...Array(5)].map((_, i) => <svg key={i} className="w-4 h-4 text-nutrition-orange fill-current" viewBox="0 0 24 24">
+                      {[...Array(5)].map((_, i) => (
+                        <svg key={i} className="w-4 h-4 text-nutrition-orange fill-current" viewBox="0 0 24 24">
                           <path fillRule="evenodd" d="M12 1.5l3.09 6.26L22 8.64l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 13.51 2 8.64l6.91-1.01L12 1.5z" />
-                        </svg>)}
+                        </svg>
+                      ))}
                     </div>
                   </div>
                 </div>
@@ -208,6 +213,9 @@ const Consultation = () => {
         </section>
       </main>
       <Footer />
-    </>;
+      <Toaster />
+    </>
+  );
 };
+
 export default Consultation;

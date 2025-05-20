@@ -1,3 +1,4 @@
+
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { useIsMobile } from "@/hooks/use-mobile";
@@ -25,20 +26,20 @@ const Hero = ({
 
   // Layout para dispositivos móveis
   if (isMobile) {
-    return <div className={`relative bg-nutrition-light-blue/10 ${reducedSpacing ? 'py-2' : 'py-3'} w-full`}>
+    return <div className={`relative ${reducedSpacing ? 'py-2' : 'py-3'} w-full bg-nutrition-green/5`}>
         <div className="container mx-auto px-2">
-          <div className="flex flex-col items-center">
-            {profileImage && <div className="mb-2 w-28 h-28 relative">
-                <img src={profileImage} alt={title} className="rounded-full border-4 border-white shadow-lg object-cover w-full h-full" loading="eager" fetchPriority="high" decoding="sync" />
-              </div>}
-            
+          <div className="grid grid-cols-1 gap-3">
             <div className="text-center">
-              <h1 className="text-lg font-bold mb-1">{title}</h1>
-              <p className="text-xs text-gray-700 mb-2 max-w-md mx-auto">{subtitle}</p>
-              {ctaText && <Button asChild className="bg-nutrition-green hover:bg-nutrition-teal text-white px-3 py-1 text-xs h-auto">
+              <h1 className="text-2xl font-bold mb-1">{title}</h1>
+              <p className="text-sm text-gray-700 mb-3 max-w-md mx-auto">{subtitle}</p>
+              {ctaText && <Button asChild className="bg-nutrition-green hover:bg-nutrition-teal text-white px-4 py-2">
                   <Link to={ctaLink}>{ctaText}</Link>
                 </Button>}
             </div>
+            
+            {profileImage && <div className="flex justify-center">
+                <img src={profileImage} alt={title} className="rounded-lg shadow-lg object-cover max-h-56" loading="eager" fetchPriority="high" decoding="sync" />
+              </div>}
           </div>
         </div>
 
@@ -51,20 +52,20 @@ const Hero = ({
   }
 
   // Layout para desktop
-  return <div className={`relative bg-nutrition-light-blue/10 ${reducedSpacing ? 'py-3' : 'py-4'} w-full`}>
+  return <div className={`relative ${reducedSpacing ? 'py-3' : 'py-4'} w-full bg-nutrition-green/5`}>
       <div className="container mx-auto px-3 lg:px-4">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 items-center py-[28px] px-[25px] mx-[8px]">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-center py-10">
           <div className="text-center md:text-left">
-            <h1 className="text-xl md:text-2xl font-bold mb-1">{title}</h1>
-            <p className="text-sm text-gray-700 mb-2 max-w-lg">{subtitle}</p>
-            {ctaText && <Button asChild className="bg-nutrition-green hover:bg-nutrition-teal text-white px-4 py-1 text-sm h-auto">
+            <h1 className="text-3xl md:text-4xl font-bold mb-3">O melhor software de <br /> {title}</h1>
+            <p className="text-lg text-gray-700 mb-5 max-w-xl">{subtitle}</p>
+            {ctaText && <Button asChild className="bg-nutrition-green hover:bg-nutrition-teal text-white px-6 py-2 rounded-md text-base">
                 <Link to={ctaLink}>{ctaText}</Link>
               </Button>}
           </div>
 
-          <div className="flex justify-center md:justify-end mt-0">
+          <div className="flex justify-center md:justify-end">
             {profileImage && <div className="relative">
-                <img src={profileImage} alt={title} className="rounded-lg shadow-lg object-cover max-w-xs w-full" loading="eager" fetchPriority="high" decoding="sync" />
+                <img src={profileImage} alt={title} className="rounded-lg shadow-lg object-cover max-w-md w-full" loading="eager" fetchPriority="high" decoding="sync" />
               </div>}
           </div>
         </div>

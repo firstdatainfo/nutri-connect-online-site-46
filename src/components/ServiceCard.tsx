@@ -1,3 +1,4 @@
+
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 interface ServiceCardProps {
@@ -16,14 +17,14 @@ const ServiceCard = ({
   color = "nutrition-green",
   buttonText = "Saiba Mais"
 }: ServiceCardProps) => {
-  return <div className="bg-white rounded-md shadow-sm h-full border border-gray-200 flex flex-col">
-      <div className="p-2 flex flex-col h-full py-[26px] px-[18px] my-0">
-        <div className="bg-nutrition-green/10 rounded-full w-8 h-8 flex items-center justify-center mb-1">
-          <div className="text-nutrition-green">{icon}</div>
+  return <div className="bg-white rounded-lg shadow-md h-full border border-gray-100 flex flex-col hover:shadow-lg transition-shadow duration-300">
+      <div className="p-5 flex flex-col h-full">
+        <div className={`bg-${color}/10 rounded-full w-12 h-12 flex items-center justify-center mb-3`}>
+          <div className={`text-${color} text-xl`}>{icon}</div>
         </div>
-        <h3 className="text-sm font-semibold mb-0.5">{title}</h3>
-        <p className="text-gray-600 mb-2 flex-grow text-xs">{description}</p>
-        <Button asChild variant="outline" size="sm" className="w-full justify-center border-nutrition-green text-nutrition-green hover:bg-nutrition-green/5 mt-auto text-xs h-7 py-0">
+        <h3 className="text-lg font-semibold mb-2">{title}</h3>
+        <p className="text-gray-600 mb-4 flex-grow">{description}</p>
+        <Button asChild variant="outline" className={`w-full justify-center border-${color} text-${color} hover:bg-${color}/10 mt-auto`}>
           <Link to={link}>{buttonText}</Link>
         </Button>
       </div>

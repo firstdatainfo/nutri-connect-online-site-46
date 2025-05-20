@@ -65,9 +65,7 @@ const Hero = ({
       <div className="container-custom relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 items-center">
           <div className="text-center md:text-left">
-            <h1 className="text-3xl md:text-5xl font-bold mb-3">
-              {title}
-            </h1>
+            
             <p className="text-lg md:text-xl text-gray-600 mb-4 md:mb-5">
               {subtitle}
             </p>

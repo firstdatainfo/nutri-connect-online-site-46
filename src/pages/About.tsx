@@ -1,4 +1,3 @@
-
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Hero from "@/components/Hero";
@@ -30,7 +29,7 @@ const About = () => {
     <>
       <Navbar />
       <main>
-        <Hero title="Sobre NutriVida" subtitle="Conheça nossa missão, nossa equipe e nossa abordagem para transformar a saúde através da nutrição." showWave={false} image="https://images.unsplash.com/photo-1505576399279-565b52d4ac71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80" ctaText="Agendar Consulta" />
+        <Hero title="Sobre NutriVida" subtitle="Conheça a NutriVida: uma iniciativa dedicada a transformar vidas por meio da nutrição consciente e personalizada. Composta por uma equipe multidisciplinar de nutricionistas, médicos e especialistas em saúde, nossa missão é promover bem-estar sustentável, oferecendo orientações baseadas em ciência e empatia, ajudando cada indivíduo a alcançar seu equilíbrio único entre alimentação, saúde e qualidade de vida." showWave={false} image="https://images.unsplash.com/photo-1505576399279-565b52d4ac71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80" ctaText="Agendar Consulta" />
 
         {/* Seção Nossa História */}
         <section className="section-padding bg-white" id="nossa-historia">

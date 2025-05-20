@@ -1,8 +1,6 @@
-
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Hero from "@/components/Hero";
-
 const About = () => {
   const teamMembers = [{
     name: "Dra. Maria Costa",
@@ -25,9 +23,7 @@ const About = () => {
     image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80",
     bio: "Carlos é especializado em terapia nutricional médica para gerenciamento de doenças crônicas e perda de peso."
   }];
-
-  return (
-    <>
+  return <>
       <Navbar />
       <main>
         <Hero title="Sobre NutriVida" subtitle="Conheça nossa missão, nossa equipe e nossa abordagem para transformar a saúde através da nutrição." showWave={false} image="https://images.unsplash.com/photo-1505576399279-565b52d4ac71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80" ctaText="Agendar Consulta" />
@@ -37,15 +33,7 @@ const About = () => {
           <div className="container-custom">
             {/* Imagem NUTRIÇÃO feita com alimentos */}
             <div className="flex justify-center mb-8">
-              <div className="rounded-lg overflow-hidden max-w-3xl">
-                <img 
-                  src="/lovable-uploads/a1ec3244-e783-4d5e-ab69-5fcc273a7b49.png" 
-                  alt="Nutricionista Clínica Integrativa, Esportiva, Estética, Microbiota Intestinal e Genômica" 
-                  className="w-full h-auto"
-                  loading="eager"
-                />
-                <p className="text-center text-sm text-gray-600 mt-2">Nutricionista Clínica Integrativa, Esportiva, Estética, Microbiota Intestinal e Genômica</p>
-              </div>
+              
             </div>
             
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -70,14 +58,7 @@ const About = () => {
               {/* Coluna da direita com a nova imagem */}
               <div className="flex items-center justify-center">
                 <div className="rounded-xl shadow-xl w-full max-w-md overflow-hidden">
-                  <img 
-                    src="/lovable-uploads/dda64908-e685-4ed3-8c2f-0579aa21112c.png" 
-                    alt="Alimentos saudáveis incluindo frutas, vegetais e proteínas" 
-                    className="w-full h-auto object-cover"
-                    loading="eager"
-                    fetchPriority="high"
-                    decoding="sync"
-                  />
+                  <img src="/lovable-uploads/dda64908-e685-4ed3-8c2f-0579aa21112c.png" alt="Alimentos saudáveis incluindo frutas, vegetais e proteínas" className="w-full h-auto object-cover" loading="eager" fetchPriority="high" decoding="sync" />
                 </div>
               </div>
             </div>
@@ -246,8 +227,6 @@ const About = () => {
         </section>
       </main>
       <Footer />
-    </>
-  );
+    </>;
 };
-
 export default About;

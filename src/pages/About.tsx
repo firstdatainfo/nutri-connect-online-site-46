@@ -5,10 +5,10 @@ import Hero from "@/components/Hero";
 
 const About = () => {
   const teamMembers = [{
-    name: "Dra. Maria Costa",
+    name: "Dra. Lidiane dos Reis",
     title: "Nutricionista Chefe",
     image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80",
-    bio: "Dra. Costa tem mais de 15 anos de experiência em nutrição clínica e possui doutorado em Ciências Nutricionais."
+    bio: "Dra. Lidiane dos Reis tem mais de 15 anos de experiência em nutrição clínica e possui doutorado em Ciências Nutricionais."
   }, {
     name: "João Silva",
     title: "Nutricionista Esportivo",
@@ -42,13 +42,13 @@ const About = () => {
                   A NutriVida foi fundada em 2010 com uma missão simples: tornar a nutrição personalizada acessível a todos. O que começou como uma pequena prática cresceu e se tornou um centro abrangente de nutrição e bem-estar com uma equipe de profissionais dedicados.
                 </p>
                 <p className="text-lg text-gray-700 mb-6">
-                  Nossa fundadora, Dra. Maria Costa, reconheceu que muitas pessoas lutavam para navegar pelas informações nutricionais e precisavam de orientação especializada para alcançar seus objetivos de saúde. Ela reuniu uma equipe de nutricionistas e especialistas em bem-estar que compartilham sua paixão por ajudar os outros a transformar suas vidas através da nutrição adequada.
+                  Nossa fundadora, Dra. Lidiane dos Reis, reconheceu que muitas pessoas lutavam para navegar pelas informações nutricionais e precisavam de orientação especializada para alcançar seus objetivos de saúde. Ela reuniu uma equipe de nutricionistas e especialistas em bem-estar que compartilham sua paixão por ajudar os outros a transformar suas vidas através da nutrição adequada.
                 </p>
                 <div className="bg-nutrition-light-green/20 border-l-4 border-nutrition-green p-4 mb-6 rounded">
                   <p className="text-lg italic text-gray-700">
                     "Acreditamos que a nutrição adequada é a base para uma vida saudável e plena. Nossa missão é fornecer conhecimento, orientação e apoio personalizado para cada cliente em sua jornada de saúde."
                   </p>
-                  <p className="text-right font-medium mt-2">— Dra. Maria Costa, Fundadora</p>
+                  <p className="text-right font-medium mt-2">— Dra. Lidiane dos Reis, Fundadora</p>
                 </div>
                 <p className="text-lg text-gray-700">
                   Hoje, continuamos a expandir nossos serviços e alcance, ajudando indivíduos e famílias em todo o país a alcançar melhor saúde através de planos nutricionais personalizados, educação e suporte contínuo.
@@ -126,7 +126,7 @@ const About = () => {
           <div className="container-custom">
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-bold mb-4">Conheça Meu Trabalho</h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">Sou  nutricionista certificada e especialista em bem-estar estou dedicada a ajudá-lo a alcançar seus objetivos de saúde.</p>
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto">Sou  nutricionista certificada e especialista em bem-estar estou dedicada a ajudá-lo a alcançar seus objetivos de saúde.</p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">

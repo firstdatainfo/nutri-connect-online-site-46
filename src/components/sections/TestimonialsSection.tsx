@@ -3,7 +3,7 @@ import React from "react";
 import TestimonialCard from "@/components/TestimonialCard";
 
 const testimonials = [{
-  quote: "A Lidiane transformou completamente minha relação com a alimentação. Não apenas perdi peso, mas também ganhei energia e confiança.",
+  quote: "A Dra. Lidiane dos Reis transformou completamente minha relação com a alimentação. Não apenas perdi peso, mas também ganhei energia e confiança.",
   author: "Maria Silva",
   role: "Cliente - Gerenciamento de Peso",
   image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
@@ -13,7 +13,7 @@ const testimonials = [{
   role: "Cliente - Gerenciamento de Saúde",
   image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
 }, {
-  quote: "Como atleta, eu precisava de orientação nutricional específica. A Lidiane forneceu exatamente o que eu precisava para melhorar meu desempenho.",
+  quote: "Como atleta, eu precisava de orientação nutricional específica. A Dra. Lidiane dos Reis forneceu exatamente o que eu precisava para melhorar meu desempenho.",
   author: "Ana Martins",
   role: "Cliente - Nutrição Esportiva",
   image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&auto=format&fit=crop&w=464&q=80"

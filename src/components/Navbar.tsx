@@ -43,21 +43,21 @@ const Navbar = () => {
     <nav className={`sticky top-0 z-50 w-full transition-all duration-300 ${
       isScrolled ? "bg-white shadow-md" : "bg-white/95"
     }`}>
-      <div className="container-custom">
-        <div className="flex justify-between items-center py-3">
+      <div className="container mx-auto px-3 sm:px-4">
+        <div className="flex justify-between items-center py-2">
           {/* Logo */}
-          <Link to="/" className="flex items-center space-x-2">
-            <Apple size={28} className="text-nutrition-green" />
-            <span className="font-display font-bold text-xl text-nutrition-green">Lidiane Dos Reis</span>
+          <Link to="/" className="flex items-center space-x-1">
+            <Apple size={24} className="text-nutrition-green" />
+            <span className="font-display font-bold text-base md:text-lg text-nutrition-green">Lidiane Dos Reis</span>
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-6">
+          <div className="hidden md:flex items-center space-x-4">
             {navItems.map(item => (
               <Link 
                 key={item.name} 
                 to={item.path} 
-                className={`text-sm font-medium transition-colors hover:text-nutrition-green ${
+                className={`text-xs font-medium transition-colors hover:text-nutrition-green ${
                   isActive(item.path) ? "text-nutrition-green" : "text-gray-700"
                 }`}
               >
@@ -66,7 +66,7 @@ const Navbar = () => {
             ))}
             <Button 
               asChild 
-              className="bg-nutrition-green hover:bg-nutrition-teal text-white"
+              className="bg-nutrition-green hover:bg-nutrition-teal text-white text-xs h-8 px-3"
             >
               <Link to="/consultation">Agendar Consulta</Link>
             </Button>
@@ -74,23 +74,23 @@ const Navbar = () => {
 
           {/* Mobile menu button */}
           <button 
-            className="md:hidden p-2" 
+            className="md:hidden p-1" 
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-label="Menu"
           >
             {isMenuOpen ? (
-              <X size={24} className="text-gray-700" />
+              <X size={20} className="text-gray-700" />
             ) : (
-              <Menu size={24} className="text-gray-700" />
+              <Menu size={20} className="text-gray-700" />
             )}
           </button>
         </div>
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="md:hidden py-4 border-t">
+          <div className="md:hidden py-2 border-t">
             {/* Social Media & Contact - Mobile */}
-            <div className="flex items-center justify-center space-x-5 mb-4">
+            <div className="flex items-center justify-center space-x-3 mb-2">
               <a 
                 href="https://www.instagram.com/lidianedosreisnutri/" 
                 target="_blank" 
@@ -98,31 +98,31 @@ const Navbar = () => {
                 className="text-gray-600 hover:text-nutrition-green" 
                 aria-label="Instagram"
               >
-                <Instagram size={20} />
+                <Instagram size={18} />
               </a>
               <a 
                 href="tel:5566992456034" 
                 className="text-gray-600 hover:text-nutrition-green flex items-center space-x-1" 
                 aria-label="Telefone"
               >
-                <Phone size={20} />
-                <span className="text-sm">55 66 99245-6034</span>
+                <Phone size={18} />
+                <span className="text-xs">55 66 99245-6034</span>
               </a>
               <a 
                 href="mailto:lidiane_dosreis@outlook.com" 
                 className="text-gray-600 hover:text-nutrition-green" 
                 aria-label="Email"
               >
-                <Mail size={20} />
+                <Mail size={18} />
               </a>
             </div>
             
-            <div className="flex flex-col space-y-2">
+            <div className="flex flex-col space-y-1">
               {navItems.map(item => (
                 <Link 
                   key={item.name} 
                   to={item.path} 
-                  className={`text-sm font-medium px-4 py-2 rounded-md ${
+                  className={`text-xs font-medium px-3 py-1.5 rounded-md ${
                     isActive(item.path) 
                       ? "bg-nutrition-light-green/10 text-nutrition-green" 
                       : "text-gray-700 hover:bg-gray-50"
@@ -131,10 +131,10 @@ const Navbar = () => {
                   {item.name}
                 </Link>
               ))}
-              <div className="px-4 pt-2">
+              <div className="px-3 pt-1">
                 <Button 
                   asChild 
-                  className="w-full bg-nutrition-green hover:bg-nutrition-teal text-white"
+                  className="w-full bg-nutrition-green hover:bg-nutrition-teal text-white text-xs h-8"
                 >
                   <Link to="/consultation">Agendar Consulta</Link>
                 </Button>

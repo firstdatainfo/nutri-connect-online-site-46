@@ -42,18 +42,27 @@
 @layer base {
   * {
     @apply border-border;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
   }
 
   html, body {
-    @apply bg-background text-foreground font-sans m-0 p-0 min-h-screen overflow-x-hidden;
+    @apply bg-background text-foreground font-sans min-h-screen overflow-x-hidden;
+    width: 100%;
   }
   
   img {
     @apply max-w-full h-auto block;
+    object-fit: cover;
   }
   
   h1, h2, h3, h4, h5, h6 {
     @apply font-display tracking-tight;
+  }
+
+  section {
+    @apply w-full;
   }
 }
 
@@ -67,7 +76,7 @@
   }
   
   .section-padding {
-    @apply py-8 md:py-12;
+    @apply py-6 md:py-8;
   }
   
   .container-custom {
@@ -75,11 +84,11 @@
   }
   
   .card-grid {
-    @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4;
+    @apply grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3;
   }
   
   .content-section {
-    @apply py-6 md:py-10;
+    @apply py-4 md:py-6;
   }
 }
 
@@ -97,7 +106,7 @@
   position: relative;
   display: block;
   width: calc(100% + 1.3px);
-  height: 75px;
+  height: 50px;
 }
 
 .hero-wave .shape-fill {

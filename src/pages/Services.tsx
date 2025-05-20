@@ -1,4 +1,3 @@
-
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Hero from "@/components/Hero";
@@ -50,7 +49,7 @@ const Services = () => {
         "Opções econômicas",
         "Ideias de refeições para toda a família"
       ],
-      image: "https://images.unsplash.com/photo-1532768778661-1b347c5f5517?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80",
+      image: "/lovable-uploads/fc4c8629-aacf-4438-8f1c-57cc3ef5cfc9.png", // Nova imagem de Planejamento de Refeições
       color: "nutrition-orange"
     },
     {
@@ -143,6 +142,9 @@ const Services = () => {
                     src={service.image} 
                     alt={service.title} 
                     className="w-full h-auto rounded-lg shadow-xl relative z-10"
+                    loading="eager"
+                    fetchPriority="high"
+                    decoding="sync"
                   />
                 </div>
 

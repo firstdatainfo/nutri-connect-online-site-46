@@ -26,7 +26,14 @@ const ServiceCard = ({
         </div>
         {imageUrl && (
           <div className="mb-3">
-            <img src={imageUrl} alt={title} className="w-full h-auto rounded-md" />
+            <img 
+              src={imageUrl} 
+              alt={title} 
+              className="w-full h-auto rounded-md" 
+              loading="eager" 
+              fetchPriority="high" 
+              decoding="sync"
+            />
           </div>
         )}
         <h3 className="text-lg font-semibold mb-2">{title}</h3>

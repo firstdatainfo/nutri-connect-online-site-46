@@ -1,4 +1,3 @@
-
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Hero from "@/components/Hero";
@@ -89,13 +88,13 @@ const Services = () => {
     <>
       <Navbar />
       <main>
-        {/* Hero Section com a nova imagem */}
-        <section className="bg-nutrition-light-blue/10 py-12 md:py-20">
+        {/* Hero Section com espaçamento reduzido */}
+        <section className="bg-nutrition-light-blue/10 py-8 md:py-12">
           <div className="container-custom">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
               <div className="order-2 md:order-1">
-                <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">Nossos Serviços Nutricionais</h1>
-                <p className="text-lg text-gray-700 mb-8">
+                <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">Nossos Serviços Nutricionais</h1>
+                <p className="text-lg text-gray-700 mb-6">
                   Conheça nossa variedade de serviços nutricionais personalizados projetados para ajudá-lo a alcançar seus objetivos de saúde.
                 </p>
                 <Button asChild size="lg" className="bg-nutrition-green hover:bg-nutrition-green/90">
@@ -107,22 +106,25 @@ const Services = () => {
                   src="/lovable-uploads/d08fb607-d036-44b3-a7ea-8bcb1e13ff7a.png" 
                   alt="Dra. Lidiane dos Reis - Nutricionista" 
                   className="max-h-[500px] object-contain rounded-lg"
+                  loading="eager" 
+                  fetchPriority="high" 
+                  decoding="sync"
                 />
               </div>
             </div>
           </div>
         </section>
 
-        {/* Introdução aos Serviços */}
-        <section className="bg-white py-12">
+        {/* Introdução aos Serviços com espaçamento reduzido */}
+        <section className="bg-white py-8">
           <div className="container-custom">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
               <div>
-                <h2 className="text-2xl md:text-3xl font-bold mb-6">Nossos Serviços</h2>
-                <p className="text-gray-700 mb-4">
+                <h2 className="text-2xl md:text-3xl font-bold mb-4">Nossos Serviços</h2>
+                <p className="text-gray-700 mb-3">
                   Na busca por saúde e bem-estar, cada pessoa é única — e é exatamente assim que tratamos cada paciente. Oferecemos serviços personalizados, fundamentados em evidências científicas e aliados a uma visão holística da saúde.
                 </p>
-                <p className="text-gray-700 mb-4">
+                <p className="text-gray-700 mb-3">
                   Acreditamos que a nutrição vai muito além da dieta: ela envolve estilo de vida, hábitos, emoções e objetivos individuais. Por isso, atuamos em diferentes áreas da nutrição para entregar um atendimento completo e humanizado.
                 </p>
                 <p className="text-gray-700">
@@ -134,43 +136,49 @@ const Services = () => {
                   src="/lovable-uploads/328781bb-6e73-4640-a174-a95402b23668.png" 
                   alt="Nutrição e saúde" 
                   className="rounded-lg max-w-full h-auto shadow-lg" 
+                  loading="eager" 
+                  fetchPriority="high" 
+                  decoding="sync"
                 />
               </div>
             </div>
           </div>
         </section>
 
-        {/* Serviços */}
-        <section className="bg-white py-16">
+        {/* Serviços com imagens sem animação */}
+        <section className="bg-white py-12">
           <div className="container-custom">
             {services.map((service, index) => (
               <div 
                 key={service.id} 
                 id={service.id}
-                className={`grid grid-cols-1 lg:grid-cols-2 gap-12 items-center ${
-                  index !== 0 ? "pt-20 mt-20 border-t border-gray-100" : ""
+                className={`grid grid-cols-1 lg:grid-cols-2 gap-8 items-center ${
+                  index !== 0 ? "pt-16 mt-16 border-t border-gray-100" : ""
                 }`}
               >
-                {/* Imagem (alternando lados) */}
+                {/* Imagem (alternando lados) sem animação */}
                 <div className={`relative ${index % 2 === 1 ? "lg:order-2" : ""}`}>
                   <div className={`absolute -inset-1 bg-${service.color}/20 rounded-lg blur-xl opacity-70`}></div>
                   <img 
                     src={service.image} 
                     alt={service.title} 
                     className="w-full h-auto rounded-lg shadow-xl relative z-10"
+                    loading="eager"
+                    fetchPriority="high"
+                    decoding="sync"
                   />
                 </div>
 
                 {/* Conteúdo */}
                 <div className={index % 2 === 1 ? "lg:order-1" : ""}>
-                  <div className={`bg-${service.color}/10 rounded-full w-16 h-16 flex items-center justify-center mb-6`}>
+                  <div className={`bg-${service.color}/10 rounded-full w-16 h-16 flex items-center justify-center mb-4`}>
                     <div className={`text-${service.color}`}>{service.icon}</div>
                   </div>
                   <h2 className="text-3xl font-bold mb-4">{service.title}</h2>
-                  <p className="text-lg text-gray-700 mb-6">{service.description}</p>
+                  <p className="text-lg text-gray-700 mb-5">{service.description}</p>
                   
-                  <h3 className="text-xl font-semibold mb-4">Benefícios:</h3>
-                  <ul className="space-y-3 mb-8">
+                  <h3 className="text-xl font-semibold mb-3">Benefícios:</h3>
+                  <ul className="space-y-2 mb-6">
                     {service.benefits.map((benefit, i) => (
                       <li key={i} className="flex items-start">
                         <div className={`bg-${service.color}/10 rounded-full p-1 mr-3 mt-1`}>

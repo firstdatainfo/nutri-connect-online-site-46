@@ -1,7 +1,6 @@
 
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-
 interface ServiceCardProps {
   title: string;
   description: string;
@@ -10,7 +9,6 @@ interface ServiceCardProps {
   color?: string;
   buttonText?: string;
 }
-
 const ServiceCard = ({
   title,
   description,
@@ -19,8 +17,7 @@ const ServiceCard = ({
   color = "nutrition-green",
   buttonText = "Saiba Mais"
 }: ServiceCardProps) => {
-  return (
-    <div className="bg-white rounded-lg shadow-md h-full border border-gray-100 flex flex-col hover:shadow-lg transition-shadow duration-300">
+  return <div className="bg-white rounded-lg shadow-md h-full border border-gray-100 flex flex-col hover:shadow-lg transition-shadow duration-300">
       <div className="p-5 flex flex-col h-full">
         <div className={`bg-${color}/10 rounded-full w-12 h-12 flex items-center justify-center mb-3`}>
           <div className={`text-${color} text-xl`}>{icon}</div>
@@ -31,8 +28,6 @@ const ServiceCard = ({
           <Link to={link}>{buttonText}</Link>
         </Button>
       </div>
-    </div>
-  );
+    </div>;
 };
-
 export default ServiceCard;

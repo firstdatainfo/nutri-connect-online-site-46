@@ -1,19 +1,16 @@
-
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Hero from "@/components/Hero";
-
 const About = () => {
   // Modificado para manter apenas a Dra. Lidiane dos Reis
   const teamMember = {
     name: "Dra. Lidiane dos Reis",
     title: "Nutricionista",
-    image: "/lovable-uploads/c96454b9-5d50-458c-8a97-2cb785105770.png", // Nova imagem carregada
+    image: "/lovable-uploads/c96454b9-5d50-458c-8a97-2cb785105770.png",
+    // Nova imagem carregada
     bio: "Dra. Lidiane dos Reis tem mais de 15 anos de experiência em nutrição clínica e possui doutorado em Ciências Nutricionais."
   };
-
-  return (
-    <>
+  return <>
       <Navbar />
       <main>
         <Hero title="Sobre NutriVida" subtitle="Conheça a NutriVida: uma iniciativa dedicada a transformar vidas por meio da nutrição consciente e personalizada. Composta por uma equipe multidisciplinar de nutricionistas, médicos e especialistas em saúde, nossa missão é promover bem-estar sustentável, oferecendo orientações baseadas em ciência e empatia, ajudando cada indivíduo a alcançar seu equilíbrio único entre alimentação, saúde e qualidade de vida." showWave={false} image="https://images.unsplash.com/photo-1505576399279-565b52d4ac71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80" ctaText="Agendar Consulta" />
@@ -43,14 +40,7 @@ const About = () => {
               {/* Coluna da direita com a nova imagem */}
               <div className="flex items-center justify-center">
                 <div className="rounded-xl shadow-xl w-full max-w-md overflow-hidden">
-                  <img 
-                    src="/lovable-uploads/dda64908-e685-4ed3-8c2f-0579aa21112c.png" 
-                    alt="Alimentos saudáveis incluindo frutas, vegetais e proteínas" 
-                    className="w-full h-auto object-cover"
-                    loading="eager"
-                    fetchPriority="high"
-                    decoding="sync"
-                  />
+                  <img src="/lovable-uploads/dda64908-e685-4ed3-8c2f-0579aa21112c.png" alt="Alimentos saudáveis incluindo frutas, vegetais e proteínas" className="w-full h-auto object-cover" loading="eager" fetchPriority="high" decoding="sync" />
                 </div>
               </div>
             </div>
@@ -117,17 +107,10 @@ const About = () => {
               </p>
             </div>
 
-            <div className="flex justify-center">
+            <div className="flex justify-center px-0 py-[46px] my-[48px]">
               <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow max-w-md">
                 <div className="h-[400px] overflow-hidden">
-                  <img 
-                    src={teamMember.image} 
-                    alt={teamMember.name} 
-                    className="w-full h-full object-contain object-center"
-                    loading="eager"
-                    fetchPriority="high"
-                    decoding="sync"
-                  />
+                  <img src={teamMember.image} alt={teamMember.name} className="w-full h-full object-contain object-center" loading="eager" fetchPriority="high" decoding="sync" />
                 </div>
                 <div className="p-6">
                   <h3 className="text-xl font-semibold mb-1">{teamMember.name}</h3>
@@ -230,8 +213,6 @@ const About = () => {
         </section>
       </main>
       <Footer />
-    </>
-  );
+    </>;
 };
-
 export default About;
